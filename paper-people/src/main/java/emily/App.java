@@ -28,11 +28,25 @@ public class App {
             // switch between menu options to select relevant code
             switch (choice) {
                 case "1" -> {
-                    System.out.println("Is your person male (XY) or female (XX)? Type \"R\" to randomize or \"B\" to go back to main menu.");
+                    System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
 
-
+                    switch (selection) {
+                        case "XY", "xy", "Xy", "xY" -> {
+                            Male male = new Male();
+                            System.out.println("Your person is a man. His name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
+                        }
+                        case "XX", "xx", "Xx", "xX" -> {
+                        }   
+                        case "R", "r" -> {
+                        }  
+                        case "B", "b" -> {
+                            break;
+                        }
+                        default -> System.out.println("Invalid entry. Please try again.");
+                    }
                 }
+
                 case "2" -> {
 
                   

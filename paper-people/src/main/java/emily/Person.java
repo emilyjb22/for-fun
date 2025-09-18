@@ -1,5 +1,7 @@
 package emily;
 
+import java.util.Scanner;
+
 public class Person {
 
      // instance variables
@@ -7,6 +9,8 @@ public class Person {
     String lastName;
     String randomName;
     String sex;
+    String [] lastNames = {"Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+                            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"};  
     //String hairColor;
     //String eyeColor;
     //String skinColor;
@@ -25,8 +29,26 @@ public class Person {
         this.sex = sex;
     }
 
-    public String randomName(){
-        return randomName;
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+
+    public String getLastName(Scanner input){
+        System.out.println("Enter his last name, or enter \"R\" to randomize: ");
+        String name = input.nextLine();
+        if (name.equalsIgnoreCase("R")) {
+            lastName = randomLastName();
+        }
+        else {
+            lastName = name;
+        }
+       return lastName;
+    }
+
+    public String randomLastName(){
+        int randomIndex = (int)(Math.random() * lastNames.length);
+        lastName = lastNames[randomIndex];
+        return lastName; 
     }
 
     @Override
