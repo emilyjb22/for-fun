@@ -5,6 +5,7 @@ public class Person {
      // instance variables
     String firstName;
     String lastName;
+    String randomName;
     String sex;
     //String hairColor;
     //String eyeColor;
@@ -24,7 +25,9 @@ public class Person {
         this.sex = sex;
     }
 
-
+    public String randomName(){
+        return randomName;
+    }
 
     @Override
     public String toString() {
