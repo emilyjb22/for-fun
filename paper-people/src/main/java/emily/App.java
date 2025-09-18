@@ -15,10 +15,38 @@ public class App {
         System.out.print("Press Enter to continue...");
         input.nextLine();
 
-        System.out.println(new Dashboard().menu);
+        String choice = "";
 
+        // get user input, until user exits program
+        while (!choice.equals("5")) {
 
-        
+            System.out.println(new Dashboard().menu);
+
+            System.out.print("Enter a command: ");
+            choice = input.nextLine();
+
+            // switch between menu options to select relevant code
+            switch (choice) {
+                case "1" -> {
+                    Person p = new Person();
+                    System.out.println(p);
+                }
+                case "2" -> {
+                  
+                }
+                case "3" -> {
+                    
+                }
+                case "4" -> {
+                    
+                }
+               
+                case "5" -> {
+
+                }
+                default -> System.out.println("Invalid entry. Please enter a number between 1 and 5.");
+            }
+        }
     }
 }
 

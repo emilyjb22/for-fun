@@ -6,10 +6,10 @@ public class Person {
     String firstName;
     String lastName;
     String sex;
-    String hairColor;
-    String eyeColor;
-    String skinColor;
-    String freckles;
+    //String hairColor;
+    //String eyeColor;
+    //String skinColor;
+    //String freckles;
 
     // default constructor. Would eventually need to pull random name from an external list...?
     Person() {
@@ -18,12 +18,15 @@ public class Person {
         this.sex = "XY";
     }
     
-
     Person(String firstName, String lastName, String sex){
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
     }
+
+    
+
+
 
     @Override
     public String toString() {
