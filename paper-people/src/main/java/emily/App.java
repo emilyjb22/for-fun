@@ -18,7 +18,7 @@ public class App {
         String choice = "";
 
         // get user input, until user exits program
-        while (!choice.equals("5")) {
+        while (!choice.equals("4")) {
 
             System.out.println(new Dashboard().menu);
 
@@ -28,10 +28,13 @@ public class App {
             // switch between menu options to select relevant code
             switch (choice) {
                 case "1" -> {
-                    Person p = new Person();
-                    System.out.println(p);
+                    System.out.println("Is your person male (XY) or female (XX)? Type \"R\" to randomize or \"B\" to go back to main menu.");
+                    String selection = input.nextLine();
+
+
                 }
                 case "2" -> {
+
                   
                 }
                 case "3" -> {
@@ -40,11 +43,7 @@ public class App {
                 case "4" -> {
                     
                 }
-               
-                case "5" -> {
-
-                }
-                default -> System.out.println("Invalid entry. Please enter a number between 1 and 5.");
+                default -> System.out.println("Invalid entry. Please enter a number between 1 and 4.");
             }
         }
     }
@@ -63,11 +62,10 @@ class Dashboard {
     String menu = """
                 --------------------------------------
                 Menu:
-                   1.  Create a New Person (Random)
-                   2.  Create a New Person (Custom)
-                   3.  Have a Baby
-                   4.  View Your Population
-                   5.  Exit
+                   1.  Create a New Person
+                   2.  Have a Baby
+                   3.  View Your Population
+                   4.  Exit
                 --------------------------------------
                 """;
 
