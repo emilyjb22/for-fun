@@ -37,6 +37,8 @@ public class App {
                             System.out.println("Your person is a man. His name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
                         }
                         case "XX", "xx", "Xx", "xX" -> {
+                            Female female = new Female();
+                            System.out.println("Your person is a female. Her name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
                         }   
                         case "R", "r" -> {
                         }  

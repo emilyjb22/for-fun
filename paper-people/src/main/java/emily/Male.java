@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class Male extends Person{
 
+    String maleName;
     String[] maleNames = {"James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles", 
                         "Christopher", "Daniel", "Matthew", "Anthony", "Timothy", "Mark", "Paul", "Steven", "Andrew", "Kenneth"};
-    String maleName;
     
     Male(){
         this.firstName = maleName;
@@ -18,10 +18,6 @@ public class Male extends Person{
         this.maleName = maleName;
     }
 
-    /**
-     * @param input
-     * @return
-     */
     public String getMaleName(Scanner input){
         System.out.println("Enter his first name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
