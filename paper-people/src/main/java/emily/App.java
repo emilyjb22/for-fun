@@ -58,6 +58,10 @@ public class App {
                         default -> System.out.println("Invalid entry. Please try again.");
                     }
                     System.out.println();
+                    System.out.println("Next, we're going to select their eye color.");
+                    
+
+                    System.out.println();
                     System.out.println("Do you want to save this person to your population? (Y/N)");
                     String save = input.nextLine();
                     
@@ -82,8 +86,12 @@ public class App {
                   
                 }
                 case "3" -> {
+                    //need to make this print better
+                    System.out.println("Here is your current population:");
                     for (Object male : allMales) { System.out.println(male.toString());
                     } 
+                    for (Object female : allFemales) { System.out.println(female.toString());
+                    }
                     
                 }
                 case "4" -> {
