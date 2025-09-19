@@ -38,7 +38,7 @@ public class Person {
 
     // method to get user input for last name or randomize
     public String getLastName(Scanner input){
-        System.out.println("Enter your person's last name, or enter \"R\" to randomize: ");
+        System.out.println("Give your person a last name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
         if (name.equalsIgnoreCase("R")) {
             lastName = randomLastName();

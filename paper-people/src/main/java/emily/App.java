@@ -31,21 +31,34 @@ public class App {
                     System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
 
+                    if (selection.equalsIgnoreCase("R")) {
+                        Person person = new Person();
+                        selection = person.getRandomSex();
+                    }
+
                     switch (selection) {
                         case "XY", "xy", "Xy", "xY" -> {
                             Male male = new Male();
-                            System.out.println("Your person is a man. His name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
+                            System.out.println("Your person's name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
                         }
                         case "XX", "xx", "Xx", "xX" -> {
                             Female female = new Female();
-                            System.out.println("Your person is a female. Her name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
-                        }   
-                        case "R", "r" -> {
-                        }  
+                            System.out.println("Your person's name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
+                        }    
                         case "B", "b" -> {
                             break;
                         }
                         default -> System.out.println("Invalid entry. Please try again.");
+                    }
+                    System.out.println();
+                    System.out.println("Do you want to save this person to your population? (Y/N)");
+                    String save = input.nextLine();
+                    
+                    // for now, just print confirmation message; need to implement population storage
+                    if (save.equalsIgnoreCase("Y")) {
+                            System.out.println("Person saved to population.");
+                    } else {
+                            System.out.println("Person not saved.");
                     }
                 }
 

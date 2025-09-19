@@ -19,7 +19,7 @@ public class Male extends Person{
     }
 
     public String getMaleName(Scanner input){
-        System.out.println("Enter his first name, or enter \"R\" to randomize: ");
+        System.out.println("Your person is a man. Give him a first name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
             if (name.equalsIgnoreCase("R")) {
                 maleName = randomName();
