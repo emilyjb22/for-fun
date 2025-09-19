@@ -1,5 +1,6 @@
 package emily;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,9 @@ public class App {
         input.nextLine();
 
         String choice = "";
+        ArrayList<Male> allMales = new ArrayList<Male>();
+        ArrayList<Female> allFemales = new ArrayList<Female>();
+
 
         // get user input, until user exits program
         while (!choice.equals("4")) {
@@ -36,13 +40,16 @@ public class App {
                         selection = person.getRandomSex();
                     }
 
+                    Male male = null;
+                    Female female = null;
+
                     switch (selection) {
                         case "XY", "xy", "Xy", "xY" -> {
-                            Male male = new Male();
+                            male = new Male();
                             System.out.println("Your person's name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
                         }
                         case "XX", "xx", "Xx", "xX" -> {
-                            Female female = new Female();
+                            female = new Female();
                             System.out.println("Your person's name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
                         }    
                         case "B", "b" -> {
@@ -56,9 +63,17 @@ public class App {
                     
                     // for now, just print confirmation message; need to implement population storage
                     if (save.equalsIgnoreCase("Y")) {
-                            System.out.println("Person saved to population.");
-                    } else {
+                        if (selection.equalsIgnoreCase("XY") && male != null) {
+                            allMales.add(male);
+                            System.out.println("Person saved to your population.");
+                        } else if (selection.equalsIgnoreCase("XX") && female != null) {
+                            allFemales.add(female);
+                            System.out.println("Person saved to your population.");
+                        } else {
                             System.out.println("Person not saved.");
+                        }
+                    } else {
+                        System.out.println("Person not saved.");
                     }
                 }
 
@@ -67,6 +82,8 @@ public class App {
                   
                 }
                 case "3" -> {
+                    for (Object male : allMales) { System.out.println(male.toString());
+                    } 
                     
                 }
                 case "4" -> {
