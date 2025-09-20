@@ -29,7 +29,7 @@ public class Person {
     // variables for hair color
     String hairColor;
     String [] hairColors = {"black", "black-brown", "dark brown", "brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
-    String hairColorGeneString;
+   
     String[] hairColorGeneStrings = {"AABBRR", "AABBRr", "AABBrr", "AABbRR", "AABbRr", "AABbrr", "AAbbRR", "AAbbRr", "AAbbrr", "AaBBRR", "AaBBRr", "AaBBrr", 
                                     "AaBbRR", "AaBbRr", "AaBbrr", "AabbRR", "AabbRr", "Aabbrr", "aaBBRR", "aaBBRr", "aaBBrr", "aaBbRR", "aaBbRr", "aaBbrr", "aabbRR", "aabbRr", "aabbrr"};
     String hairColorGene1Allele;
@@ -146,9 +146,12 @@ public class Person {
         }
         hairColor = input.nextLine();
         if (hairColor.equalsIgnoreCase("R")) {
-            hairColor = randomHairColor();
+            String hairColorGeneString = getHairColorGeneString();
+            System.out.println(hairColorGeneString);
+            hairColor = randomHairColor(hairColorGeneString);
         }
-        System.out.println(firstName + " has " + hairColor + " hair.");
+        
+        System.out.println(firstName + " has " + hairColor + " hair. Their genotype is " + hairColorGeneString + ".");
         return hairColor; 
     }
 
@@ -157,8 +160,14 @@ public class Person {
         return hairColor;
     }
 
-    public String randomHairColor(){
-        String hairColorGeneString = randomHairColorGene1Allele() + randomHairColorGene1Allele() + randomHairColorGene2Allele() + randomHairColorGene2Allele() + randomHairColorGene3Allele() + randomHairColorGene3Allele();
+    public String getHairColorGeneString(){
+        String gene1 = randomHairColorGene1String();
+        String gene2 = randomHairColorGene2String();
+        String gene3 = randomHairColorGene3String();    
+        String hairColorGeneString = gene1 + gene2 + gene3;
+        return hairColorGeneString;
+    }
+    public String randomHairColor(String hairColorGeneString){
         switch (hairColorGeneString) {
             case "AABBRR":
             case "AABBRr":
@@ -217,15 +226,38 @@ public class Person {
         hairColorGene1Allele = hairColorGene1Alleles[randomIndex];
         return hairColorGene1Allele; 
     }
+
+    public String randomHairColorGene1String(){
+        String allele1 = randomHairColorGene1Allele();
+        String allele2 = randomHairColorGene1Allele();
+        String hairColorGene1String = allele1 + allele2;
+        return hairColorGene1String;
+    }
+
     public String randomHairColorGene2Allele(){
         int randomIndex = (int)(Math.random() * hairColorGene2Alleles.length);
         hairColorGene2Allele = hairColorGene2Alleles[randomIndex];
         return hairColorGene2Allele; 
     }
+
+public String randomHairColorGene2String(){
+        String allele1 = randomHairColorGene2Allele();
+        String allele2 = randomHairColorGene2Allele();
+        String hairColorGene2String = allele1 + allele2;
+        return hairColorGene2String;
+    }
+
     public String randomHairColorGene3Allele(){
         int randomIndex = (int)(Math.random() * hairColorGene3Alleles.length);
         hairColorGene3Allele = hairColorGene3Alleles[randomIndex];
         return hairColorGene3Allele; 
+    }
+
+    public String randomHairColorGene3String(){
+        String allele1 = randomHairColorGene3Allele();
+        String allele2 = randomHairColorGene3Allele();
+        String hairColorGene3String = allele1 + allele2;
+        return hairColorGene3String;
     }
 
     @Override
