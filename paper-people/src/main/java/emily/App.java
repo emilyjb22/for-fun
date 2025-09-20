@@ -44,21 +44,24 @@ public class App {
                     Female female = null;
 
                     switch (selection) {
-                        case "XY", "xy", "Xy", "xY" -> {
-                            male = new Male();
-                            System.out.println("Your person's name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
+                        case "XY", "xy", "Xy", "xY", "XX", "xx", "Xx", "xX" -> {
+                            if (selection.equalsIgnoreCase("XY")) {
+                                male = new Male();
+                                System.out.println("Your person's name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
+                                male.getEyeColor(input);
+                            }
+                            else {
+                                female = new Female();
+                                System.out.println("Your person's name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
+                                female.getEyeColor(input);
+                            }
                         }
-                        case "XX", "xx", "Xx", "xX" -> {
-                            female = new Female();
-                            System.out.println("Your person's name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
-                        }    
                         case "B", "b" -> {
                             break;
+                            
                         }
                         default -> System.out.println("Invalid entry. Please try again.");
                     }
-                    System.out.println();
-                    System.out.println("Next, we're going to select their eye color.");
                     
 
                     System.out.println();

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Person {
 
-     // naming variables and array
+     // variables and array for names
     String firstName;
     String lastName;
     // initiate array of last names for randomization; to be replaced with external list eventually 
@@ -26,13 +26,24 @@ public class Person {
     String eyeColorGene2Allele;
     String[] eyeColorGene2Alleles = {"D", "d"};
 
+    // variables for hair color
+    String hairColor;
+    String [] hairColors = {"black", "black-brown", "dark brown", "brown", "auburn", "red", "dark blonde", "blonde", "strawberry blonde", "white"};
+    String hairColorGeneString;
+    String[] hairColorGeneStrings = {"AABBRR", "AABBRr", "AABBrr", "AABbRR", "AABbRr", "AABbrr", "AAbbRR", "AAbbRr", "AAbbrr", "AaBBRR", "AaBBRr", "AaBBrr", 
+                                    "AaBbRR", "AaBbRr", "AaBbrr", "AabbRR", "AabbRr", "Aabbrr", "aaBBRR", "aaBBRr", "aaBBrr", "aaBbRR", "aaBbRr", "aaBbrr", "aabbRR", "aabbRr", "aabbrr"};
+    String hairColorGene1Allele;
+    String[] hairColorGene1Alleles = {"A", "a"};
+    String hairColorGene2Allele;
+    String[] hairColorGene2Alleles = {"B", "b"};
+    String hairColorGene3Allele;
+    String[] hairColorGene3Alleles = {"R", "r"};
 
-    //String hairColor;
     //String skinColor;
     //String freckles;
 
     // default constructor
-    Person() {
+    Person() {  
         this.firstName = "John";
         this.lastName = "Doe";
         this.sex = "XY";
@@ -46,7 +57,9 @@ public class Person {
         this.sex = sex;
         this.eyeColor = eyeColor;
     }
-
+/*
+ * Code pertaining to name generation and randomization
+ */
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
@@ -71,20 +84,52 @@ public class Person {
         return lastName; 
     }
 
-    // method to obtain a random sex
+/*
+ * Code pertaining to sex generation and randomization
+ */
     public String getRandomSex(){
         int randomIndex = (int)(Math.random() * sexes.length);
         sex = sexes[randomIndex];
         return sex;}
 
-    //code for eye genetics
-    public String getEyeColor(){
-        return eyeColor;
+/*
+ * Code pertaining to eye color generation and randomization
+ */
+    public String getEyeColor(Scanner input){
+        System.out.println("""
+                                Next, we're going to select their eye color.
+                                
+                                What color eyes does your person have? Select from the list below, or enter \"R\" to randomize:
+                                ---------------------
+                                Eye color options:
+                                ---------------------
+                                """);
+        // print list of eye colors for user to select from
+        for (String color : eyeColors) {
+            System.out.println("- " + color);
+        }
+        eyeColor = input.nextLine();
+        if (eyeColor.equalsIgnoreCase("R")) {
+            eyeColor = randomEyeColor();
+        }
+        System.out.println(firstName + " has " + eyeColor + " eyes.");
+        return eyeColor; 
     }
+
     public String setEyeColor(String eyeColor){
         this.eyeColor = eyeColor;
         return eyeColor;
     }
+
+    public String randomEyeColor(){
+        int randomIndex = (int)(Math.random() * eyeColors.length);
+        eyeColor = eyeColors[randomIndex];
+        return eyeColor; 
+    }
+
+/*
+ * Code pertaining to hair color generation and randomization
+ */
 
 
     @Override
