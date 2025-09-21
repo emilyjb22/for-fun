@@ -28,10 +28,16 @@ public class Person {
 
     // variables for hair color
     String hairColor;
-    String [] hairColors = {"black", "black-brown", "dark brown", "brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
-   
-    String[] hairColorGeneStrings = {"AABBRR", "AABBRr", "AABBrr", "AABbRR", "AABbRr", "AABbrr", "AAbbRR", "AAbbRr", "AAbbrr", "AaBBRR", "AaBBRr", "AaBBrr", 
-                                    "AaBbRR", "AaBbRr", "AaBbrr", "AabbRR", "AabbRr", "Aabbrr", "aaBBRR", "aaBBRr", "aaBBrr", "aaBbRR", "aaBbRr", "aaBbrr", "aabbRR", "aabbRr", "aabbrr"};
+    String [] hairColors = {"black","black-brown","dark brown","brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
+    String [] blackHairGenotypes = {"AABBRR","AABBRr","AABBrr"};
+    String [] blackBrownHairGenotypes = {"AABbRR","AABbRr","AABbrr"};
+    String [] darkBrownHairGenotypes = {"AAbbRR","AAbbRr","AAbbrr"};
+    String [] brownHairGenotypes = {"AaBBRR","AaBBRr","AaBBrr","AaBbRR","AaBbRr","AaBbrr","Aabbrr"};
+    String [] auburnHairGenotypes = {"AabbRR","AabbRr"};
+    String [] blondeHairGenotypes = {"aaBBRR","aaBBRr","aaBBrr","aaBbrr"};
+    String [] strawberryBlondeHairGenotypes = {"aabbRR","aabbRr"};
+    String [] redHairGenotypes = {"aabbRR","aabbRr"};
+    String whiteHairGenotype = "aabbcc";
     String hairColorGene1Allele;
     String[] hairColorGene1Alleles = {"A", "a"};
     String hairColorGene2Allele;
@@ -129,7 +135,7 @@ public class Person {
 
 /*
  * Code pertaining to hair color generation and randomization
- */
+ 
 
     public String getHairColor(Scanner input){
         System.out.println("""
@@ -150,6 +156,7 @@ public class Person {
             System.out.println(hairColorGeneString);
             hairColor = randomHairColor(hairColorGeneString);
         }
+        else
         
         System.out.println(firstName + " has " + hairColor + " hair. Their genotype is " + hairColorGeneString + ".");
         return hairColor; 
@@ -258,6 +265,13 @@ public String randomHairColorGene2String(){
         String allele2 = randomHairColorGene3Allele();
         String hairColorGene3String = allele1 + allele2;
         return hairColorGene3String;
+    }*/
+
+//trial randomize method
+    public String randomize(String[] array, String thing){
+        int randomIndex = (int)(Math.random() * array.length);
+        thing = array[randomIndex];
+        return thing;
     }
 
     @Override

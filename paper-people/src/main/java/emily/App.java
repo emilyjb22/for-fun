@@ -49,13 +49,13 @@ public class App {
                                 male = new Male();
                                 System.out.println("Your person's name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
                                 male.getEyeColor(input);
-                                male.getHairColor(input);
+                                //male.getHairColor(input);
                             }
                             else {
                                 female = new Female();
                                 System.out.println("Your person's name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
                                 female.getEyeColor(input);
-                                female.getHairColor(input);
+                                //female.getHairColor(input);
                             }
                         }
                         case "B", "b" -> {
