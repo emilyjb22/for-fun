@@ -13,8 +13,8 @@ public class Person {
     String randomName;
 
     // variables for sex
-    String sex;
-    String [] sexes = {"XX", "XY"};
+    static String sex;
+    static String[] sexes = {"XX", "XY"};
     
     // variables for eye color
     String eyeColor;
@@ -52,7 +52,7 @@ public class Person {
     Person() {  
         this.firstName = "John";
         this.lastName = "Doe";
-        this.sex = "XY";
+        Person.sex = "XY";
         this.eyeColor = "light brown";
     }
     
@@ -60,7 +60,7 @@ public class Person {
     Person(String firstName, String lastName, String sex, String eyeColor){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.sex = sex;
+        Person.sex = sex;
         this.eyeColor = eyeColor;
     }
 /*
@@ -75,28 +75,13 @@ public class Person {
         System.out.println("Give your person a last name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
         if (name.equalsIgnoreCase("R")) {
-            lastName = randomLastName();
+            lastName = randomize(lastNames,lastName);
         }
         else {
             lastName = name;
         }
        return lastName;
     }
-
-    // method to randomize last name from array
-    public String randomLastName(){
-        int randomIndex = (int)(Math.random() * lastNames.length);
-        lastName = lastNames[randomIndex];
-        return lastName; 
-    }
-
-/*
- * Code pertaining to sex generation and randomization
- */
-    public String getRandomSex(){
-        int randomIndex = (int)(Math.random() * sexes.length);
-        sex = sexes[randomIndex];
-        return sex;}
 
 /*
  * Code pertaining to eye color generation and randomization
@@ -116,7 +101,7 @@ public class Person {
         }
         eyeColor = input.nextLine();
         if (eyeColor.equalsIgnoreCase("R")) {
-            eyeColor = randomEyeColor();
+            eyeColor = randomize(eyeColors,eyeColor);
         }
         System.out.println(firstName + " has " + eyeColor + " eyes.");
         return eyeColor; 
@@ -125,12 +110,6 @@ public class Person {
     public String setEyeColor(String eyeColor){
         this.eyeColor = eyeColor;
         return eyeColor;
-    }
-
-    public String randomEyeColor(){
-        int randomIndex = (int)(Math.random() * eyeColors.length);
-        eyeColor = eyeColors[randomIndex];
-        return eyeColor; 
     }
 
 /*
@@ -267,8 +246,8 @@ public String randomHairColorGene2String(){
         return hairColorGene3String;
     }*/
 
-//trial randomize method
-    public String randomize(String[] array, String thing){
+// method to randomize EVERYTHING
+    public static String randomize(String[] array, String thing){
         int randomIndex = (int)(Math.random() * array.length);
         thing = array[randomIndex];
         return thing;

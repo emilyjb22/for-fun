@@ -20,7 +20,6 @@ public class App {
         ArrayList<Male> allMales = new ArrayList<Male>();
         ArrayList<Female> allFemales = new ArrayList<Female>();
 
-
         // get user input, until user exits program
         while (!choice.equals("4")) {
 
@@ -36,8 +35,7 @@ public class App {
                     String selection = input.nextLine();
 
                     if (selection.equalsIgnoreCase("R")) {
-                        Person person = new Person();
-                        selection = person.getRandomSex();
+                        selection = Person.randomize(Person.sexes, Person.sex);
                     }
 
                     Male male = null;
