@@ -31,15 +31,15 @@ public class Person {
     String hairColor;
     String hairColorGeneString;
     String [] hairColors = {"black","black-brown","dark brown","brown", "light brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
-    String [] blackHairGenotypes = {"AABBRR","AABBRr","AABBrr"};
-    String [] blackBrownHairGenotypes = {"AABbRR","AABbRr","AABbrr"};
-    String [] darkBrownHairGenotypes = {"AAbbRR","AAbbRr","AAbbrr"};
-    String [] brownHairGenotypes = {"AaBBRR","AaBBRr","AaBBrr","AaBbRR","AaBbRr","AaBbrr","Aabbrr"};
-    String [] lightBrownHairGenotypes = {"AaBBrr", "AaBbrr","Aabbrr"};
-    String [] auburnHairGenotypes = {"AabbRR","AabbRr"};
-    String [] blondeHairGenotypes = {"aaBBRR","aaBBRr","aaBBrr","aaBbrr"};
-    String [] strawberryBlondeHairGenotypes = {"aabbRR","aabbRr"};
-    String [] redHairGenotypes = {"aabbRR","aabbRr"};
+    String [] blackHairGenotypes = {"AABBRR","AABBRr","AABBrR","AABBrr"};
+    String [] blackBrownHairGenotypes = {"AABbRR","AAbBRR","AABbRr","AABbrR","AAbBRr","AAbBrR","AABbrr","AAbBrr"};
+    String [] darkBrownHairGenotypes = {"AAbbRR","AAbbRr","AAbbrR","AAbbrr"};
+    String [] brownHairGenotypes = {"AaBBRR","aABBRR","AaBBRr","AaBBrR","aABBRr","aABBrR","AaBBrr","aABBrr","AaBbRR","AabBRR","aABbRR","aAbBRR","AaBbRr","AaBbrR","AabBRr","AabBrR","aABbRr","aABbrR","aAbBRr","aAbBrR"};
+    String [] lightBrownHairGenotypes = {"AaBBrr","aABBRR","AaBbrr","AabBrr","aABbrr","aAbBrr","Aabbrr","aAbbrr"};
+    String [] auburnHairGenotypes = {"AabbRR","aAbbRR","AabbRr","AabbrR","aAbbRr","aAbbrR"}; 
+    String [] blondeHairGenotypes = {"aaBBRR","aaBBRr","aaBBrR","aaBBrr","aaBbrr","aabBrr"};
+    String [] strawberryBlondeHairGenotypes = {"aabbRR","aabbRr","aabbrR"};
+    String [] redHairGenotypes = {"aabbRR","aabbRr","aabbrR"};
     String whiteHairGenotype = "aabbcc";
     String hairColorGene1Allele;
     String[] hairColorGene1Alleles = {"A", "a"};
@@ -155,8 +155,8 @@ public class Person {
     }
     public String randomHairColor(String hairColorGeneString){
 
-        var hairColor = new HashMap<String,String>();
-            hairColor.put("AABBRR","black");
+        var hairColorMap = new HashMap<String,String>();
+            /* hairColor.put("AABBRR","black");
             hairColor.put("AABBRr","black");
             hairColor.put("AABBrr","black");
             hairColor.put("AABBrR","black");
@@ -221,6 +221,8 @@ public class Person {
                 break;
         }
         return hairColor;
+    */
+    return hairColor;
     }
 
     public String randomHairColorGene1String(){

@@ -100,6 +100,9 @@ public class App {
                 case "4" -> {
                     
                 }
+                case "5" -> {
+                    
+                }
                 default -> System.out.println("Invalid entry. Please enter a number between 1 and 4.");
             }
         }
@@ -123,6 +126,7 @@ class Dashboard {
                    2.  Have a Baby
                    3.  View Your Population
                    4.  Exit
+                   5.  Test a New Method
                 --------------------------------------
                 """;
 
