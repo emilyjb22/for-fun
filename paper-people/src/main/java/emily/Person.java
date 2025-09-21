@@ -1,6 +1,7 @@
 package emily;
 
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Person {
 
@@ -29,11 +30,12 @@ public class Person {
     // variables for hair color
     String hairColor;
     String hairColorGeneString;
-    String [] hairColors = {"black","black-brown","dark brown","brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
+    String [] hairColors = {"black","black-brown","dark brown","brown", "light brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
     String [] blackHairGenotypes = {"AABBRR","AABBRr","AABBrr"};
     String [] blackBrownHairGenotypes = {"AABbRR","AABbRr","AABbrr"};
     String [] darkBrownHairGenotypes = {"AAbbRR","AAbbRr","AAbbrr"};
     String [] brownHairGenotypes = {"AaBBRR","AaBBRr","AaBBrr","AaBbRR","AaBbRr","AaBbrr","Aabbrr"};
+    String [] lightBrownHairGenotypes = {"AaBBrr", "AaBbrr","Aabbrr"};
     String [] auburnHairGenotypes = {"AabbRR","AabbRr"};
     String [] blondeHairGenotypes = {"aaBBRR","aaBBRr","aaBBrr","aaBbrr"};
     String [] strawberryBlondeHairGenotypes = {"aabbRR","aabbRr"};
@@ -152,17 +154,43 @@ public class Person {
         return hairColorGeneString;
     }
     public String randomHairColor(String hairColorGeneString){
+
+        var hairColor = new HashMap<String,String>();
+            hairColor.put("AABBRR","black");
+            hairColor.put("AABBRr","black");
+            hairColor.put("AABBrr","black");
+            hairColor.put("AABBrR","black");
+            hairColor.put("AABbRR","black-brown");
+            hairColor.put("AAbBRR","black-brown");
+            hairColor.put("AAbBRr","black-brown");
+            hairColor.put("AABbRr","black-brown");
+            hairColor.put("AABbrR","black-brown");
+            hairColor.put("AAbBrR","black-brown");
+            hairColor.put("AABbrr","black-brown");
+            hairColor.put("AAbBrr","black-brown");
+            hairColor.put("AAbbRR","dark brown");
+            hairColor.put("AAbbRr","dark brown");    
+            hairColor.put("AAbbrR","dark brown");
+            hairColor.put("AAbbrr","dark brown");
+            hairColor.put("AaBBRR","brown");
+            hairColor.put("aABBRR","brown");
+            hairColor.put("AaBBRr","brown");
+            hairColor.put("AaBBrR","brown");  
+            hairColor.put("aABBRr","brown");
+            hairColor.put("aABBaR","brown");
+            hairColor.put("AaBbRR","brown");
+            hairColor.put("AabBRR","brown");
+            hairColor.put("aABbRR","brown");
+            hairColor.put("aAbBRR","brown");
+            hairColor.put("AaBBrr","light brown");
+            hairColor.put("aABBrr","light brown");
+            //stopped at mid-light brown
+
+
+
         switch (hairColorGeneString) {
-            case "AABBRR","AABBRr","AABBrr","AABBrR":
-                hairColor = "black";
-                break;
-            case "AABbRR","AAbBRR","AABbRr","AAbBRr","AAbBrR","AABbrR","AABbrr","AAbBrr":
-                hairColor = "black-brown";
-                break;
-            case "AAbbRR","AAbbRr","AAbbrR","AAbbrr":
-                hairColor = "dark brown";
-                break;
-            case "AaBBRR","aABBRR","AaBBRr","AaBBrR","aABBRr","aABBrR","AaBBrr","aABBrr","AaBbRR","AabBRR","aABbRR","aAbBRR","AaBbRr","AaBbrR","AabBRr","AabBrR","aABbRr","aABbrR","aAbBRr","aAbBrR"
+            
+            case "AaBbRr","AaBbrR","AabBRr","AabBrR","aABbRr","aABbrR","aAbBRr","aAbBrR"
             case "AaBbrr": //this is the worst, need to switch around variables, hashMap?
             case "Aabbrr":
                 hairColor = "brown";
