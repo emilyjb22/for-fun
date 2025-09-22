@@ -101,7 +101,8 @@ public class App {
                     
                 }
                 case "5" -> {
-                    
+                    Person person = new Person();
+                    person.testThisMethod();
                 }
                 default -> System.out.println("Invalid entry. Please enter a number between 1 and 4.");
             }

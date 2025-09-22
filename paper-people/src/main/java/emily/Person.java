@@ -133,11 +133,11 @@ public class Person {
             System.out.println("- " + color);
         }
         hairColor = input.nextLine();
-        if (hairColor.equalsIgnoreCase("R")) {
+       /*  if (hairColor.equalsIgnoreCase("R")) {
             String hairColorGeneString = getHairColorGeneString();
             System.out.println(hairColorGeneString);
             hairColor = randomHairColor(hairColorGeneString);
-        }
+        }*/
 
         
         System.out.println(firstName + " has " + hairColor + " hair. Their genotype is " + hairColorGeneString + ".");
@@ -153,9 +153,25 @@ public class Person {
         String hairColorGeneString = randomHairColorGene1String() + randomHairColorGene2String() + randomHairColorGene3String();
         return hairColorGeneString;
     }
-    public String randomHairColor(String hairColorGeneString){
+
+    public void testThisMethod(){
+        var hairColorMap = new HashMap<String,String>();
+            int i = 0;
+            for (String genotype : blackHairGenotypes)
+            hairColorMap.put(blackHairGenotypes[i++],"black");
+
+    for (var genotype : hairColorMap.entrySet()) { System.out.println(genotype.getKey() + ": " + genotype.getValue()); }
+
+    }
+
+
+   /*  public String randomHairColor(String hairColorGeneString){
 
         var hairColorMap = new HashMap<String,String>();
+            int i = 0;
+            for (String genotype : blackHairGenotypes)
+            hairColorMap.put(genotype, blackHairGenotypes[i++]);*/
+
             /* hairColor.put("AABBRR","black");
             hairColor.put("AABBRr","black");
             hairColor.put("AABBrr","black");
@@ -222,8 +238,8 @@ public class Person {
         }
         return hairColor;
     */
-    return hairColor;
-    }
+    //return hairColor;
+    //}
 
     public String randomHairColorGene1String(){
         String allele1 = randomize(hairColorGene1Alleles,hairColorGene1Allele);
