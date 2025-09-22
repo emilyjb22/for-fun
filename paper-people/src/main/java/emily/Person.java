@@ -133,11 +133,11 @@ public class Person {
             System.out.println("- " + color);
         }
         hairColor = input.nextLine();
-       /*  if (hairColor.equalsIgnoreCase("R")) {
+         if (hairColor.equalsIgnoreCase("R")) {
             String hairColorGeneString = getHairColorGeneString();
             System.out.println(hairColorGeneString);
             hairColor = randomHairColor(hairColorGeneString);
-        }*/
+        }
 
         
         System.out.println(firstName + " has " + hairColor + " hair. Their genotype is " + hairColorGeneString + ".");
@@ -156,51 +156,30 @@ public class Person {
 
     public void testThisMethod(){
         var hairColorMap = new HashMap<String,String>();
-            int i = 0;
-            for (String genotype : blackHairGenotypes)
-            hairColorMap.put(blackHairGenotypes[i++],"black");
+        arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
+        arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
+        arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
+        arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
+        arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
+        arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
+        arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
+        arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
+        arrayToHashMap(redHairGenotypes,hairColorMap,"red");
+        hairColorMap.put(whiteHairGenotype,"white");
 
     for (var genotype : hairColorMap.entrySet()) { System.out.println(genotype.getKey() + ": " + genotype.getValue()); }
 
     }
 
 
-   /*  public String randomHairColor(String hairColorGeneString){
+   public String randomHairColor(String hairColorGeneString){
 
         var hairColorMap = new HashMap<String,String>();
             int i = 0;
             for (String genotype : blackHairGenotypes)
-            hairColorMap.put(genotype, blackHairGenotypes[i++]);*/
+            hairColorMap.put(genotype, blackHairGenotypes[i++]);
 
-            /* hairColor.put("AABBRR","black");
-            hairColor.put("AABBRr","black");
-            hairColor.put("AABBrr","black");
-            hairColor.put("AABBrR","black");
-            hairColor.put("AABbRR","black-brown");
-            hairColor.put("AAbBRR","black-brown");
-            hairColor.put("AAbBRr","black-brown");
-            hairColor.put("AABbRr","black-brown");
-            hairColor.put("AABbrR","black-brown");
-            hairColor.put("AAbBrR","black-brown");
-            hairColor.put("AABbrr","black-brown");
-            hairColor.put("AAbBrr","black-brown");
-            hairColor.put("AAbbRR","dark brown");
-            hairColor.put("AAbbRr","dark brown");    
-            hairColor.put("AAbbrR","dark brown");
-            hairColor.put("AAbbrr","dark brown");
-            hairColor.put("AaBBRR","brown");
-            hairColor.put("aABBRR","brown");
-            hairColor.put("AaBBRr","brown");
-            hairColor.put("AaBBrR","brown");  
-            hairColor.put("aABBRr","brown");
-            hairColor.put("aABBaR","brown");
-            hairColor.put("AaBbRR","brown");
-            hairColor.put("AabBRR","brown");
-            hairColor.put("aABbRR","brown");
-            hairColor.put("aAbBRR","brown");
-            hairColor.put("AaBBrr","light brown");
-            hairColor.put("aABBrr","light brown");
-            //stopped at mid-light brown
+           
 
 
 
@@ -262,11 +241,22 @@ public String randomHairColorGene2String(){
         return hairColorGene3String;
     }
 
-// method to randomize EVERYTHING
+    /*
+     * practical methods that I need to use frequently
+     */
+
+    // method to randomize EVERYTHING
     public static String randomize(String[] array, String thing){
         int randomIndex = (int)(Math.random() * array.length);
         thing = array[randomIndex];
         return thing;
+    }
+
+    // method to move array values into a hash map
+    public void arrayToHashMap(String[] array, HashMap<String, String> hashMap, String trait){
+        int i = 0;
+        for (String genotype : array)
+        hashMap.put(array[i++], trait);
     }
 
     @Override
