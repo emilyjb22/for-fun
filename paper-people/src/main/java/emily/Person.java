@@ -120,6 +120,18 @@ public class Person {
  */
 
     public String getHairColor(Scanner input){
+        var hairColorMap = new HashMap<String,String>();
+            arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
+            arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
+            arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
+            arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
+            arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
+            arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
+            arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
+            arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
+            arrayToHashMap(redHairGenotypes,hairColorMap,"red");
+            hairColorMap.put(whiteHairGenotype,"white");
+
         System.out.println("""
                                 Now, we're going to select their hair color.
                                 
@@ -136,12 +148,15 @@ public class Person {
          if (hairColor.equalsIgnoreCase("R")) {
             String hairColorGeneString = getHairColorGeneString();
             System.out.println(hairColorGeneString);
-            hairColor = randomHairColor(hairColorGeneString);
+            hairColor = hairColorMap.get(hairColorGeneString);
+            this.hairColorGeneString=hairColorGeneString;
         }
+        else{
 
-        
+        };
+
         System.out.println(firstName + " has " + hairColor + " hair. Their genotype is " + hairColorGeneString + ".");
-        return hairColor; 
+        return hairColorGeneString; 
     }
 
     public String setHairColor(String hairColor){
@@ -153,72 +168,6 @@ public class Person {
         String hairColorGeneString = randomHairColorGene1String() + randomHairColorGene2String() + randomHairColorGene3String();
         return hairColorGeneString;
     }
-
-    public void testThisMethod(){
-        var hairColorMap = new HashMap<String,String>();
-        arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
-        arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
-        arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
-        arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
-        arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
-        arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
-        arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
-        arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
-        arrayToHashMap(redHairGenotypes,hairColorMap,"red");
-        hairColorMap.put(whiteHairGenotype,"white");
-
-    for (var genotype : hairColorMap.entrySet()) { System.out.println(genotype.getKey() + ": " + genotype.getValue()); }
-
-    }
-
-
-   public String randomHairColor(String hairColorGeneString){
-
-        var hairColorMap = new HashMap<String,String>();
-            int i = 0;
-            for (String genotype : blackHairGenotypes)
-            hairColorMap.put(genotype, blackHairGenotypes[i++]);
-
-           
-
-
-
-        switch (hairColorGeneString) {
-            
-            case "AaBbRr","AaBbrR","AabBRr","AabBrR","aABbRr","aABbrR","aAbBRr","aAbBrR"
-            case "AaBbrr": //this is the worst, need to switch around variables, hashMap?
-            case "Aabbrr":
-                hairColor = "brown";
-                break;
-            case "AabbRR":
-            case "AabbRr":
-                hairColor = "auburn";
-                break;
-            case "aaBBRR":
-            case "aaBBRr":
-            case "aaBBrr":
-            case "aaBbrr":
-                hairColor = "blonde";
-                break;
-            case "aaBbRR":
-            case "aaBbRr":
-                hairColor = "strawberry blonde";
-                break;
-            case "aabbRR":
-            case "aabbRr":
-                hairColor = "red";
-                break;
-            case "aabbrr":
-                hairColor = "white";
-                break;
-            default:
-                hairColor = "bald";
-                break;
-        }
-        return hairColor;
-    */
-    //return hairColor;
-    //}
 
     public String randomHairColorGene1String(){
         String allele1 = randomize(hairColorGene1Alleles,hairColorGene1Allele);
