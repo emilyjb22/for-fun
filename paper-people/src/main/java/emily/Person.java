@@ -2,6 +2,8 @@ package emily;
 
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Person {
 
@@ -20,8 +22,8 @@ public class Person {
     // variables for eye color
     String eyeColor;
     String[] eyeColors = {"black", "dark brown", "hazel", "brown", "amber", "green", "dark blue", "blue", "gray"};
-    String eyeColorGeneString;
-    String[] eyeColorGeneStrings = {"CCDD", "CCDd", "CCdd", "CcDD", "CcDd", "Ccdd", "ccDD", "ccDd", "ccdd"};
+    String eyeColorGenotype;
+    String[] eyeColorGenotypes = {"CCDD", "CCDd", "CCdd", "CcDD", "CcDd", "Ccdd", "ccDD", "ccDd", "ccdd"};
     String eyeColorGene1Allele;
     String[] eyeColorGene1Alleles = {"C", "c"};
     String eyeColorGene2Allele;
@@ -103,10 +105,23 @@ public class Person {
             System.out.println("- " + color);
         }
         eyeColor = input.nextLine();
+
+        // use arrays to create HashMap of genotype -> phenotype pairs
+        var eyeColorMap = new HashMap<String,String>();
+            for (int i = 0; i < 9; i++) {
+            eyeColorMap.put(eyeColorGenotypes[i],eyeColors[i]);
+            }
+
+        // randomly select eye color phenotype
         if (eyeColor.equalsIgnoreCase("R")) {
             eyeColor = randomize(eyeColors,eyeColor);
         }
-        System.out.println(firstName + " has " + eyeColor + " eyes.");
+
+        // use phenotype (value) to locate corresponding genotype (key)
+        // save phenotype as "eyeColor" and genotype as "eyeColorGenotype"
+        eyeColorGenotype = getKeyByValue(eyeColorMap, eyeColor);
+
+        System.out.println(firstName + " has " + eyeColor + " eyes. Their genotype is " + eyeColorGenotype);
         return eyeColor; 
     }
 
@@ -207,6 +222,17 @@ public String randomHairColorGene2String(){
         for (String genotype : array)
         hashMap.put(array[i++], trait);
     }
+
+// method to get key from value
+// https://stackoverflow.com/questions/1383797/java-hashmap-how-to-get-key-from-value
+public static <K, V> K getKeyByValue(HashMap<K, V> hashMap, V value) {
+    for (Map.Entry<K, V> entry : hashMap.entrySet()) {
+        if (Objects.equals(value, entry.getValue())) {
+            return entry.getKey();
+        }
+    }
+    return null;
+}
 
     @Override
     public String toString() {
