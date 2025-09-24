@@ -8,9 +8,13 @@ public class Male extends Person{
                         "Christopher", "Daniel", "Matthew", "Anthony", "Timothy", "Mark", "Paul", "Steven", "Andrew", "Kenneth"};
     
     Male(){
-        firstName = "JOHN";
-        this.lastName = "DOE";
+        firstName = "Adam";
+        this.lastName = "Go";
         Person.sex = "XY";
+        eyeColor = "purple";
+        eyeColorGenotype = "YyZz";
+        hairColor = "rainbow";
+        hairColorGeneString = "EeFfGg";
     }
 
     public String getMaleName(Scanner input){

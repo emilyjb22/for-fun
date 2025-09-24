@@ -15,9 +15,42 @@ public class App {
         Scanner input = new Scanner(System.in);
         System.out.print("Press Enter to continue...");
         input.nextLine();
-
         String choice = "";
+
+        // obtain "Adam" (aka starter male person)
         ArrayList<Male> allMales = new ArrayList<Male>();
+
+        System.out.println("To get started, we need at least one male person and one female person.");
+        input.nextLine();
+        System.out.println("Let's start with Adam.");
+        input.nextLine();
+
+        while (!choice.equals("1")||!choice.equals("2")){
+        System.out.println("""
+        This is Adam Paper. He needs DNA.
+        Do you want to choose his hair and eye color manually, or do you want to randomize it?"
+        --------------------------------------------------------
+        Please enter "1" or "2" to proceed
+            1. Choose Hair and Eye Color manually
+            2. Randomize Hair and Eye Color
+        --------------------------------------------------------
+        """);
+        choice = input.nextLine();
+        Male male = new Male();
+            if (choice.equals("1")){
+                male.getEyeColor(input);
+                male.getHairColor(input);
+            }
+            else if (choice.equals("2")){
+                male.eyeColor = Person.randomize(male.eyeColors, male.eyeColor);
+                male.eyeColorGenotype = getKeyByValue(male.eyeColorMap, male.eyeColor);
+            }
+        
+
+        }
+
+
+
         ArrayList<Female> allFemales = new ArrayList<Female>();
 
         // get user input, until user exits program
