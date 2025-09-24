@@ -1,7 +1,9 @@
 package emily;
 
 import java.util.Scanner;
+import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 
@@ -119,9 +121,10 @@ public class Person {
 
         // use phenotype (value) to locate corresponding genotype (key)
         // save phenotype as "eyeColor" and genotype as "eyeColorGenotype"
-        eyeColorGenotype = getKeyByValue(eyeColorMap, eyeColor);
+       eyeColorGenotype = getKeyByValue(eyeColorMap, eyeColor);
 
         System.out.println(firstName + " has " + eyeColor + " eyes. Their genotype is " + eyeColorGenotype);
+        System.out.println("--------------------------------------------------------");
         return eyeColor; 
     }
 
@@ -134,6 +137,7 @@ public class Person {
  * Code pertaining to hair color generation and randomization
  */
 
+    // using hair color arrays, create HashMap of hair color genotypes(key) to corresponding phenotypes(value)
     public String getHairColor(Scanner input){
         var hairColorMap = new HashMap<String,String>();
             arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
@@ -155,10 +159,13 @@ public class Person {
                                 Hair color options:
                                 ---------------------
                                 """);
+
         // print list of hair colors for user to select from
         for (String color : hairColors) {
             System.out.println("- " + color);
         }
+        // randomly generate genotype (randomly select alleles) and save as hairColorGeneString
+        // match genotype to corresponding phenotype in HashMap, save phenotype as hairColor
         hairColor = input.nextLine();
          if (hairColor.equalsIgnoreCase("R")) {
             String hairColorGeneString = getHairColorGeneString();
@@ -167,10 +174,13 @@ public class Person {
             this.hairColorGeneString=hairColorGeneString;
         }
         else{
-
-        };
+            Set<String> possibleHairColorGenotypesSet = getKeysByValue(hairColorMap, hairColor);
+            String possibleHairColorGenotypes[] = possibleHairColorGenotypesSet.toArray(new String[0]);
+            hairColorGeneString = randomize(possibleHairColorGenotypes, hairColorGeneString);
+        }
 
         System.out.println(firstName + " has " + hairColor + " hair. Their genotype is " + hairColorGeneString + ".");
+        System.out.println("--------------------------------------------------------");
         return hairColorGeneString; 
     }
 
@@ -232,6 +242,18 @@ public static <K, V> K getKeyByValue(HashMap<K, V> hashMap, V value) {
         }
     }
     return null;
+}
+
+//need method to save generated values to an array
+//need to generate genotype from selected hair color phenotype
+public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
+    Set<T> keys = new HashSet<>();
+    for (Map.Entry<T, E> entry : map.entrySet()) {
+        if (Objects.equals(value, entry.getValue())) {
+            keys.add(entry.getKey());
+        }
+    }
+    return keys;
 }
 
     @Override

@@ -1,7 +1,6 @@
 package emily;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -62,8 +61,7 @@ public class App {
 
                         }
                         default -> System.out.println("Invalid entry. Please try again.");
-                    }
-                    
+                    } 
 
                     System.out.println();
                     System.out.println("Do you want to save this person to your population? (Y/N)");
@@ -86,6 +84,9 @@ public class App {
                 }
 
                 case "2" -> {
+                   System.out.println("Are you ready to have a baby? Select a dad from the following list:");
+                   for (Object male : allMales) { System.out.println(male.toString());
+                    } 
 
                   
                 }
@@ -113,22 +114,22 @@ public class App {
 class Dashboard {
 
     String title ="""
-                --------------------------------------
+                --------------------------------------------------------
                         Paper People Project
-                --------------------------------------
-                    A game of simple inheritance
-                --------------------------------------
+                --------------------------------------------------------
+                    A simulation using simple Mendelian inheritance              
+                --------------------------------------------------------
                 """;
 
     String menu = """
-                --------------------------------------
+                -------------------------------------------------------
                 Menu:
                    1.  Create a New Person
                    2.  Have a Baby
                    3.  View Your Population
                    4.  Exit
                    5.  Test a New Method
-                --------------------------------------
+                ------------------------------------------------------
                 """;
 
 }
