@@ -8,9 +8,13 @@ public class Female extends Person{
                             "Nancy", "Margaret", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily"};
     
     Female(){
-        firstName = "JANE";
-        this.lastName = "DOE";
+        firstName = "Eve";
+        this.lastName = "Paper";
         Person.sex = "XX";
+        eyeColor = "purple";
+        eyeColorGenotype = "YyZz";
+        hairColor = "rainbow";
+        hairColorGeneString = "EeFfGg";
     }
 
     public String getFemaleName(Scanner input){

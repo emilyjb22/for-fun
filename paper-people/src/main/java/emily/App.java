@@ -25,7 +25,6 @@ public class App {
         System.out.println("Let's start with Adam.");
         input.nextLine();
 
-        while (!choice.equals("1")||!choice.equals("2")){
         System.out.println("""
         This is Adam Paper. He needs DNA.
         Do you want to choose his hair and eye color manually, or do you want to randomize it?"
@@ -38,20 +37,45 @@ public class App {
         choice = input.nextLine();
         Male male = new Male();
             if (choice.equals("1")){
-                male.getEyeColor(input);
+                male.getEyeColor(input, male.eyeColorMap);
                 male.getHairColor(input);
             }
             else if (choice.equals("2")){
                 male.eyeColor = Person.randomize(male.eyeColors, male.eyeColor);
-                male.eyeColorGenotype = getKeyByValue(male.eyeColorMap, male.eyeColor);
+                male.eyeColorGenotype = Person.getKeyByValue(male.eyeColorMap, male.eyeColor);
             }
-        
+        allMales.add(male);
+        System.out.println("Great! " + male.firstName + " " + male.lastName + " has been added to the population.");
+        input.nextLine();
 
-        }
-
-
-
+        // obtain "Eve" (aka female starter person)
         ArrayList<Female> allFemales = new ArrayList<Female>();
+        System.out.println("Next, let's make Eve.");
+        input.nextLine();
+        System.out.println("""
+        This is Eve Paper. She also needs DNA.
+        Do you want to choose her hair and eye color manually, or do you want to randomize it?"
+        --------------------------------------------------------
+        Please enter "1" or "2" to proceed
+            1. Choose Hair and Eye Color manually
+            2. Randomize Hair and Eye Color
+        --------------------------------------------------------
+        """);
+        choice = input.nextLine();
+        Female female = new Female();
+            if (choice.equals("1")){
+                female.getEyeColor(input, female.eyeColorMap);
+                female.getHairColor(input);
+            }
+            else if (choice.equals("2")){
+                female.eyeColor = Person.randomize(female.eyeColors, female.eyeColor);
+                female.eyeColorGenotype = Person.getKeyByValue(female.eyeColorMap, female.eyeColor);
+            }
+        allFemales.add(female);
+        System.out.println("Great! " + female.firstName + " " + female.lastName + " has been added to the population.");
+        input.nextLine();
+
+        System.out.println("Press enter to continue...");
 
         // get user input, until user exits program
         while (!choice.equals("4")) {
@@ -64,6 +88,8 @@ public class App {
             // switch between menu options to select relevant code
             switch (choice) {
                 case "1" -> {
+                    Male newMale = ""
+
                     System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
 
@@ -71,21 +97,17 @@ public class App {
                         selection = Person.randomize(Person.sexes, Person.sex);
                     }
 
-                    Male male = null;
-                    Female female = null;
-
                     switch (selection) {
                         case "XY", "xy", "Xy", "xY", "XX", "xx", "Xx", "xX" -> {
                             if (selection.equalsIgnoreCase("XY")) {
-                                male = new Male();
-                                System.out.println("Your person's name is " + male.getMaleName(input) + " " + male.getLastName(input) +".");
-                                male.getEyeColor(input);
-                                male.getHairColor(input);
+                                System.out.println("Your person's name is " + newMale.getMaleName(input) + " " + newMale.getLastName(input) +".");
+                                newMale.getEyeColor(input, newMale.eyeColorMap);
+                                newMale.getHairColor(input);
                             }
                             else {
                                 female = new Female();
                                 System.out.println("Your person's name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
-                                female.getEyeColor(input);
+                                female.getEyeColor(input,female.eyeColorMap);
                                 female.getHairColor(input);
                             }
                         }
@@ -102,8 +124,8 @@ public class App {
                     
                     // for now, just print confirmation message; need to implement population storage
                     if (save.equalsIgnoreCase("Y")) {
-                        if (selection.equalsIgnoreCase("XY") && male != null) {
-                            allMales.add(male);
+                        if (selection.equalsIgnoreCase("XY") && newMale != null) {
+                            allMales.add(newMale);
                             System.out.println("Person saved to your population.");
                         } else if (selection.equalsIgnoreCase("XX") && female != null) {
                             allFemales.add(female);
@@ -118,7 +140,7 @@ public class App {
 
                 case "2" -> {
                    System.out.println("Are you ready to have a baby? Select a dad from the following list:");
-                   for (Object male : allMales) { System.out.println(male.toString());
+                   for (Object m : allMales) { System.out.println(m.toString());
                     } 
 
                   
@@ -126,12 +148,13 @@ public class App {
                 case "3" -> {
                     //need to make this print better
                     System.out.println("Here is your current population:");
-                    for (Object male : allMales) { System.out.println(male.toString());
+                    for (Object m : allMales) { System.out.println(male.toString());
                     } 
-                    for (Object female : allFemales) { System.out.println(female.toString());
+                    for (Object f : allFemales) { System.out.println(female.toString());
                     }
                     
                 }
+
                 case "4" -> {
                     
                 }

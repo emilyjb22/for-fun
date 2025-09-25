@@ -9,7 +9,7 @@ public class Male extends Person{
     
     Male(){
         firstName = "Adam";
-        this.lastName = "Go";
+        this.lastName = "Paper";
         Person.sex = "XY";
         eyeColor = "purple";
         eyeColorGenotype = "YyZz";

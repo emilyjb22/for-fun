@@ -93,7 +93,14 @@ public class Person {
 /*
  * Code pertaining to eye color generation and randomization
  */
-    public String getEyeColor(Scanner input){
+
+ HashMap<String, String> eyeColorMap = new HashMap<String, String>();{
+            for (int i = 0; i < 9; i++) {
+            eyeColorMap.put(eyeColorGenotypes[i],eyeColors[i]);
+            }
+        }
+
+    public String getEyeColor(Scanner input, HashMap<String,String> eyeColorMap){
         System.out.println("""
                                 Next, we're going to select their eye color.
                                 
@@ -109,10 +116,10 @@ public class Person {
         eyeColor = input.nextLine();
 
         // use arrays to create HashMap of genotype -> phenotype pairs
-        var eyeColorMap = new HashMap<String,String>();
+        /*var eyeColorMap = new HashMap<String,String>();
             for (int i = 0; i < 9; i++) {
             eyeColorMap.put(eyeColorGenotypes[i],eyeColors[i]);
-            }
+            }*/
 
         // randomly select eye color phenotype
         if (eyeColor.equalsIgnoreCase("R")) {
