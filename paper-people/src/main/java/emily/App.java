@@ -88,7 +88,7 @@ public class App {
             // switch between menu options to select relevant code
             switch (choice) {
                 case "1" -> {
-                    Male newMale = ""
+                    Male newMale = new Male();
 
                     System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
@@ -97,8 +97,10 @@ public class App {
                         selection = Person.randomize(Person.sexes, Person.sex);
                     }
 
+                    selection = selection.toUpperCase();
+
                     switch (selection) {
-                        case "XY", "xy", "Xy", "xY", "XX", "xx", "Xx", "xX" -> {
+                        case "XY", "XX" -> {
                             if (selection.equalsIgnoreCase("XY")) {
                                 System.out.println("Your person's name is " + newMale.getMaleName(input) + " " + newMale.getLastName(input) +".");
                                 newMale.getEyeColor(input, newMale.eyeColorMap);
