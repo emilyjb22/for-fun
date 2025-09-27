@@ -4,16 +4,15 @@ import java.util.Scanner;
 
 public class Female extends Person{
 
+    final String sex = "XX";
     String[] femaleNames = {"Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica", "Sarah", "Karen",
                             "Nancy", "Margaret", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily"};
     
     Female(){
         firstName = "Eve";
         this.lastName = "Paper";
-        Person.sex = "XX";
         Object Eyes;
-        hairColor = "rainbow";
-        hairColorGeneString = "EeFfGg";
+        Object Hair;
     }
 
     public String getFemaleName(Scanner input){
