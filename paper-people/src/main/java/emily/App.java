@@ -35,19 +35,24 @@ public class App {
         --------------------------------------------------------
         """);
         choice = input.nextLine();
-        Male male = new Male();
+        Eyes eyeChoice = new Eyes();
             if (choice.equals("1")){
-                male.getEyeColor(input, male.eyeColorMap);
-                male.getHairColor(input);
+                eyeChoice.selectEyeColor(input, eyeChoice.eyeColorMap);
+                //male.getHairColor(input);
             }
             else if (choice.equals("2")){
-                male.eyeColor = Person.randomize(male.eyeColors, male.eyeColor);
-                male.eyeColorGenotype = Person.getKeyByValue(male.eyeColorMap, male.eyeColor);
+                eyeChoice.randomizeEyeColor();
             }
+            eyeChoice.getEyeColorGenotype();
+
+            Male male = new Male("Adam","Paper","XY",eyeChoice,"hair color","hair color genes"
+            );
         allMales.add(male);
         System.out.println("Great! " + male.firstName + " " + male.lastName + " has been added to the population.");
+        System.out.println("He has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype);
         input.nextLine();
 
+        /*
         // obtain "Eve" (aka female starter person)
         ArrayList<Female> allFemales = new ArrayList<Female>();
         System.out.println("Next, let's make Eve.");
@@ -73,10 +78,10 @@ public class App {
             }
         allFemales.add(female);
         System.out.println("Great! " + female.firstName + " " + female.lastName + " has been added to the population.");
-        input.nextLine();
+        input.nextLine();*/
 
         System.out.println("Press enter to continue...");
-
+    /*
         // get user input, until user exits program
         while (!choice.equals("4")) {
 
@@ -85,9 +90,9 @@ public class App {
             System.out.print("Enter a command: ");
             choice = input.nextLine();
 
-            // switch between menu options to select relevant code
+            // switch between menu options to select relevant code*/
             switch (choice) {
-                case "1" -> {
+                case "1" -> {}/*{
                     Male newMale = new Male();
 
                     System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
@@ -138,24 +143,22 @@ public class App {
                     } else {
                         System.out.println("Person not saved.");
                     }
-                }
+                }*/
 
                 case "2" -> {
                    System.out.println("Are you ready to have a baby? Select a dad from the following list:");
                    for (Object m : allMales) { System.out.println(m.toString());
                     } 
-
-                  
                 }
                 case "3" -> {
                     //need to make this print better
                     System.out.println("Here is your current population:");
                     for (Object m : allMales) { System.out.println(male.toString());
                     } 
-                    for (Object f : allFemales) { System.out.println(female.toString());
+                    //for (Object f : allFemales) { System.out.println(female.toString());
                     }
                     
-                }
+                
 
                 case "4" -> {
                     
@@ -163,11 +166,10 @@ public class App {
                 case "5" -> {
                 }
                 
-                default -> System.out.println("Invalid entry. Please enter a number between 1 and 4.");
+                default -> {System.out.println("Invalid entry. Please enter a number between 1 and 4.");}
             }
         }
     }
-}
 
 class Dashboard {
 
@@ -189,5 +191,4 @@ class Dashboard {
                    5.  Test a New Method
                 ------------------------------------------------------
                 """;
-
 }

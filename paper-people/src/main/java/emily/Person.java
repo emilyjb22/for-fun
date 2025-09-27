@@ -22,14 +22,7 @@ public class Person {
     static String[] sexes = {"XX", "XY"};
     
     // variables for eye color
-    String eyeColor;
-    String[] eyeColors = {"black", "dark brown", "hazel", "brown", "amber", "green", "dark blue", "blue", "gray"};
-    String eyeColorGenotype;
-    String[] eyeColorGenotypes = {"CCDD", "CCDd", "CCdd", "CcDD", "CcDd", "Ccdd", "ccDD", "ccDd", "ccdd"};
-    String eyeColorGene1Allele;
-    String[] eyeColorGene1Alleles = {"C", "c"};
-    String eyeColorGene2Allele;
-    String[] eyeColorGene2Alleles = {"D", "d"};
+    Object Eyes;
 
     // variables for hair color
     String hairColor;
@@ -57,18 +50,18 @@ public class Person {
 
     // default constructor
     Person() {  
-        this.firstName = "John";
-        this.lastName = "Doe";
-        Person.sex = "XY";
-        this.eyeColor = "light brown";
+        firstName = "John";
+        lastName = "Doe";
+        sex = "XY";
+        Object Eyes;
     }
     
     // overloaded constructor; not currently used
-    Person(String firstName, String lastName, String sex, String eyeColor){
+    Person(String firstName, String lastName, String sex, Object Eyes){
         this.firstName = firstName;
         this.lastName = lastName;
         Person.sex = sex;
-        this.eyeColor = eyeColor;
+        this.Eyes = Eyes;
     }
 /*
  * Code pertaining to name generation and randomization
@@ -88,56 +81,6 @@ public class Person {
             lastName = name;
         }
        return lastName;
-    }
-
-/*
- * Code pertaining to eye color generation and randomization
- */
-
- HashMap<String, String> eyeColorMap = new HashMap<String, String>();{
-            for (int i = 0; i < 9; i++) {
-            eyeColorMap.put(eyeColorGenotypes[i],eyeColors[i]);
-            }
-        }
-
-    public String getEyeColor(Scanner input, HashMap<String,String> eyeColorMap){
-        System.out.println("""
-                                Next, we're going to select their eye color.
-                                
-                                What color eyes does your person have? Select from the list below, or enter \"R\" to randomize:
-                                ---------------------
-                                Eye color options:
-                                ---------------------
-                                """);
-        // print list of eye colors for user to select from
-        for (String color : eyeColors) {
-            System.out.println("- " + color);
-        }
-        eyeColor = input.nextLine();
-
-        // use arrays to create HashMap of genotype -> phenotype pairs
-        /*var eyeColorMap = new HashMap<String,String>();
-            for (int i = 0; i < 9; i++) {
-            eyeColorMap.put(eyeColorGenotypes[i],eyeColors[i]);
-            }*/
-
-        // randomly select eye color phenotype
-        if (eyeColor.equalsIgnoreCase("R")) {
-            eyeColor = randomize(eyeColors,eyeColor);
-        }
-
-        // use phenotype (value) to locate corresponding genotype (key)
-        // save phenotype as "eyeColor" and genotype as "eyeColorGenotype"
-       eyeColorGenotype = getKeyByValue(eyeColorMap, eyeColor);
-
-        System.out.println(firstName + " has " + eyeColor + " eyes. Their genotype is " + eyeColorGenotype);
-        System.out.println("--------------------------------------------------------");
-        return eyeColor; 
-    }
-
-    public String setEyeColor(String eyeColor){
-        this.eyeColor = eyeColor;
-        return eyeColor;
     }
 
 /*
@@ -208,7 +151,7 @@ public class Person {
         return hairColorGene1String;
     }
 
-public String randomHairColorGene2String(){
+    public String randomHairColorGene2String(){
         String allele1 = randomize(hairColorGene2Alleles,hairColorGene2Allele);
         String allele2 = randomize(hairColorGene2Alleles,hairColorGene2Allele);
         String hairColorGene2String = allele1 + allele2;
@@ -240,8 +183,9 @@ public String randomHairColorGene2String(){
         hashMap.put(array[i++], trait);
     }
 
-// method to get key from value
+// methods to get keys from values
 // https://stackoverflow.com/questions/1383797/java-hashmap-how-to-get-key-from-value
+// single key to single value
 public static <K, V> K getKeyByValue(HashMap<K, V> hashMap, V value) {
     for (Map.Entry<K, V> entry : hashMap.entrySet()) {
         if (Objects.equals(value, entry.getValue())) {
@@ -251,8 +195,7 @@ public static <K, V> K getKeyByValue(HashMap<K, V> hashMap, V value) {
     return null;
 }
 
-//need method to save generated values to an array
-//need to generate genotype from selected hair color phenotype
+// multiple keys with same value
 public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
     Set<T> keys = new HashSet<>();
     for (Map.Entry<T, E> entry : map.entrySet()) {

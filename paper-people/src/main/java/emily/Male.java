@@ -4,17 +4,24 @@ import java.util.Scanner;
 
 public class Male extends Person{
 
+    final String sex = "XY";
     String[] maleNames = {"James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles", 
                         "Christopher", "Daniel", "Matthew", "Anthony", "Timothy", "Mark", "Paul", "Steven", "Andrew", "Kenneth"};
     
     Male(){
-        firstName = "Adam";
-        this.lastName = "Paper";
-        Person.sex = "XY";
-        eyeColor = "purple";
-        eyeColorGenotype = "YyZz";
-        hairColor = "rainbow";
-        hairColorGeneString = "EeFfGg";
+        firstName = "";
+        this.lastName = "";
+        hairColor = "";
+        hairColorGeneString = "";
+    }
+
+    Male(String firstName,String lastName,String sex,Object Eyes,String hairColor,String hairColorGeneString){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        sex = "XY";
+        this.Eyes = Eyes;
+        this.hairColor = hairColor;
+        this.hairColorGeneString = hairColorGeneString;
     }
 
     public String getMaleName(Scanner input){

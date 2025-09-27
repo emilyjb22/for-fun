@@ -11,8 +11,7 @@ public class Female extends Person{
         firstName = "Eve";
         this.lastName = "Paper";
         Person.sex = "XX";
-        eyeColor = "purple";
-        eyeColorGenotype = "YyZz";
+        Object Eyes;
         hairColor = "rainbow";
         hairColorGeneString = "EeFfGg";
     }
