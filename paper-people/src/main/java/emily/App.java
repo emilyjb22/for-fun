@@ -35,21 +35,29 @@ public class App {
         --------------------------------------------------------
         """);
         choice = input.nextLine();
+
         Eyes eyeChoice = new Eyes();
+        Hair hairChoice = new Hair();
             if (choice.equals("1")){
                 eyeChoice.selectEyeColor(input, eyeChoice.eyeColorMap);
-                //male.getHairColor(input);
+                hairChoice.selectHairColor(input);
+                hairChoice.generateHairColorGenotype();
             }
             else if (choice.equals("2")){
                 eyeChoice.randomizeEyeColor();
+                hairChoice.randomizeHairGenotype();
+                hairChoice.randomizeHairColor();
+
             }
             eyeChoice.getEyeColorGenotype();
 
-            Male male = new Male("Adam","Paper","XY",eyeChoice,"hair color","hair color genes"
-            );
+        Male male = new Male("Adam","Paper","XY",eyeChoice,hairChoice);
         allMales.add(male);
-        System.out.println("Great! " + male.firstName + " " + male.lastName + " has been added to the population.");
-        System.out.println("He has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype);
+        System.out.println(""
+                            "Great! " + male.firstName + " " + male.lastName + " has been added to the population." +
+                            "He has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + "." +
+                            "He has " + hairChoice.hairColor + " hair and a genotype of " + hairChoice.hairColorGenotype + "."
+                            "");
         input.nextLine();
 
         /*

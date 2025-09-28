@@ -11,17 +11,14 @@ public class Male extends Person{
     Male(){
         firstName = "";
         this.lastName = "";
-        hairColor = "";
-        hairColorGeneString = "";
     }
 
-    Male(String firstName,String lastName,String sex,Object Eyes,String hairColor,String hairColorGeneString){
+    Male(String firstName,String lastName,String sex,Object Eyes,Object Hair){
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XY";
         this.Eyes = Eyes;
-        this.hairColor = hairColor;
-        this.hairColorGeneString = hairColorGeneString;
+        this.Hair = Hair;
     }
 
     public String getMaleName(Scanner input){

@@ -21,29 +21,10 @@ public class Person {
     static String sex;
     static String[] sexes = {"XX", "XY"};
     
-    // variables for eye color
+    // objects for eye/hair color
     Object Eyes;
-
-    // variables for hair color
-    String hairColor;
-    String hairColorGeneString;
-    String [] hairColors = {"black","black-brown","dark brown","brown", "light brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
-    String [] blackHairGenotypes = {"AABBRR","AABBRr","AABBrR","AABBrr"};
-    String [] blackBrownHairGenotypes = {"AABbRR","AAbBRR","AABbRr","AABbrR","AAbBRr","AAbBrR","AABbrr","AAbBrr"};
-    String [] darkBrownHairGenotypes = {"AAbbRR","AAbbRr","AAbbrR","AAbbrr"};
-    String [] brownHairGenotypes = {"AaBBRR","aABBRR","AaBBRr","AaBBrR","aABBRr","aABBrR","AaBBrr","aABBrr","AaBbRR","AabBRR","aABbRR","aAbBRR","AaBbRr","AaBbrR","AabBRr","AabBrR","aABbRr","aABbrR","aAbBRr","aAbBrR"};
-    String [] lightBrownHairGenotypes = {"AaBBrr","aABBRR","AaBbrr","AabBrr","aABbrr","aAbBrr","Aabbrr","aAbbrr"};
-    String [] auburnHairGenotypes = {"AabbRR","aAbbRR","AabbRr","AabbrR","aAbbRr","aAbbrR"}; 
-    String [] blondeHairGenotypes = {"aaBBRR","aaBBRr","aaBBrR","aaBBrr","aaBbrr","aabBrr"};
-    String [] strawberryBlondeHairGenotypes = {"aabbRR","aabbRr","aabbrR"};
-    String [] redHairGenotypes = {"aabbRR","aabbRr","aabbrR"};
-    String whiteHairGenotype = "aabbcc";
-    String hairColorGene1Allele;
-    String[] hairColorGene1Alleles = {"A", "a"};
-    String hairColorGene2Allele;
-    String[] hairColorGene2Alleles = {"B", "b"};
-    String hairColorGene3Allele;
-    String[] hairColorGene3Alleles = {"R", "r"};
+    Object Hair;
+   
 
     //String skinColor;
     //String freckles;
@@ -54,14 +35,16 @@ public class Person {
         lastName = "Doe";
         sex = "XY";
         Object Eyes;
+        Object Hair;
     }
     
     // overloaded constructor; not currently used
-    Person(String firstName, String lastName, String sex, Object Eyes){
+    Person(String firstName,String lastName,String sex,Object Eyes,Object Hair){
         this.firstName = firstName;
         this.lastName = lastName;
         Person.sex = sex;
         this.Eyes = Eyes;
+        this.Hair = Hair;
     }
 /*
  * Code pertaining to name generation and randomization
@@ -81,88 +64,6 @@ public class Person {
             lastName = name;
         }
        return lastName;
-    }
-
-/*
- * Code pertaining to hair color generation and randomization
- */
-
-    // using hair color arrays, create HashMap of hair color genotypes(key) to corresponding phenotypes(value)
-    public String getHairColor(Scanner input){
-        var hairColorMap = new HashMap<String,String>();
-            arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
-            arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
-            arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
-            arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
-            arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
-            arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
-            arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
-            arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
-            arrayToHashMap(redHairGenotypes,hairColorMap,"red");
-            hairColorMap.put(whiteHairGenotype,"white");
-
-        System.out.println("""
-                                Now, we're going to select their hair color.
-                                
-                                What color hair does your person have? Select from the list below, or enter \"R\" to randomize:
-                                ---------------------
-                                Hair color options:
-                                ---------------------
-                                """);
-
-        // print list of hair colors for user to select from
-        for (String color : hairColors) {
-            System.out.println("- " + color);
-        }
-        // randomly generate genotype (randomly select alleles) and save as hairColorGeneString
-        // match genotype to corresponding phenotype in HashMap, save phenotype as hairColor
-        hairColor = input.nextLine();
-         if (hairColor.equalsIgnoreCase("R")) {
-            String hairColorGeneString = getHairColorGeneString();
-            System.out.println(hairColorGeneString);
-            hairColor = hairColorMap.get(hairColorGeneString);
-            this.hairColorGeneString=hairColorGeneString;
-        }
-        else{
-            Set<String> possibleHairColorGenotypesSet = getKeysByValue(hairColorMap, hairColor);
-            String possibleHairColorGenotypes[] = possibleHairColorGenotypesSet.toArray(new String[0]);
-            hairColorGeneString = randomize(possibleHairColorGenotypes, hairColorGeneString);
-        }
-
-        System.out.println(firstName + " has " + hairColor + " hair. Their genotype is " + hairColorGeneString + ".");
-        System.out.println("--------------------------------------------------------");
-        return hairColorGeneString; 
-    }
-
-    public String setHairColor(String hairColor){
-        this.hairColor = hairColor;
-        return hairColor;
-    }
-
-    public String getHairColorGeneString(){
-        String hairColorGeneString = randomHairColorGene1String() + randomHairColorGene2String() + randomHairColorGene3String();
-        return hairColorGeneString;
-    }
-
-    public String randomHairColorGene1String(){
-        String allele1 = randomize(hairColorGene1Alleles,hairColorGene1Allele);
-        String allele2 = randomize(hairColorGene1Alleles,hairColorGene1Allele);
-        String hairColorGene1String = allele1 + allele2;
-        return hairColorGene1String;
-    }
-
-    public String randomHairColorGene2String(){
-        String allele1 = randomize(hairColorGene2Alleles,hairColorGene2Allele);
-        String allele2 = randomize(hairColorGene2Alleles,hairColorGene2Allele);
-        String hairColorGene2String = allele1 + allele2;
-        return hairColorGene2String;
-    }
-
-    public String randomHairColorGene3String(){
-        String allele1 = randomize(hairColorGene3Alleles,hairColorGene3Allele);
-        String allele2 = randomize(hairColorGene3Alleles,hairColorGene3Allele);
-        String hairColorGene3String = allele1 + allele2;
-        return hairColorGene3String;
     }
 
     /*

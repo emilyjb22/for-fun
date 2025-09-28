@@ -10,7 +10,6 @@ public class Eyes {
     String[] eyeColors = {"black", "dark brown", "hazel", "brown", "amber", "green", "dark blue", "blue", "gray"};
     int eyeColorGenotype;
     int[] eyeColorGenotypes = {44,43,42,34,33,32,24,23,22};
-    //String[] eyeColorGenotypes = {"CCDD", "CCDd", "CCdd", "CcDD", "CcDd", "Ccdd", "ccDD", "ccDd", "ccdd"};
     HashMap<String, String> eyeColorMap = new HashMap<String, String>();{
         for (int i = 0; i < 9; i++) {
         eyeColorMap.put(String.valueOf(eyeColorGenotypes[i]), eyeColors[i]);
