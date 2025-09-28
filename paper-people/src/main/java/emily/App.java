@@ -51,16 +51,14 @@ public class App {
             }
             eyeChoice.getEyeColorGenotype();
 
-        Male male = new Male("Adam","Paper","XY",eyeChoice,hairChoice);
-        allMales.add(male);
-        System.out.println(""
-                            "Great! " + male.firstName + " " + male.lastName + " has been added to the population." +
-                            "He has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + "." +
-                            "He has " + hairChoice.hairColor + " hair and a genotype of " + hairChoice.hairColorGenotype + "."
-                            "");
+        Male adam = new Male("Adam","Paper","XY",eyeChoice,hairChoice);
+        allMales.add(adam);
+        System.out.println("Great! " + adam.firstName + " " + adam.lastName + " has been added to the population.\n"
+                            + "He has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + ".\n"
+                            + "He has " + hairChoice.hairColor + " hair and a genotype of " + hairChoice.hairColorGenotype + ".");
         input.nextLine();
 
-        /*
+        
         // obtain "Eve" (aka female starter person)
         ArrayList<Female> allFemales = new ArrayList<Female>();
         System.out.println("Next, let's make Eve.");
@@ -75,21 +73,28 @@ public class App {
         --------------------------------------------------------
         """);
         choice = input.nextLine();
-        Female female = new Female();
             if (choice.equals("1")){
-                female.getEyeColor(input, female.eyeColorMap);
-                female.getHairColor(input);
+                eyeChoice.selectEyeColor(input, eyeChoice.eyeColorMap);
+                hairChoice.selectHairColor(input);
+                hairChoice.generateHairColorGenotype();
             }
             else if (choice.equals("2")){
-                female.eyeColor = Person.randomize(female.eyeColors, female.eyeColor);
-                female.eyeColorGenotype = Person.getKeyByValue(female.eyeColorMap, female.eyeColor);
+                eyeChoice.randomizeEyeColor();
+                hairChoice.randomizeHairGenotype();
+                hairChoice.randomizeHairColor();
+
             }
-        allFemales.add(female);
-        System.out.println("Great! " + female.firstName + " " + female.lastName + " has been added to the population.");
-        input.nextLine();*/
+            eyeChoice.getEyeColorGenotype();
+
+        Female eve = new Female("Eve","Paper","XX",eyeChoice,hairChoice);
+        allFemales.add(eve);
+        System.out.println("Great! " + eve.firstName + " " + eve.lastName + " has been added to the population.\n"
+                            + "She has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + ".\n"
+                            + "She has " + hairChoice.hairColor + " hair and a genotype of " + hairChoice.hairColorGenotype + ".");
+        input.nextLine();
 
         System.out.println("Press enter to continue...");
-    /*
+   
         // get user input, until user exits program
         while (!choice.equals("4")) {
 
@@ -161,10 +166,11 @@ public class App {
                 case "3" -> {
                     //need to make this print better
                     System.out.println("Here is your current population:");
-                    for (Object m : allMales) { System.out.println(male.toString());
+                    for (Object m : allMales) { System.out.println(m.toString());
                     } 
-                    //for (Object f : allFemales) { System.out.println(female.toString());
+                    for (Object f : allFemales) { System.out.println(f.toString());
                     }
+                }
                     
                 
 
@@ -178,6 +184,7 @@ public class App {
             }
         }
     }
+}
 
 class Dashboard {
 
@@ -190,13 +197,14 @@ class Dashboard {
                 """;
 
     String menu = """
-                -------------------------------------------------------
+                --------------------------------------------------------
                 Menu:
                    1.  Create a New Person
                    2.  Have a Baby
                    3.  View Your Population
                    4.  Exit
                    5.  Test a New Method
-                ------------------------------------------------------
+                --------------------------------------------------------
                 """;
 }
+

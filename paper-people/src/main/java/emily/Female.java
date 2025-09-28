@@ -15,6 +15,14 @@ public class Female extends Person{
         Object Hair;
     }
 
+    Female(String firstName,String lastName,String sex,Object Eyes,Object Hair){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        sex = "XX";
+        this.Eyes = Eyes;
+        this.Hair = Hair;
+    }
+
     public String getFemaleName(Scanner input){
         System.out.println("Your person is a woman. Give her a first name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
