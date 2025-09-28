@@ -19,31 +19,33 @@ public class Hair {
     int [] blondeHairGenotypes = {244,243,242,232};
     int [] strawberryBlondeHairGenotypes = {234,233};
     int [] redHairGenotypes = {224,223};
-    String whiteHairGenotype = "222";
+    int whiteHairGenotype = 222;
     String allele;
     String [] alleles = {"2","3","3","4"};
-    HashMap<String, String> hairColorMap = new HashMap<String,String>();
+    HashMap<Integer, String> hairColorMap = new HashMap<Integer,String>();
 
     // turn all the int genotype arrays into a single HashMap for retrieving genotype/phenotype pairs
-    public void arrayToHashMap(int[] array, HashMap<String, String> hashMap, String trait){
+    public void arrayToHashMap(int[] array, HashMap<Integer, String> hashMap, String trait){
         int i = 0;
         for (int genotype : array)
-        hashMap.put(String.valueOf(array[i++]), trait);
+        hashMap.put((array[i++]), trait);
+    }
+
+    public void makeHashMap(){
+        arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
+        arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
+        arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
+        arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
+        arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
+        arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
+        arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
+        arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
+        arrayToHashMap(redHairGenotypes,hairColorMap,"red");
+        hairColorMap.put(whiteHairGenotype,"white");
     }
 
     //user manually selects a hair color, saves user selection
     public String selectHairColor(Scanner input){
-            arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
-            arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
-            arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
-            arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
-            arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
-            arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
-            arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
-            arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
-            arrayToHashMap(redHairGenotypes,hairColorMap,"red");
-            hairColorMap.put(whiteHairGenotype,"white");
-
         System.out.println("""
                                 Now, we're going to select their hair color.
                                 
@@ -62,7 +64,7 @@ public class Hair {
     //search HashMap for all associated genotypes for user-selected hairColor, make a set then ann array for all associated genotypes,
     //then randomly select one of the genotypes from the array, parse the string back to an int value, and save int as hairColorGenotype
     public int generateHairColorGenotype (){
-        Set<String> possibleGenotypesSet = Person.getKeysByValue(hairColorMap, hairColor);
+        Set<Integer> possibleGenotypesSet = Person.getKeysByValue(hairColorMap, hairColor);
             String possibleGenotypes[] = possibleGenotypesSet.toArray(new String[0]);
             hairColorGeneString = Person.randomize(possibleGenotypes, hairColorGeneString);
             try {
@@ -73,6 +75,7 @@ public class Hair {
             }
             return hairColorGenotype;
     }
+
 //randomize from alleles array three times and concatenate into a string, parse string into int
 //resulting value is the genotype
 public int randomizeHairGenotype(){

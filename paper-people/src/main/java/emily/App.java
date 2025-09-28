@@ -38,6 +38,7 @@ public class App {
 
         Eyes eyeChoice = new Eyes();
         Hair hairChoice = new Hair();
+        hairChoice.makeHashMap();
             if (choice.equals("1")){
                 eyeChoice.selectEyeColor(input, eyeChoice.eyeColorMap);
                 hairChoice.selectHairColor(input);
@@ -105,8 +106,8 @@ public class App {
 
             // switch between menu options to select relevant code*/
             switch (choice) {
-                case "1" -> {}/*{
-                    Male newMale = new Male();
+                case "1" -> {
+                    //Male newMale = new Male();
 
                     System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
@@ -116,24 +117,20 @@ public class App {
                     }
 
                     selection = selection.toUpperCase();
+                    Male newMale = new Male();
+                    Female newFemale = new Female();
+                    Eyes newEyes = new Eyes();
+                    Hair newHair = new Hair();
 
                     switch (selection) {
-                        case "XY", "XX" -> {
-                            if (selection.equalsIgnoreCase("XY")) {
+                        case "XY" -> {
                                 System.out.println("Your person's name is " + newMale.getMaleName(input) + " " + newMale.getLastName(input) +".");
-                                newMale.getEyeColor(input, newMale.eyeColorMap);
-                                newMale.getHairColor(input);
-                            }
-                            else {
-                                female = new Female();
-                                System.out.println("Your person's name is " + female.getFemaleName(input) + " " + female.getLastName(input) +".");
-                                female.getEyeColor(input,female.eyeColorMap);
-                                female.getHairColor(input);
-                            }
                         }
+                        case "XX" -> {
+                                System.out.println("Your person's name is " + newFemale.getFemaleName(input) + " " + newFemale.getLastName(input) +".");
+                            }
                         case "B", "b" -> {
                             break;
-
                         }
                         default -> System.out.println("Invalid entry. Please try again.");
                     } 
@@ -142,13 +139,12 @@ public class App {
                     System.out.println("Do you want to save this person to your population? (Y/N)");
                     String save = input.nextLine();
                     
-                    // for now, just print confirmation message; need to implement population storage
                     if (save.equalsIgnoreCase("Y")) {
                         if (selection.equalsIgnoreCase("XY") && newMale != null) {
                             allMales.add(newMale);
                             System.out.println("Person saved to your population.");
-                        } else if (selection.equalsIgnoreCase("XX") && female != null) {
-                            allFemales.add(female);
+                        } else if (selection.equalsIgnoreCase("XX") && newFemale != null) {
+                            allFemales.add(newFemale);
                             System.out.println("Person saved to your population.");
                         } else {
                             System.out.println("Person not saved.");
@@ -156,7 +152,7 @@ public class App {
                     } else {
                         System.out.println("Person not saved.");
                     }
-                }*/
+                }
 
                 case "2" -> {
                    System.out.println("Are you ready to have a baby? Select a dad from the following list:");
