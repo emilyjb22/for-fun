@@ -46,7 +46,8 @@ public class App {
             }
             else if (choice.equals("2")){
                 eyeChoice.randomizeEyeColor();
-                hairChoice.randomizeHairGenotype();
+                hairChoice.randomizeHair();
+                hairChoice.getHairColorGenotype();
                 hairChoice.randomizeHairColor();
 
             }
@@ -81,7 +82,8 @@ public class App {
             }
             else if (choice.equals("2")){
                 eyeChoice.randomizeEyeColor();
-                hairChoice.randomizeHairGenotype();
+                hairChoice.randomizeHair();
+                hairChoice.getHairColorGenotype();
                 hairChoice.randomizeHairColor();
 
             }
@@ -107,7 +109,10 @@ public class App {
             // switch between menu options to select relevant code*/
             switch (choice) {
                 case "1" -> {
-                    //Male newMale = new Male();
+                    Male newMale = new Male();
+                    Female newFemale = new Female();
+                    Eyes newEyes = new Eyes();
+                    Hair newHair = new Hair();
 
                     System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
@@ -117,10 +122,6 @@ public class App {
                     }
 
                     selection = selection.toUpperCase();
-                    Male newMale = new Male();
-                    Female newFemale = new Female();
-                    Eyes newEyes = new Eyes();
-                    Hair newHair = new Hair();
 
                     switch (selection) {
                         case "XY" -> {
@@ -167,11 +168,7 @@ public class App {
                     for (Object f : allFemales) { System.out.println(f.toString());
                     }
                 }
-                    
-                
-
-                case "4" -> {
-                    
+                case "4" -> {    
                 }
                 case "5" -> {
                 }
