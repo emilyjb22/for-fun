@@ -24,6 +24,12 @@ public class Hair {
     String [] alleles = {"2","3","3","4"};
     HashMap<String, String> hairColorMap = new HashMap<String,String>();
 
+    Hair(){
+        hairColor = "purple";
+        hairColorGeneString = "0";
+        hairColorGenotype = 0;
+    }
+
     // turn all the int genotype arrays into a single HashMap for retrieving genotype/phenotype pairs
     public void arrayToHashMap(int[] array, HashMap<String, String> hashMap, String trait){
         for (int genotype : array)

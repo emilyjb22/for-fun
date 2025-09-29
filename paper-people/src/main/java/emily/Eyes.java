@@ -17,7 +17,7 @@ public class Eyes {
     }
 
     Eyes() {
-        eyeColor = "";
+        eyeColor = "purple";
         eyeColorGenotype = 0;
     }
 

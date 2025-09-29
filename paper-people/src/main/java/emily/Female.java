@@ -23,6 +23,14 @@ public class Female extends Person{
         this.Hair = Hair;
     }
 
+    public void setEyes(Object Eyes){
+        this.Eyes = Eyes;
+    }
+
+    public void setHair(Object Hair){
+        this.Hair = Hair;
+    }
+
     public String getFemaleName(Scanner input){
         System.out.println("Your person is a woman. Give her a first name, or enter \"R\" to randomize: ");
         String name = input.nextLine();

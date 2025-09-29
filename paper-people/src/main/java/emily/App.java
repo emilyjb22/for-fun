@@ -111,8 +111,6 @@ public class App {
                 case "1" -> {
                     Male newMale = new Male();
                     Female newFemale = new Female();
-                    Eyes newEyes = new Eyes();
-                    Hair newHair = new Hair();
 
                     System.out.println("Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
@@ -130,11 +128,42 @@ public class App {
                         case "XX" -> {
                                 System.out.println("Your person's name is " + newFemale.getFemaleName(input) + " " + newFemale.getLastName(input) +".");
                             }
-                        case "B", "b" -> {
-                            break;
-                        }
                         default -> System.out.println("Invalid entry. Please try again.");
-                    } 
+                    }
+
+                    System.out.println("""
+                        Do you want to randomize their traits, or select their traits manually?
+                        
+                        Type \"R\" to randomize, or \"S\" to select manually
+                                """);
+                    choice = input.nextLine();
+                    Eyes newEyes = new Eyes();
+                    Hair newHair = new Hair();
+                    
+                    if (choice.equalsIgnoreCase("R")) {
+                        newEyes.randomizeEyeColor();
+                        newHair.randomizeHair();
+                        newHair.getHairColorGenotype();
+                        newHair.randomizeHairColor();
+                    }
+                    else {
+                        newEyes.selectEyeColor(input, newEyes.eyeColorMap);
+                        newHair.selectHairColor(input);
+                        newHair.generateHairColorGenotype();
+                    }
+
+                    if (selection.equals("XY")) {
+                        newMale.setEyes(newEyes);
+                        newMale.setHair(newHair);
+                        System.out.println("Great! " + newMale.firstName + " has " + newEyes.eyeColor + " eyes and a genotype of " + newEyes.eyeColorGenotype + ".\n"
+                            + "He has " + newHair.hairColor + " hair and a genotype of " + newHair.hairColorGenotype + ".");
+                    }
+                    else if (selection.equals("XX")) {
+                        newFemale.setEyes(newEyes);
+                        newFemale.setHair(newHair);
+                        System.out.println("Great! " + newFemale.firstName + " has " + newEyes.eyeColor + " eyes and a genotype of " + newEyes.eyeColorGenotype + ".\n"
+                            + "She has " + newHair.hairColor + " hair and a genotype of " + newHair.hairColorGenotype + ".");
+                    }
 
                     System.out.println();
                     System.out.println("Do you want to save this person to your population? (Y/N)");

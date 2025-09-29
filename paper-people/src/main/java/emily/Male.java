@@ -21,6 +21,14 @@ public class Male extends Person{
         this.Hair = Hair;
     }
 
+    public void setEyes(Object Eyes){
+        this.Eyes = Eyes;
+    }
+
+    public void setHair(Object Hair){
+        this.Hair = Hair;
+    }
+
     public String getMaleName(Scanner input){
         System.out.println("Your person is a man. Give him a first name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
