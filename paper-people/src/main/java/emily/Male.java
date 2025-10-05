@@ -8,8 +8,11 @@ public class Male extends Person{
                         "Christopher", "Daniel", "Matthew", "Anthony", "Timothy", "Mark", "Paul", "Steven", "Andrew", "Kenneth"};
     
     Male(){
-        firstName = "";
-        this.lastName = "";
+        firstName = "JOHN";
+        lastName = "DOE";
+        sex = "XY";
+        eyes = super.eyes;
+        hair = super.hair;
     }
 
     Male(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
@@ -18,14 +21,6 @@ public class Male extends Person{
         sex = "XY";
         eyes = super.eyes;
         hair = super.hair;
-    }
-
-    public void setEyes(Eyes eyes){
-        this.eyes = eyes;
-    }
-
-    public void setHair(Hair hair){
-        this.hair = hair;
     }
 
     public String getMaleName(Scanner input){

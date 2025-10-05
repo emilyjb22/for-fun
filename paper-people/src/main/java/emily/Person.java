@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 
-public class Person {
+public abstract class Person {
 
      // variables and array for names
     String firstName;
@@ -15,7 +15,6 @@ public class Person {
     // initiate array of last names for randomization; to be replaced with external list eventually 
     String [] lastNames = {"Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
                             "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"};
-    String randomName;
 
     // variables/objects for sex, eyes, hair
     static String sex;
@@ -28,18 +27,23 @@ public class Person {
 
     // default constructor
     Person() {  
-        firstName = "John";
-        lastName = "Doe";
-        sex = "XY";
+        firstName = null;
+        lastName = null;
         eyes = new Eyes();
         hair = new Hair();
     }
+
+    // setters
+    public void setEyes(Eyes eyes){
+        this.eyes = eyes;
+    }
+
+    public void setHair(Hair hair){
+        this.hair = hair;
+    }
+
     
 //Code pertaining to name generation and randomization
- 
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
 
     // method to get user input for last name or randomize
     public String getLastName(Scanner input){

@@ -40,18 +40,18 @@ public class App {
         Hair hairChoice = new Hair();
         hairChoice.makeHashMap();
             if (choice.equals("1")){
-                eyeChoice.selectEyeColor(input);
-                hairChoice.selectHairColor(input);
-                hairChoice.generateHairColorGenotype();
+                eyeChoice.setEyeColor(eyeChoice.selectEyeColor(input));
+                hairChoice.setHairColor(hairChoice.selectHairColor(input));
+                hairChoice.setHairColorGenotype(hairChoice.generateHairColorGenotype());
             }
             else if (choice.equals("2")){
-                eyeChoice.randomizeEyeColor();
+                eyeChoice.setEyeColor(eyeChoice.randomizeEyeColor());
                 hairChoice.randomizeHair();
-                hairChoice.makeHairColorGenotype();
-                hairChoice.randomizeHairColor();
+                hairChoice.setHairColorGenotype(hairChoice.makeHairColorGenotype());
+                hairChoice.setHairColor(hairChoice.randomizeHairColor());
 
             }
-            eyeChoice.generateEyeColorGenotype();
+            eyeChoice.setEyeColorGenotype(eyeChoice.generateEyeColorGenotype());
 
         Male adam = new Male("Adam","Paper","XY",eyeChoice,hairChoice);
         allMales.add(adam);
@@ -76,18 +76,18 @@ public class App {
         """);
         choice = input.nextLine();
             if (choice.equals("1")){
-                eyeChoice.selectEyeColor(input);
-                hairChoice.selectHairColor(input);
-                hairChoice.generateHairColorGenotype();
+                eyeChoice.setEyeColor(eyeChoice.selectEyeColor(input));
+                hairChoice.setHairColor(hairChoice.selectHairColor(input));
+                hairChoice.setHairColorGenotype(hairChoice.generateHairColorGenotype());
             }
             else if (choice.equals("2")){
-                eyeChoice.randomizeEyeColor();
+                eyeChoice.setEyeColor(eyeChoice.randomizeEyeColor());
                 hairChoice.randomizeHair();
-                hairChoice.makeHairColorGenotype();
-                hairChoice.randomizeHairColor();
+                hairChoice.setHairColorGenotype(hairChoice.makeHairColorGenotype());
+                hairChoice.setHairColor(hairChoice.randomizeHairColor());
 
             }
-            eyeChoice.generateEyeColorGenotype();
+            eyeChoice.setEyeColorGenotype(eyeChoice.generateEyeColorGenotype());
 
         Female eve = new Female("Eve","Paper","XX",eyeChoice,hairChoice);
         allFemales.add(eve);

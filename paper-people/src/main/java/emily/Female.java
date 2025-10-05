@@ -8,8 +8,11 @@ public class Female extends Person{
                             "Nancy", "Margaret", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily"};
     
     Female(){
-        firstName = "Eve";
-        this.lastName = "Paper";
+        firstName = "JANE";
+        lastName = "DOE";
+        sex = "XX";
+        eyes = super.eyes;
+        hair = super.hair;
     }
 
     Female(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
@@ -18,14 +21,6 @@ public class Female extends Person{
         sex = "XX";
         eyes = super.eyes;
         hair = super.hair;
-    }
-
-    //public void setEyes(Eyes eyes){
-      //  this.eyes = eyes;
-    //}
-
-    public void setHair(Hair hair){
-        this.hair = hair;
     }
 
     public String getFemaleName(Scanner input){

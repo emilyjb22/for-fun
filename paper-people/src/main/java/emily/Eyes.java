@@ -41,12 +41,19 @@ public class Eyes {
     }
 
     // getters
-    // idk if I need setters yet
      public String getEyeColor(){
         return eyeColor;
     }
     public int getEyeColorGenotype(){
         return eyeColorGenotype;
+    }
+
+    // setters
+    public void setEyeColor(String eyeColor){
+        this.eyeColor = eyeColor;
+    }
+    public void setEyeColorGenotype(int eyeColorGenotype){
+        this.eyeColorGenotype = eyeColorGenotype;
     }
 
     // methods for user-selected eye color

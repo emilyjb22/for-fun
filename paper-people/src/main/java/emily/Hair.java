@@ -54,12 +54,19 @@ public class Hair {
     }
 
     // getters
-    // idk if I need setters yet
     public String getHairColor(){
         return hairColor;
     }
     public int getHairColorGenotype(){
         return hairColorGenotype;
+    }
+
+    // setters
+    public void setHairColor(String hairColor){
+        this.hairColor = hairColor;
+    }
+    public void setHairColorGenotype(int hairColorGenotype){
+        this.hairColorGenotype = hairColorGenotype;
     }
 
     // methods for hair color HashMap (genotype (key) to phenotype (value) mapping)
