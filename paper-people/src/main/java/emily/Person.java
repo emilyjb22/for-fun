@@ -26,9 +26,6 @@ public class Person {
     //String skinColor;
     //String freckles;
 
-
-
-
     // default constructor
     Person() {  
         firstName = "John";
@@ -38,17 +35,8 @@ public class Person {
         hair = new Hair();
     }
     
-    // overloaded constructor; not currently used
-    Person(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        Person.sex = sex;
-        this.eyes = eyes;
-        this.hair = hair;
-    }
-/*
- * Code pertaining to name generation and randomization
- */
+//Code pertaining to name generation and randomization
+ 
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
@@ -107,11 +95,11 @@ public class Person {
         return keys;
     }
 
+    //
     @Override
     public String toString() {
         String s;
 
-        // since the object is complex, we return a JSON formatted string
             s = "{ ";
             s += "name: " + firstName + " " + lastName;
             s += ", ";

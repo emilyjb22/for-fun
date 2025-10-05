@@ -47,7 +47,7 @@ public class App {
             else if (choice.equals("2")){
                 eyeChoice.randomizeEyeColor();
                 hairChoice.randomizeHair();
-                hairChoice.getHairColorGenotype();
+                hairChoice.makeHairColorGenotype();
                 hairChoice.randomizeHairColor();
 
             }
@@ -57,7 +57,7 @@ public class App {
         allMales.add(adam);
         System.out.println("Great! " + adam.firstName + " " + adam.lastName + " has been added to the population.\n"
                             + "He has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + ".\n"
-                            + "He has " + hairChoice.hairColor + " hair and a genotype of " + hairChoice.hairColorGenotype + ".");
+                            + "He has " + hairChoice.getHairColor() + " hair and a genotype of " + hairChoice.getHairColorGenotype() + ".");
         input.nextLine();
 
         
@@ -83,7 +83,7 @@ public class App {
             else if (choice.equals("2")){
                 eyeChoice.randomizeEyeColor();
                 hairChoice.randomizeHair();
-                hairChoice.getHairColorGenotype();
+                hairChoice.makeHairColorGenotype();
                 hairChoice.randomizeHairColor();
 
             }
@@ -93,7 +93,7 @@ public class App {
         allFemales.add(eve);
         System.out.println("Great! " + eve.firstName + " " + eve.lastName + " has been added to the population.\n"
                             + "She has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + ".\n"
-                            + "She has " + hairChoice.hairColor + " hair and a genotype of " + hairChoice.hairColorGenotype + ".");
+                            + "She has " + hairChoice.getHairColor() + " hair and a genotype of " + hairChoice.getHairColorGenotype() + ".");
         input.nextLine();
 
         System.out.println("Press enter to continue...");
@@ -145,7 +145,7 @@ public class App {
                         newEyes.randomizeEyeColor();
                         newEyes.getEyeColorGenotype();
                         newHair.randomizeHair();
-                        newHair.getHairColorGenotype();
+                        newHair.makeHairColorGenotype();
                         newHair.randomizeHairColor();
                     }
                     else {
@@ -158,13 +158,13 @@ public class App {
                         newMale.setEyes(newEyes);
                         newMale.setHair(newHair);
                         System.out.println("Great! " + newMale.firstName + " has " + newEyes.eyeColor + " eyes and a genotype of " + newEyes.eyeColorGenotype + ".\n"
-                            + "He has " + newHair.hairColor + " hair and a genotype of " + newHair.hairColorGenotype + ".");
+                            + "He has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");
                     }
                     else if (selection.equals("XX")) {
-                        newFemale.setEyes(newEyes);
+                        //newFemale.setEyes(newEyes);
                         newFemale.setHair(newHair);
                         System.out.println("Great! " + newFemale.firstName + " has " + newEyes.eyeColor + " eyes and a genotype of " + newEyes.eyeColorGenotype + ".\n"
-                            + "She has " + newHair.hairColor + " hair and a genotype of " + newHair.hairColorGenotype + ".");
+                            + "She has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");
                     }
 
                     System.out.println();
