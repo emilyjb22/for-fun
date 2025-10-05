@@ -188,15 +188,15 @@ public class App {
 
                 case "2" -> {
                    System.out.println("Are you ready to have a baby? Select a dad from the following list:");
-                   for (Object m : allMales) { System.out.println(m.toString());
+                   for (Male m : allMales) { System.out.println(m.toString());
                     } 
                 }
                 case "3" -> {
                     //need to make this print better
                     System.out.println("Here is your current population:");
-                    for (Object m : allMales) { System.out.println(m.toString());
+                    for (Male m : allMales) { System.out.println(m.toString());
                     } 
-                    for (Object f : allFemales) { System.out.println(f.toString());
+                    for (Female f : allFemales) { System.out.println(f.toString());
                     }
                 }
                 case "4" -> {    

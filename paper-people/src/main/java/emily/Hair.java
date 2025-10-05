@@ -66,6 +66,10 @@ public class Hair {
         return hairColor;
     }
 
+    public String getHairColor(){
+        return hairColor;
+    }
+
     //search HashMap for all associated genotypes for user-selected hairColor, make a set then ann array for all associated genotypes,
     //then randomly select one of the genotypes from the array, parse the string back to an int value, and save int as hairColorGenotype
     public int generateHairColorGenotype (){
@@ -92,6 +96,10 @@ public class Hair {
         hairColorGenotype = Integer.parseInt(hairColorGeneString);
         return hairColorGenotype;
 }
+
+    public int getHairGenotype(){
+        return hairColorGenotype;
+    }
 
 //use generated genotype (key) to search HashMap for hairColor (value), save hairColor
     public String randomizeHairColor(){

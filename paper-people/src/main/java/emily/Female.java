@@ -10,8 +10,6 @@ public class Female extends Person{
     Female(){
         firstName = "Eve";
         this.lastName = "Paper";
-        Object Eyes;
-        Object Hair;
     }
 
     Female(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
@@ -22,9 +20,9 @@ public class Female extends Person{
         hair = super.hair;
     }
 
-    public void setEyes(Eyes eyes){
-        this.eyes = eyes;
-    }
+    //public void setEyes(Eyes eyes){
+      //  this.eyes = eyes;
+    //}
 
     public void setHair(Hair hair){
         this.hair = hair;

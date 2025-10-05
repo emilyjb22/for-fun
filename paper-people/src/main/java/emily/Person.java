@@ -17,17 +17,17 @@ public class Person {
                             "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"};
     String randomName;
 
-    // variables for sex
+    // variables/objects for sex, eyes, hair
     static String sex;
     static String[] sexes = {"XX", "XY"};
-    
-    // objects for eye/hair color
     Eyes eyes;
     Hair hair;
    
-
     //String skinColor;
     //String freckles;
+
+
+
 
     // default constructor
     Person() {  
@@ -84,28 +84,28 @@ public class Person {
         hashMap.put(array[i++], trait);
     }
 
-// methods to get keys from values
-// https://stackoverflow.com/questions/1383797/java-hashmap-how-to-get-key-from-value
-// single key to single value
-public static <K, V> K getKeyByValue(HashMap<K, V> hashMap, V value) {
-    for (Map.Entry<K, V> entry : hashMap.entrySet()) {
-        if (Objects.equals(value, entry.getValue())) {
-            return entry.getKey();
+    // methods to get keys from values
+    // https://stackoverflow.com/questions/1383797/java-hashmap-how-to-get-key-from-value
+    // single key to single value
+    public static <K, V> K getKeyByValue(HashMap<K, V> hashMap, V value) {
+        for (Map.Entry<K, V> entry : hashMap.entrySet()) {
+            if (Objects.equals(value, entry.getValue())) {
+                return entry.getKey();
+            }
         }
+        return null;
     }
-    return null;
-}
 
-// multiple keys with same value
-public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
-    Set<T> keys = new HashSet<>();
-    for (Map.Entry<T, E> entry : map.entrySet()) {
-        if (Objects.equals(value, entry.getValue())) {
-            keys.add(entry.getKey());
+    // multiple keys with same value
+    public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
+        Set<T> keys = new HashSet<>();
+        for (Map.Entry<T, E> entry : map.entrySet()) {
+            if (Objects.equals(value, entry.getValue())) {
+                keys.add(entry.getKey());
+            }
         }
+        return keys;
     }
-    return keys;
-}
 
     @Override
     public String toString() {
@@ -115,11 +115,13 @@ public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
             s = "{ ";
             s += "name: " + firstName + " " + lastName;
             s += ", ";
-           // s += "eye color: " + (Eyes).getEyeColor();
+            s += "eye color: " + this.eyes.getEyeColor();
             s += ", ";
-           // s += "longitude: " + this.longitude();
+            s += "eye color genotype: " + this.eyes.getEyeGenotype();
             s += ", ";
-           // s += "latitude: " + this.latitude();
+            s += "hair color: " + this.hair.getHairColor();
+            s += ", ";
+            s += "hair color genotype: " + this.hair.getHairColorGenotype();
             s += " }";
             return s;
 }
