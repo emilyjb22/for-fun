@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Male extends Person{
 
-    final String sex = "XY";
     String[] maleNames = {"James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles", 
                         "Christopher", "Daniel", "Matthew", "Anthony", "Timothy", "Mark", "Paul", "Steven", "Andrew", "Kenneth"};
     
@@ -13,20 +12,20 @@ public class Male extends Person{
         this.lastName = "";
     }
 
-    Male(String firstName,String lastName,String sex,Object Eyes,Object Hair){
+    Male(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XY";
-        this.Eyes = Eyes;
-        this.Hair = Hair;
+        eyes = super.eyes;
+        hair = super.hair;
     }
 
-    public void setEyes(Object Eyes){
-        this.Eyes = Eyes;
+    public void setEyes(Eyes eyes){
+        this.eyes = eyes;
     }
 
-    public void setHair(Object Hair){
-        this.Hair = Hair;
+    public void setHair(Hair hair){
+        this.hair = hair;
     }
 
     public String getMaleName(Scanner input){

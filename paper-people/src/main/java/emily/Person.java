@@ -22,8 +22,8 @@ public class Person {
     static String[] sexes = {"XX", "XY"};
     
     // objects for eye/hair color
-    Object Eyes;
-    Object Hair;
+    Eyes eyes;
+    Hair hair;
    
 
     //String skinColor;
@@ -34,17 +34,17 @@ public class Person {
         firstName = "John";
         lastName = "Doe";
         sex = "XY";
-        Object Eyes;
-        Object Hair;
+        eyes = new Eyes();
+        hair = new Hair();
     }
     
     // overloaded constructor; not currently used
-    Person(String firstName,String lastName,String sex,Object Eyes,Object Hair){
+    Person(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
         this.firstName = firstName;
         this.lastName = lastName;
         Person.sex = sex;
-        this.Eyes = Eyes;
-        this.Hair = Hair;
+        this.eyes = eyes;
+        this.hair = hair;
     }
 /*
  * Code pertaining to name generation and randomization
@@ -109,6 +109,19 @@ public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
 
     @Override
     public String toString() {
-        return "Person{name='" + firstName + " " + lastName + "'}";
-    }
+        String s;
+
+        // since the object is complex, we return a JSON formatted string
+            s = "{ ";
+            s += "name: " + firstName + " " + lastName;
+            s += ", ";
+           // s += "eye color: " + (Eyes).getEyeColor();
+            s += ", ";
+           // s += "longitude: " + this.longitude();
+            s += ", ";
+           // s += "latitude: " + this.latitude();
+            s += " }";
+            return s;
 }
+    }
+

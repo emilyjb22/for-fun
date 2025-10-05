@@ -54,6 +54,10 @@ public class Eyes {
         return eyeColorGenotype; 
     }
 
+    public String getEyeColor(){
+        return eyeColor;
+    }
+
     public String setEyeColor(String eyeColor){
         this.eyeColor = eyeColor;
         return eyeColor;

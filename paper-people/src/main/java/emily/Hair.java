@@ -84,7 +84,7 @@ public class Hair {
 //randomize from alleles array three times and concatenate into a string, parse string into int
 //resulting value is the genotype
     public String randomizeHair(){
-        String hairColorGeneString = Person.randomize(alleles,allele) + Person.randomize(alleles,allele) + Person.randomize(alleles,allele);
+        hairColorGeneString = Person.randomize(alleles,allele) + Person.randomize(alleles,allele) + Person.randomize(alleles,allele);
         return hairColorGeneString;
 }
 

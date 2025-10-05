@@ -139,9 +139,11 @@ public class App {
                     choice = input.nextLine();
                     Eyes newEyes = new Eyes();
                     Hair newHair = new Hair();
+                    newHair.makeHashMap();
                     
                     if (choice.equalsIgnoreCase("R")) {
                         newEyes.randomizeEyeColor();
+                        newEyes.getEyeColorGenotype();
                         newHair.randomizeHair();
                         newHair.getHairColorGenotype();
                         newHair.randomizeHairColor();
@@ -200,6 +202,11 @@ public class App {
                 case "4" -> {    
                 }
                 case "5" -> {
+                    Eyes testEyes = new Eyes();
+
+                    for (var eyeColor : testEyes.eyeColorMap.entrySet()) { System.out.println(eyeColor.getKey() + ": " + eyeColor.getValue()); }
+
+
                 }
                 
                 default -> {System.out.println("Invalid entry. Please enter a number between 1 and 4.");}
