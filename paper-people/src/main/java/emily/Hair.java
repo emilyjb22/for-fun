@@ -25,11 +25,11 @@ import java.util.Set;
 
 public class Hair {
 
-    // variables needed outside the class
+    // attributes needed outside the class
     private String hairColor;
     private int hairColorGenotype;
 
-    // variables not needed outside the class
+    // attributes not needed outside the class
     private String hairColorGeneString;
     private String [] hairColors = {"black","black-brown","dark brown","brown", "light brown", "auburn", "red", "blonde", "strawberry blonde", "white"};
     private int [] blackHairGenotypes = {444,443,442};

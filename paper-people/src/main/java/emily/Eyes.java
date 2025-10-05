@@ -3,30 +3,54 @@ package emily;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/*
+ * Class for eye color and genotype
+ * Eye color is determined by multiple genes, but for simplicity, we'll use a model with two main genes, each with two alleles (think AaBb).
+ * The "A" gene influences brown vs. blue eyes, and the "B" gene influences green vs. blue eyes.
+ * In this program, we'll represent the eye color genotype with a two-digit number, composed of 2's, 3's, and 4's:
+ *     (2 = homozygous recessive, 3 = heterozygous, 4 = homozygous dominant)
+ * Each digit represents one of the two genes (A and B), with the first digit for gene A and the second for gene B.
+ *     for example, a genotype of 34 would indicate:
+ *          - the first digit '3' indicates heterozygous for gene A (Aa, brown eyes)
+ *          - the second digit '4' indicates homozygous dominant for gene B (BB, no green influence)
+ * The combination of these alleles results in a genotype, which maps to a specific eye color phenotype
+ *     for the example above: 34 -> AaBB -> brown eyes
+ * The eye color phenotypes and their corresponding genotypes are stored in a HashMap for easy lookup
+ * The class includes methods for selecting eye color, generating a genotype based on the selected color, and randomizing eye color and genotype  
+ */
+
 public class Eyes {
     
-    // variables for eye color
-    String eyeColor;
-    String[] eyeColors = {"black", "dark brown", "hazel", "brown", "amber", "green", "dark blue", "blue", "gray"};
-    int eyeColorGenotype;
-    int[] eyeColorGenotypes = {44,43,42,34,33,32,24,23,22};
-    HashMap<String, String> eyeColorMap = new HashMap<String, String>();{
+    // attributes needed outside the class
+    private String eyeColor;
+    private int eyeColorGenotype;
+    
+    // attributes not needed outside the class
+    private String[] eyeColors = {"black", "dark brown", "hazel", "brown", "amber", "green", "dark blue", "blue", "gray"};
+    private int[] eyeColorGenotypes = {44,43,42,34,33,32,24,23,22};
+    private HashMap<String, String> eyeColorMap = new HashMap<String, String>();{
         for (int i = 0; i < 9; i++) {
         eyeColorMap.put(String.valueOf(eyeColorGenotypes[i]), eyeColors[i]);
         }
     }
 
+    // default constructor
     Eyes() {
         eyeColor = "purple";
         eyeColorGenotype = 0;
     }
 
-    Eyes(String eyeColor, int eyeColorGenotype) {
-        this.eyeColor = eyeColor;
-        this.eyeColorGenotype = eyeColorGenotype;
+    // getters
+    // idk if I need setters yet
+     public String getEyeColor(){
+        return eyeColor;
     }
-    
-    public String selectEyeColor(Scanner input, HashMap<String,String> eyeColorMap){
+    public int getEyeColorGenotype(){
+        return eyeColorGenotype;
+    }
+
+    // methods for user-selected eye color
+    public String selectEyeColor(Scanner input){
         System.out.println("""
                                 Next, we're going to select their eye color.
                                 
@@ -35,7 +59,6 @@ public class Eyes {
                                 Eye color options:
                                 ---------------------
                                 """);
-        // print list of eye colors for user to select from
         for (String color : eyeColors) {
             System.out.println("- " + color);
         }
@@ -43,27 +66,17 @@ public class Eyes {
         return eyeColor;
     }
 
+    // method to randomize eye color
     public String randomizeEyeColor() {
             eyeColor = Person.randomize(eyeColors,eyeColor);
             return eyeColor;
     }
 
     // use phenotype (value) to locate corresponding genotype (key)
-    public int getEyeColorGenotype(){
+    // both user-selected and randomized eye colors use the same method to get genotype
+    public int generateEyeColorGenotype(){
         eyeColorGenotype = getKeyByValue(eyeColorMap, eyeColor);
         return eyeColorGenotype; 
-    }
-
-    public String getEyeColor(){
-        return eyeColor;
-    }
-    public int getEyeGenotype(){
-        return eyeColorGenotype;
-    }
-
-    public String setEyeColor(String eyeColor){
-        this.eyeColor = eyeColor;
-        return eyeColor;
     }
 
     // Helper method to get key by value from HashMap
@@ -73,7 +86,6 @@ public class Eyes {
                 return Integer.parseInt(key);
             }
         }
-        // Return -1 if not found
         return -1;
     }
 }

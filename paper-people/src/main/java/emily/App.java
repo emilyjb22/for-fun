@@ -40,7 +40,7 @@ public class App {
         Hair hairChoice = new Hair();
         hairChoice.makeHashMap();
             if (choice.equals("1")){
-                eyeChoice.selectEyeColor(input, eyeChoice.eyeColorMap);
+                eyeChoice.selectEyeColor(input);
                 hairChoice.selectHairColor(input);
                 hairChoice.generateHairColorGenotype();
             }
@@ -51,12 +51,12 @@ public class App {
                 hairChoice.randomizeHairColor();
 
             }
-            eyeChoice.getEyeColorGenotype();
+            eyeChoice.generateEyeColorGenotype();
 
         Male adam = new Male("Adam","Paper","XY",eyeChoice,hairChoice);
         allMales.add(adam);
         System.out.println("Great! " + adam.firstName + " " + adam.lastName + " has been added to the population.\n"
-                            + "He has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + ".\n"
+                            + "He has " + eyeChoice.getEyeColor() + " eyes and a genotype of " + eyeChoice.getEyeColorGenotype() + ".\n"
                             + "He has " + hairChoice.getHairColor() + " hair and a genotype of " + hairChoice.getHairColorGenotype() + ".");
         input.nextLine();
 
@@ -76,7 +76,7 @@ public class App {
         """);
         choice = input.nextLine();
             if (choice.equals("1")){
-                eyeChoice.selectEyeColor(input, eyeChoice.eyeColorMap);
+                eyeChoice.selectEyeColor(input);
                 hairChoice.selectHairColor(input);
                 hairChoice.generateHairColorGenotype();
             }
@@ -87,12 +87,12 @@ public class App {
                 hairChoice.randomizeHairColor();
 
             }
-            eyeChoice.getEyeColorGenotype();
+            eyeChoice.generateEyeColorGenotype();
 
         Female eve = new Female("Eve","Paper","XX",eyeChoice,hairChoice);
         allFemales.add(eve);
         System.out.println("Great! " + eve.firstName + " " + eve.lastName + " has been added to the population.\n"
-                            + "She has " + eyeChoice.eyeColor + " eyes and a genotype of " + eyeChoice.eyeColorGenotype + ".\n"
+                            + "She has " + eyeChoice.getEyeColor() + " eyes and a genotype of " + eyeChoice.getEyeColorGenotype() + ".\n"
                             + "She has " + hairChoice.getHairColor() + " hair and a genotype of " + hairChoice.getHairColorGenotype() + ".");
         input.nextLine();
 
@@ -143,13 +143,13 @@ public class App {
                     
                     if (choice.equalsIgnoreCase("R")) {
                         newEyes.randomizeEyeColor();
-                        newEyes.getEyeColorGenotype();
+                        newEyes.generateEyeColorGenotype();
                         newHair.randomizeHair();
                         newHair.makeHairColorGenotype();
                         newHair.randomizeHairColor();
                     }
                     else {
-                        newEyes.selectEyeColor(input, newEyes.eyeColorMap);
+                        newEyes.selectEyeColor(input);
                         newHair.selectHairColor(input);
                         newHair.generateHairColorGenotype();
                     }
@@ -157,13 +157,13 @@ public class App {
                     if (selection.equals("XY")) {
                         newMale.setEyes(newEyes);
                         newMale.setHair(newHair);
-                        System.out.println("Great! " + newMale.firstName + " has " + newEyes.eyeColor + " eyes and a genotype of " + newEyes.eyeColorGenotype + ".\n"
+                        System.out.println("Great! " + newMale.firstName + " has " + newEyes.getEyeColor() + " eyes and a genotype of " + newEyes.getEyeColorGenotype() + ".\n"
                             + "He has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");
                     }
                     else if (selection.equals("XX")) {
                         //newFemale.setEyes(newEyes);
                         newFemale.setHair(newHair);
-                        System.out.println("Great! " + newFemale.firstName + " has " + newEyes.eyeColor + " eyes and a genotype of " + newEyes.eyeColorGenotype + ".\n"
+                        System.out.println("Great! " + newFemale.firstName + " has " + newEyes.getEyeColor() + " eyes and a genotype of " + newEyes.getEyeColorGenotype() + ".\n"
                             + "She has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");
                     }
 
@@ -202,9 +202,6 @@ public class App {
                 case "4" -> {    
                 }
                 case "5" -> {
-                    Eyes testEyes = new Eyes();
-
-                    for (var eyeColor : testEyes.eyeColorMap.entrySet()) { System.out.println(eyeColor.getKey() + ": " + eyeColor.getValue()); }
 
 
                 }

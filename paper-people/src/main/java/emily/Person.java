@@ -105,7 +105,7 @@ public class Person {
             s += ", ";
             s += "eye color: " + this.eyes.getEyeColor();
             s += ", ";
-            s += "eye color genotype: " + this.eyes.getEyeGenotype();
+            s += "eye color genotype: " + this.eyes.getEyeColorGenotype();
             s += ", ";
             s += "hair color: " + this.hair.getHairColor();
             s += ", ";
