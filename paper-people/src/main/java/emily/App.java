@@ -96,6 +96,8 @@ public class App {
                             + "She has " + hairChoice.getHairColor() + " hair and a genotype of " + hairChoice.getHairColorGenotype() + ".");
         input.nextLine();
 
+        
+
         System.out.println("Press enter to continue...");
    
         // get user input, until user exits program
@@ -188,9 +190,39 @@ public class App {
 
                 case "2" -> {
                    System.out.println("Are you ready to have a baby? Select a dad from the following list:");
-                   for (Male m : allMales) { System.out.println(m.toString());
-                    } 
-                }
+                   int count = allMales.size();
+                     for (int i = 0; i < count; i++) {
+                      System.out.println((i + 1) + ". " + allMales.get(i).toString());
+                     }
+                     int dadIndex = input.nextInt() - 1;
+                     Male dad = allMales.get(dadIndex);
+                    System.out.println("Great! You selected " + dad.firstName + " " + dad.lastName + " as the dad.");
+                    input.nextLine();
+
+                    System.out.println("Now select a mom from the following list:");
+                    count = allFemales.size();
+                     for (int i = 0; i < count; i++) {
+                      System.out.println((i + 1) + ". " + allFemales.get(i).toString());
+                     }
+                     int momIndex = input.nextInt() - 1;
+                     Female mom = allFemales.get(momIndex);
+                    System.out.println("Great! You selected " + mom.firstName + " " + mom.lastName + " as the mom.");
+                    input.nextLine();
+
+                    System.out.println("Gestating baby...");
+                    input.nextLine();
+
+                    String sexOfBaby = Person.randomize(Person.sexes, Person.sex);
+                    if (sexOfBaby.equals("XY")) {
+                        System.out.println("Congratulations! " + mom.firstName + " and " + dad.firstName + " had a baby boy!");
+                    }
+                    else {
+                        System.out.println("Congratulations! " + mom.firstName + " and " + dad.firstName + " had a baby girl!");
+                    }
+
+
+
+            }   
                 case "3" -> {
                     //need to make this print better
                     System.out.println("Here is your current population:");
