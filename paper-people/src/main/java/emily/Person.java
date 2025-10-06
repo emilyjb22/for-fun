@@ -99,7 +99,6 @@ public abstract class Person {
         return keys;
     }
 
-    //
     @Override
     public String toString() {
         String s;
@@ -107,15 +106,17 @@ public abstract class Person {
             s = "{ ";
             s += "name: " + firstName + " " + lastName;
             s += ", ";
-            s += "eye color: " + this.eyes.getEyeColor();
+            s += "eye color: " + eyes.getEyeColor();
             s += ", ";
-            s += "eye color genotype: " + this.eyes.getEyeColorGenotype();
+            s += "eye color genotype: " + eyes.getEyeColorGenotype();
             s += ", ";
             s += "hair color: " + this.hair.getHairColor();
             s += ", ";
             s += "hair color genotype: " + this.hair.getHairColorGenotype();
             s += " }";
             return s;
-}
     }
+    
+}
+    
 

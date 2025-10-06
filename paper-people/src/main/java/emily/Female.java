@@ -19,8 +19,8 @@ public class Female extends Person{
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XX";
-        eyes = super.eyes;
-        hair = super.hair;
+        this.eyes = eyes;
+        this.hair = hair;
     }
 
     public String getFemaleName(Scanner input){

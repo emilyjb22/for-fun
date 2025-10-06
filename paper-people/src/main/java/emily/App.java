@@ -143,7 +143,6 @@ public class App {
                     
                     if (choice.equalsIgnoreCase("R")) {
                         newEyes.randomizeEyeColor();
-                        newEyes.generateEyeColorGenotype();
                         newHair.randomizeHair();
                         newHair.makeHairColorGenotype();
                         newHair.randomizeHairColor();
@@ -153,6 +152,7 @@ public class App {
                         newHair.selectHairColor(input);
                         newHair.generateHairColorGenotype();
                     }
+                    newEyes.generateEyeColorGenotype();
 
                     if (selection.equals("XY")) {
                         newMale.setEyes(newEyes);
@@ -161,7 +161,7 @@ public class App {
                             + "He has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");
                     }
                     else if (selection.equals("XX")) {
-                        //newFemale.setEyes(newEyes);
+                        newFemale.setEyes(newEyes);
                         newFemale.setHair(newHair);
                         System.out.println("Great! " + newFemale.firstName + " has " + newEyes.getEyeColor() + " eyes and a genotype of " + newEyes.getEyeColorGenotype() + ".\n"
                             + "She has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");

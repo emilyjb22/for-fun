@@ -40,6 +40,11 @@ public class Eyes {
         eyeColorGenotype = 0;
     }
 
+    Eyes(String eyeColor, int eyeColorGenotype) {
+        this.eyeColor = eyeColor;
+        this.eyeColorGenotype = eyeColorGenotype;
+    }
+
     // getters
      public String getEyeColor(){
         return eyeColor;

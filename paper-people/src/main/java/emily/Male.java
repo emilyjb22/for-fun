@@ -19,8 +19,8 @@ public class Male extends Person{
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XY";
-        eyes = super.eyes;
-        hair = super.hair;
+        this.eyes = eyes;
+        this.hair = hair;
     }
 
     public String getMaleName(Scanner input){
@@ -34,7 +34,8 @@ public class Male extends Person{
             }
        System.out.println("His first name is " + firstName + ".");
        return firstName;
-    } 
+    }
+
 }
 
 
