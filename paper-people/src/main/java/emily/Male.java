@@ -15,12 +15,14 @@ public class Male extends Person{
         hair = super.hair;
     }
 
-    Male(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
+    Male(String firstName,String lastName,String sex,Eyes eyes,Hair hair,Male dad,Female mom){
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XY";
         this.eyes = eyes;
         this.hair = hair;
+        this.dad = dad;
+        this.mom = mom;
     }
 
     public String getMaleName(Scanner input){
@@ -35,6 +37,8 @@ public class Male extends Person{
        System.out.println("His first name is " + firstName + ".");
        return firstName;
     }
+
+    
 
 }
 

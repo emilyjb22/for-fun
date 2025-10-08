@@ -44,7 +44,22 @@ public class Hair {
     private String whiteHairGenotype = "222";
     private String allele;
     private String [] alleles = {"2","3","3","4"};
+
     private HashMap<String, String> hairColorMap = new HashMap<String,String>();
+    
+    public HashMap<String, String> getHairColorMap(){
+        arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
+        arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
+        arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
+        arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
+        arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
+        arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
+        arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
+        arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
+        arrayToHashMap(redHairGenotypes,hairColorMap,"red");
+        hairColorMap.put(whiteHairGenotype,"white");
+        return hairColorMap;
+    };
 
     // default constructor
     Hair(){
@@ -73,18 +88,6 @@ public class Hair {
     public void arrayToHashMap(int[] array, HashMap<String, String> hashMap, String trait){
         for (int genotype : array)
         hashMap.put(String.valueOf(genotype), trait);
-    }
-    public void makeHashMap(){
-        arrayToHashMap(blackHairGenotypes,hairColorMap,"black");
-        arrayToHashMap(blackBrownHairGenotypes,hairColorMap,"black-brown");
-        arrayToHashMap(darkBrownHairGenotypes,hairColorMap,"dark brown");
-        arrayToHashMap(brownHairGenotypes,hairColorMap,"brown");
-        arrayToHashMap(lightBrownHairGenotypes,hairColorMap,"light brown");
-        arrayToHashMap(auburnHairGenotypes,hairColorMap,"auburn");
-        arrayToHashMap(blondeHairGenotypes,hairColorMap,"blonde");
-        arrayToHashMap(strawberryBlondeHairGenotypes,hairColorMap,"strawberry blonde");
-        arrayToHashMap(redHairGenotypes,hairColorMap,"red");
-        hairColorMap.put(whiteHairGenotype,"white");
     }
 
     // methods for user-selected hair color

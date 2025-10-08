@@ -21,6 +21,8 @@ public abstract class Person {
     static String[] sexes = {"XX", "XY"};
     Eyes eyes;
     Hair hair;
+    Male dad;
+    Female mom;
    
     //String skinColor;
     //String freckles;
@@ -29,8 +31,11 @@ public abstract class Person {
     Person() {  
         firstName = null;
         lastName = null;
+        sex = null;
         eyes = new Eyes();
         hair = new Hair();
+        dad = null;
+        mom = null;
     }
 
     // setters
@@ -113,6 +118,10 @@ public abstract class Person {
             s += "hair color: " + this.hair.getHairColor();
             s += ", ";
             s += "hair color genotype: " + this.hair.getHairColorGenotype();
+            s += ", ";
+            s += "Dad: " + (dad != null ? dad.firstName + " " + dad.lastName : "Unknown");
+            s += ", ";
+            s += "Mom: " + (mom != null ? mom.firstName + " " + mom.lastName : "Unknown");
             s += " }";
             return s;
     }

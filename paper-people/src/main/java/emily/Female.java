@@ -15,12 +15,14 @@ public class Female extends Person{
         hair = super.hair;
     }
 
-    Female(String firstName,String lastName,String sex,Eyes eyes,Hair hair){
+    Female(String firstName,String lastName,String sex,Eyes eyes,Hair hair,Male dad,Female mom){
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XX";
         this.eyes = eyes;
         this.hair = hair;
+        this.dad = dad;
+        this.mom = mom;
     }
 
     public String getFemaleName(Scanner input){

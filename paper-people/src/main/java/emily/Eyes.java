@@ -52,6 +52,9 @@ public class Eyes {
     public int getEyeColorGenotype(){
         return eyeColorGenotype;
     }
+    public HashMap<String, String> getEyeColorMap(){
+        return eyeColorMap;
+    }
 
     // setters
     public void setEyeColor(String eyeColor){
