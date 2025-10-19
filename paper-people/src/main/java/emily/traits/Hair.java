@@ -1,8 +1,10 @@
-package emily;
+package emily.traits;
 
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
+
+import emily.people.Person;
 
 /*
  * Class for hair color and genotype
@@ -62,7 +64,7 @@ public class Hair {
     };
 
     // default constructor
-    Hair(){
+    public Hair(){
         hairColor = "purple";
         hairColorGeneString = "0";
         hairColorGenotype = 0;

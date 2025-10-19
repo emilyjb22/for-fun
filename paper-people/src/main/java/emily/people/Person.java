@@ -1,26 +1,31 @@
-package emily;
+package emily.people;
 
 import java.util.Scanner;
 import java.util.Set;
+
+import emily.traits.Eyes;
+import emily.traits.Hair;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.List;
 
 public abstract class Person {
 
      // variables and array for names
-    String firstName;
-    String lastName;
+    public String firstName;
+    public String lastName;
     // initiate array of last names for randomization; to be replaced with external list eventually 
     String [] lastNames = {"Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
                             "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"};
 
     // variables/objects for sex, eyes, hair
-    static String sex;
-    static String[] sexes = {"XX", "XY"};
-    Eyes eyes;
-    Hair hair;
+    public static String sex;
+    public static String[] sexes = {"XX", "XY"};
+    public Eyes eyes;
+    public Hair hair;
     Male dad;
     Female mom;
    
@@ -47,9 +52,6 @@ public abstract class Person {
         this.hair = hair;
     }
 
-    
-//Code pertaining to name generation and randomization
-
     // method to get user input for last name or randomize
     public String getLastName(Scanner input){
         System.out.println("Give your person a last name, or enter \"R\" to randomize: ");
@@ -63,14 +65,28 @@ public abstract class Person {
        return lastName;
     }
 
+    public static void setAndPrintPerson(Person person, Eyes eyes, Hair hair){
+        person.setEyes(eyes); 
+        person.setHair(hair);
+        System.out.println("Great! " + person.firstName + " has " + eyes.getEyeColor() + " eyes and a genotype of " + eyes.getEyeColorGenotype() + ".\n"
+            + "They have " + hair.getHairColor() + " hair and a genotype of " + hair.getHairColorGenotype() + ".");
+    }
+
     /*
-     * practical methods that I need to use frequently
+     * Utility methods
      */
 
-    // method to randomize EVERYTHING
+    // method to randomize (from array)
     public static String randomize(String[] array, String thing){
         int randomIndex = (int)(Math.random() * array.length);
         thing = array[randomIndex];
+        return thing;
+    }
+
+    // overloaded randomize method (for List)
+    public static String randomize(List<String> list, String thing){
+        int randomIndex = (int)(Math.random() * list.size());
+        thing = list.get(randomIndex);
         return thing;
     }
 

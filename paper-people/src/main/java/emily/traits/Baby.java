@@ -1,8 +1,13 @@
-package emily;
+package emily.traits;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
-// possibly make this an enum
+import emily.people.Female;
+import emily.people.Male;
+import emily.people.Person;
+
+// possibly make this an enum?
 public class Baby {
 
     // possible babies
@@ -30,15 +35,21 @@ public class Baby {
     int gene;
     String geneOne;
     String geneTwo;
+    public String babyName;
 
-    Baby(){
+    public Baby(){
         dadEyeGenotype = 0;
         momEyeGenotype = 0;
+        babyName = "newBaby";
     }
 
     Baby(int dadEyeGenotype, int momEyeGenotype){
         this.dadEyeGenotype = dadEyeGenotype;
         this.momEyeGenotype = momEyeGenotype;
+    }
+
+    private void setBabyName(String babyName){
+        this.babyName = babyName;
     }
 
 
@@ -98,5 +109,21 @@ public class Baby {
         return babyHairColorGenotype;
     }
 
-    
+    public String createBaby(Male dad, Female mom, Scanner input, Eyes babyEyes, Hair babyHair,String babyName, String babyType, String babyPronoun){
+        Baby baby = new Baby(dad.hair.getHairColorGenotype(), mom.hair.getHairColorGenotype());
+        System.out.println("Congratulations! " + mom.firstName + " and " + dad.firstName + " had a baby " + babyType + "!");
+        System.out.println("Please give " + babyPronoun + "a first name, or enter \"R\" to randomize: ");
+        babyName = input.nextLine();
+            if (babyName.equalsIgnoreCase("R")) {
+                    if (babyType.equals("boy")) {
+                        babyName = Person.randomize(dad.maleNames, babyName);
+                        }
+                    else {
+                        babyName = Person.randomize(mom.femaleNames, babyName);
+                    }
+                }
+        setBabyName(babyName);
+        System.out.println(babyPronoun + "name is " + babyName + " " + dad.lastName + ".");
+        return babyName;
+        }  
 }

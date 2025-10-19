@@ -1,13 +1,16 @@
-package emily;
+package emily.people;
 
 import java.util.Scanner;
 
+import emily.traits.Eyes;
+import emily.traits.Hair;
+
 public class Female extends Person{
 
-    String[] femaleNames = {"Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica", "Sarah", "Karen",
+    public String[] femaleNames = {"Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica", "Sarah", "Karen",
                             "Nancy", "Margaret", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily"};
     
-    Female(){
+    public Female(){
         firstName = "JANE";
         lastName = "DOE";
         sex = "XX";
@@ -15,7 +18,7 @@ public class Female extends Person{
         hair = super.hair;
     }
 
-    Female(String firstName,String lastName,String sex,Eyes eyes,Hair hair,Male dad,Female mom){
+    public Female(String firstName,String lastName,String sex,Eyes eyes,Hair hair,Male dad,Female mom){
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XX";

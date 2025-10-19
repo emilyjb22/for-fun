@@ -1,13 +1,16 @@
-package emily;
+package emily.people;
 
 import java.util.Scanner;
 
+import emily.traits.Eyes;
+import emily.traits.Hair;
+
 public class Male extends Person{
 
-    String[] maleNames = {"James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles", 
+    public String[] maleNames = {"James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles", 
                         "Christopher", "Daniel", "Matthew", "Anthony", "Timothy", "Mark", "Paul", "Steven", "Andrew", "Kenneth"};
     
-    Male(){
+    public Male(){
         firstName = "JOHN";
         lastName = "DOE";
         sex = "XY";
@@ -15,7 +18,7 @@ public class Male extends Person{
         hair = super.hair;
     }
 
-    Male(String firstName,String lastName,String sex,Eyes eyes,Hair hair,Male dad,Female mom){
+    public Male(String firstName,String lastName,String sex,Eyes eyes,Hair hair,Male dad,Female mom){
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XY";
@@ -37,10 +40,6 @@ public class Male extends Person{
        System.out.println("His first name is " + firstName + ".");
        return firstName;
     }
-
-    
-
 }
-
 
 

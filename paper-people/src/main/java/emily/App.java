@@ -3,12 +3,38 @@ package emily;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import emily.people.Female;
+import emily.people.Male;
+import emily.people.Person;
+import emily.traits.Baby;
+import emily.traits.Eyes;
+import emily.traits.Hair;
+
+/*import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import emily.fx.MainView;
+
 /**
  * Hello world!
  */
-public class App {
+public class App {//extends Application {
+
+    /*@Override
+    public void start(Stage mainStage) {
+    mainStage.setTitle("This is GeneApp");
+    Label label = new Label("Hello JavaFX!");
+    Scene scene = new Scene(label, 400, 200);
+    mainStage.setScene(scene);
+    mainStage.show();
+    }*/
+
+
+
     public static void main(String[] args) {
 
+        //launch();
         Dashboard dashboard = new Dashboard();
         ArrayList<Male> allMales = new ArrayList<Male>();
         ArrayList<Female> allFemales = new ArrayList<Female>();
@@ -58,25 +84,10 @@ public class App {
             2. Randomize Hair and Eye Color
         --------------------------------------------------------
         """);
+        choice = input.nextLine();
         Eyes eveEyes = new Eyes();
         Hair eveHair = new Hair();
-        eveHair.getHairColorMap();
-        choice = input.nextLine();
-            if (choice.equals("1")){
-                eveEyes.setEyeColor(eveEyes.selectEyeColor(input));
-                eveHair.setHairColor(eveHair.selectHairColor(input));
-                eveHair.setHairColorGenotype(eveHair.generateHairColorGenotype());
-            }
-            else if (choice.equals("2")){
-                eveEyes.setEyeColor(eveEyes.randomizeEyeColor());
-                eveHair.randomizeHair();
-                eveHair.setHairColorGenotype(eveHair.makeHairColorGenotype());
-                eveHair.setHairColor(eveHair.randomizeHairColor());
-
-            }
-            eveEyes.setEyeColorGenotype(eveEyes.generateEyeColorGenotype());
-
-        Female eve = new Female("Eve","Paper","XX",eveEyes,eveHair,new Male(),new Female());
+        Female eve = Dashboard.createEve(choice, input, eveEyes, eveHair);
         allFemales.add(eve);
         System.out.println("Great! " + eve.firstName + " " + eve.lastName + " has been added to the population.\n"
                             + "She has " + eveEyes.getEyeColor() + " eyes and a genotype of " + eveEyes.getEyeColorGenotype() + ".\n"
@@ -111,49 +122,33 @@ public class App {
                     selection = selection.toUpperCase();
 
                     switch (selection) {
-                        case "XY" -> {
-                                System.out.println("Your person's name is " + newMale.getMaleName(input) + " " + newMale.getLastName(input) +".");
-                        }
-                        case "XX" -> {
-                                System.out.println("Your person's name is " + newFemale.getFemaleName(input) + " " + newFemale.getLastName(input) +".");
-                            }
-                        default -> System.out.println("Invalid entry. Please try again.");
+                        case "XY":
+                            System.out.println("Your person's name is " + newMale.getMaleName(input) + " " + newMale.getLastName(input) +".");
+                            break;
+                        case "XX":
+                            System.out.println("Your person's name is " + newFemale.getFemaleName(input) + " " + newFemale.getLastName(input) +".");
+                            break;
+                        default:
+                            System.out.println("Invalid entry. Please try again.");
+                            break;
                     }
 
                     System.out.println("""
                         Do you want to randomize their traits, or select their traits manually?
                         
-                        Type \"R\" to randomize, or \"S\" to select manually
+                        Type \"1\" to select manually or \"2\" to randomize
                                 """);
                     choice = input.nextLine();
                     Eyes newEyes = new Eyes();
                     Hair newHair = new Hair();
-                    newHair.getHairColorMap();
-                    
-                    if (choice.equalsIgnoreCase("R")) {
-                        newEyes.randomizeEyeColor();
-                        newHair.randomizeHair();
-                        newHair.makeHairColorGenotype();
-                        newHair.randomizeHairColor();
-                    }
-                    else {
-                        newEyes.selectEyeColor(input);
-                        newHair.selectHairColor(input);
-                        newHair.generateHairColorGenotype();
-                    }
-                    newEyes.generateEyeColorGenotype();
+
+                    Dashboard.hairAndEyes(choice, input, newEyes, newHair);
 
                     if (selection.equals("XY")) {
-                        newMale.setEyes(newEyes);
-                        newMale.setHair(newHair);
-                        System.out.println("Great! " + newMale.firstName + " has " + newEyes.getEyeColor() + " eyes and a genotype of " + newEyes.getEyeColorGenotype() + ".\n"
-                            + "He has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");
+                        Person.setAndPrintPerson(newMale, newEyes, newHair);
                     }
                     else if (selection.equals("XX")) {
-                        newFemale.setEyes(newEyes);
-                        newFemale.setHair(newHair);
-                        System.out.println("Great! " + newFemale.firstName + " has " + newEyes.getEyeColor() + " eyes and a genotype of " + newEyes.getEyeColorGenotype() + ".\n"
-                            + "She has " + newHair.getHairColor() + " hair and a genotype of " + newHair.getHairColorGenotype() + ".");
+                        Person.setAndPrintPerson(newFemale, newEyes, newHair);
                     }
 
                     System.out.println();
@@ -216,28 +211,17 @@ public class App {
                     babyHair.setHairColorGenotype(babyHairColorGenotype);
                     babyHair.setHairColor(babyHairColor);
 
+                    //baby name not passing correctly
                     String sexOfBaby = Person.randomize(Person.sexes, Person.sex);
                     if (sexOfBaby.equals("XY")) {
-                        System.out.println("Congratulations! " + mom.firstName + " and " + dad.firstName + " had a baby boy!");
-                        System.out.println("Please give him a first name, or enter \"R\" to randomize: ");
-                        String babyName = input.nextLine();
-                        if (babyName.equalsIgnoreCase("R")) {
-                            babyName = Person.randomize(dad.maleNames, babyName);
-                        }
-                        System.out.println("His name is " + babyName + " " + dad.lastName + ".");
-                        Male babyBoy = new Male(babyName, dad.lastName, sexOfBaby, babyEyes, babyHair, dad, mom);
+                        baby.createBaby(dad, mom, input, babyEyes, babyHair, "Boy","boy", "his ");
+                        Male babyBoy = new Male(baby.babyName, dad.lastName, sexOfBaby, babyEyes, babyHair, dad, mom);
                         allMales.add(babyBoy);
                         System.out.println(babyBoy.toString());
                     }
                     else {
-                        System.out.println("Congratulations! " + mom.firstName + " and " + dad.firstName + " had a baby girl!");
-                        System.out.println("Please give her a first name, or enter \"R\" to randomize: ");
-                        String babyName = input.nextLine();
-                        if (babyName.equalsIgnoreCase("R")) {
-                            babyName = Person.randomize(mom.femaleNames, babyName);
-                        }
-                        System.out.println("Her name is " + babyName + " " + dad.lastName + ".");
-                        Female babyGirl = new Female(babyName, dad.lastName, sexOfBaby, babyEyes, babyHair, dad, mom);
+                        baby.createBaby(dad, mom, input, babyEyes, babyHair, "Girl","girl", "her ");
+                        Female babyGirl = new Female(baby.babyName, dad.lastName, sexOfBaby, babyEyes, babyHair, dad, mom);
                         allFemales.add(babyGirl);
                         System.out.println(babyGirl.toString());
                     }
@@ -256,8 +240,6 @@ public class App {
                 case "4" -> {    
                 }
                 case "5" -> {
-
-
                 }
                 
                 default -> {System.out.println("Invalid entry. Please enter a number between 1 and 4.");}
@@ -311,6 +293,14 @@ class Dashboard {
         Male adam = new Male("Adam","Paper","XY",eyes,hair,new Male(),new Female());
         System.out.println(adam.toString());
         return adam;
+}
+
+// make Eve
+    public static Female createEve(String choice, Scanner input, Eyes eyes, Hair hair){
+        Dashboard.hairAndEyes(choice, input, eyes, hair);
+        Female eve = new Female("Eve","Paper","XX",eyes,hair,new Male(),new Female());
+        System.out.println(eve.toString());
+        return eve;
 }
 
 }
