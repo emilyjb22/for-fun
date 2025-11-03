@@ -4,9 +4,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
-import emily.people.Person;
 
 /**
  * Class representing eye color and genotype.
@@ -42,13 +39,13 @@ public class Eyes extends Trait {
     private static final List<String> EYE_COLORS = Collections.unmodifiableList(List.of(
             "black", "dark brown", "hazel", "brown", "amber", "green", "dark blue", "blue", "gray"));
 
-    private static final Map<String, String> EYE_COLOR_MAP;
+    private static final Map<Integer, String> EYE_COLOR_MAP;
 
     static {
-        HashMap<String, String> eyeColorMap = new HashMap<>();
+        HashMap<Integer, String> eyeColorMap = new HashMap<>();
         int[] eyeColorGenotypes = { 44, 43, 42, 34, 33, 32, 24, 23, 22 };
         for (int i = 0; i < EYE_COLORS.size(); i++) {
-            eyeColorMap.put(String.valueOf(eyeColorGenotypes[i]), EYE_COLORS.get(i));
+            eyeColorMap.put((eyeColorGenotypes[i]), EYE_COLORS.get(i));
         }
         // Wrap the map to make it unmodifiable
         EYE_COLOR_MAP = Collections.unmodifiableMap(eyeColorMap);
@@ -57,6 +54,15 @@ public class Eyes extends Trait {
     // attributes needed outside the class
     private String eyeColor;
     private int eyeColorGenotype;
+    private static String selectionMenu = """
+            Next, we're going to select their eye color.
+
+            What color eyes does your person have? Select from the list below, or enter
+            \"R\" to randomize:
+            ---------------------
+            Eye color options:
+            ---------------------
+            """;
 
     // default constructor
     public Eyes() {
@@ -77,8 +83,16 @@ public class Eyes extends Trait {
         return eyeColorGenotype;
     }
 
-    public static Map<String, String> getEyeColorMap() {
+    public static Map<Integer, String> getEyeColorMap() {
         return EYE_COLOR_MAP;
+    }
+
+    public static List<String> getEyeColors() {
+        return EYE_COLORS;
+    }
+
+    public static String getSelectionMenu() {
+        return selectionMenu;
     }
 
     // setters
@@ -90,52 +104,4 @@ public class Eyes extends Trait {
         this.eyeColorGenotype = eyeColorGenotype;
     }
 
-    // methods for user-selected eye color
-    // need to validate user entry
-    // adding to parent class
-    /*
-     * public String selectEyeColor(Scanner input){
-     * System.out.println("""
-     * Next, we're going to select their eye color.
-     * 
-     * What color eyes does your person have? Select from the list below, or enter
-     * \"R\" to randomize:
-     * ---------------------
-     * Eye color options:
-     * ---------------------
-     * """);
-     * for (String color : EYE_COLORS) {
-     * System.out.println("- " + color);
-     * }
-     * eyeColor = input.nextLine();
-     * return eyeColor;
-     * }
-     */
-
-    // method to randomize eye color
-    public String randomizeEyeColor() {
-        eyeColor = Person.randomize(EYE_COLORS, eyeColor);
-        return eyeColor;
-    }
-
-    // use phenotype (value) to locate corresponding genotype (key)
-    // both user-selected and randomized eye colors use the same method to get
-    // genotype
-    // adding to parent class
-    /*
-     * public int generateEyeColorGenotype(){
-     * eyeColorGenotype = getKeyByValue(EYE_COLOR_MAP, eyeColor);
-     * return eyeColorGenotype;
-     * }
-     * 
-     * // Helper method to get key by value from HashMap
-     * public int getKeyByValue(Map<String, String> map, String value) {
-     * for (String key : map.keySet()) {
-     * if (map.get(key).equalsIgnoreCase(value)) {
-     * return Integer.parseInt(key);
-     * }
-     * }
-     * return -1;
-     * }
-     */
 }

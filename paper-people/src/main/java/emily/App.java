@@ -2,11 +2,9 @@ package emily;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import emily.people.Female;
 import emily.people.Male;
 import emily.people.Person;
-import emily.traits.Baby;
 import emily.traits.Eyes;
 import emily.traits.Hair;
 
@@ -118,7 +116,7 @@ public class App {// extends Application {
                     String selection = input.nextLine();
 
                     if (selection.equalsIgnoreCase("R")) {
-                        selection = Person.randomize(Person.sexes, Person.sex);
+                        selection = RandomUtils.random(Person.sexes);
                     }
 
                     selection = selection.toUpperCase();
@@ -174,63 +172,76 @@ public class App {// extends Application {
                 }
 
                 case "2" -> {
-                    System.out.println("Are you ready to have a baby? Select a dad from the following list:");
-                    int count = allMales.size();
-                    for (int i = 0; i < count; i++) {
-                        System.out.println((i + 1) + ". " + allMales.get(i).toString());
-                    }
-                    int dadIndex = input.nextInt() - 1;
-                    Male dad = allMales.get(dadIndex);
-                    System.out.println("Great! You selected " + dad.firstName + " " + dad.lastName + " as the dad.");
-                    System.out.println("--------------------------------------------------------");
-
-                    input.nextLine();
-                    System.out.println("Now select a mom from the following list:");
-                    count = allFemales.size();
-                    for (int i = 0; i < count; i++) {
-                        System.out.println((i + 1) + ". " + allFemales.get(i).toString());
-                    }
-                    int momIndex = input.nextInt() - 1;
-                    Female mom = allFemales.get(momIndex);
-                    System.out.println("Great! You selected " + mom.firstName + " " + mom.lastName + " as the mom.");
-                    System.out.println("--------------------------------------------------------");
-
-                    input.nextLine();
-                    System.out.println("Gestating baby...");
-                    input.nextLine();
-
-                    Baby baby = new Baby();
-                    Eyes babyEyes = new Eyes();
-                    Hair babyHair = new Hair();
-                    // babyHair.getHairColorMap();
-
-                    int babyEyeColorGenotype = baby.getBabyEyeColorGenotype(dad.eyes.getEyeColorGenotype(),
-                            mom.eyes.getEyeColorGenotype());
-                    String babyEyeColor = babyEyes.getEyeColorMap().get(String.valueOf(babyEyeColorGenotype));
-                    int babyHairColorGenotype = baby.getBabyHairColorGenotype(dad.hair.getHairColorGenotype(),
-                            mom.hair.getHairColorGenotype());
-                    String babyHairColor = babyHair.HAIR_COLOR_MAP.get(String.valueOf(babyHairColorGenotype));
-
-                    babyEyes.setEyeColorGenotype(babyEyeColorGenotype);
-                    babyEyes.setEyeColor(babyEyeColor);
-                    babyHair.setHairColorGenotype(babyHairColorGenotype);
-                    babyHair.setHairColor(babyHairColor);
-
-                    // baby name not passing correctly
-                    String sexOfBaby = Person.randomize(Person.sexes, Person.sex);
-                    if (sexOfBaby.equals("XY")) {
-                        baby.createBaby(dad, mom, input, babyEyes, babyHair, "Boy", "boy", "his ");
-                        Male babyBoy = new Male(baby.babyName, dad.lastName, sexOfBaby, babyEyes, babyHair, dad, mom);
-                        allMales.add(babyBoy);
-                        System.out.println(babyBoy.toString());
-                    } else {
-                        baby.createBaby(dad, mom, input, babyEyes, babyHair, "Girl", "girl", "her ");
-                        Female babyGirl = new Female(baby.babyName, dad.lastName, sexOfBaby, babyEyes, babyHair, dad,
-                                mom);
-                        allFemales.add(babyGirl);
-                        System.out.println(babyGirl.toString());
-                    }
-
+                    /*
+                     * System.out.
+                     * println("Are you ready to have a baby? Select a dad from the following list:"
+                     * );
+                     * int count = allMales.size();
+                     * for (int i = 0; i < count; i++) {
+                     * System.out.println((i + 1) + ". " + allMales.get(i).toString());
+                     * }
+                     * int dadIndex = input.nextInt() - 1;
+                     * Male dad = allMales.get(dadIndex);
+                     * System.out.println("Great! You selected " + dad.firstName + " " +
+                     * dad.lastName + " as the dad.");
+                     * System.out.println("--------------------------------------------------------"
+                     * );
+                     * 
+                     * input.nextLine();
+                     * System.out.println("Now select a mom from the following list:");
+                     * count = allFemales.size();
+                     * for (int i = 0; i < count; i++) {
+                     * System.out.println((i + 1) + ". " + allFemales.get(i).toString());
+                     * }
+                     * int momIndex = input.nextInt() - 1;
+                     * Female mom = allFemales.get(momIndex);
+                     * System.out.println("Great! You selected " + mom.firstName + " " +
+                     * mom.lastName + " as the mom.");
+                     * System.out.println("--------------------------------------------------------"
+                     * );
+                     * 
+                     * input.nextLine();
+                     * System.out.println("Gestating baby...");
+                     * input.nextLine();
+                     * 
+                     * Baby baby = new Baby();
+                     * Eyes babyEyes = new Eyes();
+                     * Hair babyHair = new Hair();
+                     * // babyHair.getHairColorMap();
+                     * 
+                     * int babyEyeColorGenotype =
+                     * baby.getBabyEyeColorGenotype(dad.eyes.getEyeColorGenotype(),
+                     * mom.eyes.getEyeColorGenotype());
+                     * String babyEyeColor =
+                     * babyEyes.getEyeColorMap().get(String.valueOf(babyEyeColorGenotype));
+                     * int babyHairColorGenotype =
+                     * baby.getBabyHairColorGenotype(dad.hair.getHairColorGenotype(),
+                     * mom.hair.getHairColorGenotype());
+                     * String babyHairColor =
+                     * babyHair.HAIR_COLOR_MAP.get(String.valueOf(babyHairColorGenotype));
+                     * 
+                     * babyEyes.setEyeColorGenotype(babyEyeColorGenotype);
+                     * babyEyes.setEyeColor(babyEyeColor);
+                     * babyHair.setHairColorGenotype(babyHairColorGenotype);
+                     * babyHair.setHairColor(babyHairColor);
+                     * 
+                     * // baby name not passing correctly
+                     * String sexOfBaby = Person.randomize(Person.sexes, Person.sex);
+                     * if (sexOfBaby.equals("XY")) {
+                     * baby.createBaby(dad, mom, input, babyEyes, babyHair, "Boy", "boy", "his ");
+                     * Male babyBoy = new Male(baby.babyName, dad.lastName, sexOfBaby, babyEyes,
+                     * babyHair, dad, mom);
+                     * allMales.add(babyBoy);
+                     * System.out.println(babyBoy.toString());
+                     * } else {
+                     * baby.createBaby(dad, mom, input, babyEyes, babyHair, "Girl", "girl", "her ");
+                     * Female babyGirl = new Female(baby.babyName, dad.lastName, sexOfBaby,
+                     * babyEyes, babyHair, dad,
+                     * mom);
+                     * allFemales.add(babyGirl);
+                     * System.out.println(babyGirl.toString());
+                     * }
+                     */
                 }
                 case "3" -> {
                     // need to make this print better
@@ -253,60 +264,4 @@ public class App {// extends Application {
             }
         }
     }
-}
-
-class Dashboard {
-
-    String title = """
-            --------------------------------------------------------
-                    Paper People Project
-            --------------------------------------------------------
-                A simulation using simple Mendelian inheritance
-            --------------------------------------------------------
-            """;
-
-    String menu = """
-            --------------------------------------------------------
-            Menu:
-               1.  Create a New Person
-               2.  Have a Baby
-               3.  View Your Population
-               4.  Exit
-               5.  Test a New Method
-            --------------------------------------------------------
-            """;
-
-    // generic method to handle hair and eyes for Adam and Eve
-    // maybe handle hair and eyes in other places too?
-    public static void hairAndEyes(String choice, Scanner input, Eyes eyes, Hair hair) {
-        hair.getHairColorMap();
-        if (choice.equals("1")) {
-            eyes.setEyeColor(eyes.selectEyeColor(input));
-            hair.setHairColor(hair.selectHairColor(input));
-            hair.setHairColorGenotype(hair.generateHairColorGenotype());
-        } else if (choice.equals("2")) {
-            eyes.setEyeColor(eyes.randomizeEyeColor());
-            hair.randomizeHair();
-            hair.setHairColorGenotype(hair.makeHairColorGenotype());
-            hair.setHairColor(hair.randomizeHairColor());
-        }
-        eyes.setEyeColorGenotype(eyes.generateEyeColorGenotype());
-    }
-
-    // make Adam
-    public static Male createAdam(String choice, Scanner input, Eyes eyes, Hair hair) {
-        Dashboard.hairAndEyes(choice, input, eyes, hair);
-        Male adam = new Male("Adam", "Paper", "XY", eyes, hair, new Male(), new Female());
-        System.out.println(adam.toString());
-        return adam;
-    }
-
-    // make Eve
-    public static Female createEve(String choice, Scanner input, Eyes eyes, Hair hair) {
-        Dashboard.hairAndEyes(choice, input, eyes, hair);
-        Female eve = new Female("Eve", "Paper", "XX", eyes, hair, new Male(), new Female());
-        System.out.println(eve.toString());
-        return eve;
-    }
-
 }

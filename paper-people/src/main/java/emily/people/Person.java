@@ -5,6 +5,7 @@ import java.util.Set;
 
 import emily.traits.Eyes;
 import emily.traits.Hair;
+import emily.RandomUtils;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -59,7 +60,7 @@ public abstract class Person {
         System.out.println("Give your person a last name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
         if (name.equalsIgnoreCase("R")) {
-            lastName = randomize(lastNames, lastName);
+            lastName = RandomUtils.random(lastNames);
         } else {
             lastName = name;
         }

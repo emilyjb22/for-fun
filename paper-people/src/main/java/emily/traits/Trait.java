@@ -6,6 +6,7 @@ import java.util.Set;
 import emily.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -17,13 +18,37 @@ public abstract class Trait {
     int geneotype;
     String phenotype;
     String selectionMenu;
+    int parentGeno = 333;
 
-    // need maps??
+    // possible babies
+    String[] bothHomozygousDominant = { "4" }; // AA x AA
+    String[] homozygousDominantByHeterozygous = { "4", "3" }; // AA x Aa
+    String[] homozygousDominantByHomozygousRecessive = { "3" }; // AA x aa
+    String[] bothHeterozygous = { "4", "3", "3", "2" }; // Aa x Aa
+    String[] heterozygousByHomozygousRecessive = { "3", "2" }; // Aa x aa
+    String[] bothHomozygousRecessive = { "2" }; // aa x aa
+    int[] parentCrosses = { 16, 12, 8, 9, 6, 4 };
 
-    // need constructors?
+    // map of parent crosses (product of their individual alleles) to posstible baby
+    // combinations (saved as String arrays)
+    private static HashMap<Integer, String[]> parentCrossMap = new HashMap<Integer, String[]>();
+    {
+        int i = 0;
+        parentCrossMap.put(Integer.valueOf(parentCrosses[i]), bothHomozygousDominant);
+        i++;
+        parentCrossMap.put(Integer.valueOf(parentCrosses[i]), homozygousDominantByHeterozygous);
+        i++;
+        parentCrossMap.put(Integer.valueOf(parentCrosses[i]), homozygousDominantByHomozygousRecessive);
+        i++;
+        parentCrossMap.put(Integer.valueOf(parentCrosses[i]), bothHeterozygous);
+        i++;
+        parentCrossMap.put(Integer.valueOf(parentCrosses[i]), heterozygousByHomozygousRecessive);
+        i++;
+        parentCrossMap.put(Integer.valueOf(parentCrosses[i]), bothHomozygousRecessive);
+    }
 
     // method for user-selected phenotype from list
-    public String selectPhenotype(String selectionMenu, Scanner input, List<String> phenoList, String phenotype) {
+    public String selectPhenotype(String selectionMenu, Scanner input, List<String> phenoList) {
         System.out.println(selectionMenu);
         for (String pheno : phenoList) {
             System.out.println("- " + pheno);
@@ -42,10 +67,7 @@ public abstract class Trait {
      * }
      */
 
-    // search HashMap for all associated genotypes for user-selected hairColor, make
-    // a set, then an array, for all associated genotypes,
-    // then randomly select one of the genotypes from the array, parse the string
-    // back to an int value, and save int as hairColorGenotype
+    // have phenotype, need a random genotype
     public int generateGenotype(Map<Integer, String> map, String phenotype) {
         ArrayList<Integer> possibleGenotypes = getKeyByValue(map, phenotype);
         int genotype = RandomUtils.random(possibleGenotypes);
@@ -74,12 +96,69 @@ public abstract class Trait {
         return keys;
     }
 
-    // method to randomize phenotype
+    // method to randomize phenotype from list of options
     public String randomizePhenotype(List<String> phenoList) {
         phenotype = RandomUtils.random(phenoList);
         return phenotype;
     }
 
-    // methods to recombine traits (i.e. reproduction)
+    /*
+     * ---------- methods to recombine traits (reproduction / randomization)
+     * ----------
+     */
+
+    static int randomGenotype(int dadGeno, int momGeno) {
+        int[] dadGene = getGeneValues(dadGeno, countGenes(dadGeno));
+        int[] momGene = getGeneValues(momGeno, countGenes(momGeno));
+        int genotype = makeGenotype(momGene, dadGene, parentCrossMap);
+        return genotype;
+    }
+
+    // count number of genes per trait, return the number
+    private static int countGenes(int parentGeno) {
+        int i = 0;
+        while (parentGeno != 0) {
+            parentGeno = parentGeno / 10;
+            i++;
+        }
+        System.out.println(i);
+        return i;
+    }
+
+    // take int, split int into placevalues, save ints in array
+    private static int[] getGeneValues(int parentGeno, int count) {
+        int num = count;
+        int[] geneValues = new int[count];
+        for (int j = 0; j < count; j++) {
+            if (parentGeno / 10 != 0) {
+                double d = num;
+                int gene = (int) (parentGeno / (Math.pow(10, (d - 1))));
+                geneValues[j] = gene;
+                parentGeno = (int) (parentGeno - (gene * (Math.pow(10, (d - 1)))));
+                num = num - 1;
+            } else { // parentGeno / 10 = 0
+                int gene = parentGeno % 10;
+                geneValues[j] = gene;
+            }
+        }
+        for (int k = 0; k < geneValues.length; k++) {
+            System.out.println(geneValues[k]);
+        }
+        return geneValues;
+    }
+
+    private static int makeGenotype(int[] momGene, int[] dadGene, HashMap<Integer, String[]> map) {
+        String babyGeno = "";
+        int babyGenotype = 0;
+        for (int i = 0; i < momGene.length; i++) {
+            int geneCross = momGene[i] * dadGene[i];
+            String[] crossResults = map.get(geneCross);
+            String gene = RandomUtils.random(crossResults);
+            babyGeno = babyGeno + gene;
+            babyGenotype = Integer.parseInt(babyGeno);
+        }
+        System.out.println(babyGenotype);
+        return babyGenotype;
+    }
 
 }

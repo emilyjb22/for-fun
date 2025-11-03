@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 import emily.traits.Eyes;
 import emily.traits.Hair;
+import emily.RandomUtils;
 
-public class Female extends Person{
+public class Female extends Person {
 
-    public String[] femaleNames = {"Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica", "Sarah", "Karen",
-                            "Nancy", "Margaret", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily"};
-    
-    public Female(){
+    public String[] femaleNames = { "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica",
+            "Sarah", "Karen",
+            "Nancy", "Margaret", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily" };
+
+    public Female() {
         firstName = "JANE";
         lastName = "DOE";
         sex = "XX";
@@ -18,7 +20,7 @@ public class Female extends Person{
         hair = super.hair;
     }
 
-    public Female(String firstName,String lastName,String sex,Eyes eyes,Hair hair,Male dad,Female mom){
+    public Female(String firstName, String lastName, String sex, Eyes eyes, Hair hair, Male dad, Female mom) {
         this.firstName = firstName;
         this.lastName = lastName;
         sex = "XX";
@@ -28,19 +30,15 @@ public class Female extends Person{
         this.mom = mom;
     }
 
-    public String getFemaleName(Scanner input){
+    public String getFemaleName(Scanner input) {
         System.out.println("Your person is a woman. Give her a first name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
-            if (name.equalsIgnoreCase("R")) {
-                firstName = randomize(femaleNames,firstName);
-            }
-            else {
-                firstName = name;
-            }
-       System.out.println("Her first name is " + firstName + ".");
-       return firstName;
-    } 
+        if (name.equalsIgnoreCase("R")) {
+            firstName = RandomUtils.random(femaleNames);
+        } else {
+            firstName = name;
+        }
+        System.out.println("Her first name is " + firstName + ".");
+        return firstName;
+    }
 }
-
-
-
