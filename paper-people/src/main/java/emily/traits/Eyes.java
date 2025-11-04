@@ -66,7 +66,7 @@ public class Eyes extends Trait {
 
     // default constructor
     public Eyes() {
-        this("purple", 0);
+        this("brown", 33);
     }
 
     Eyes(String eyeColor, int eyeColorGenotype) {

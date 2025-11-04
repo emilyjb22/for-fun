@@ -8,7 +8,7 @@ import emily.people.Person;
 import emily.traits.Eyes;
 import emily.traits.Hair;
 
-/*import javafx.application.Application;
+import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,22 +17,20 @@ import emily.fx.MainView;
 /**
  * Hello world!
  */
-public class App {// extends Application {
+public class App extends Application {
 
-    /*
-     * @Override
-     * public void start(Stage mainStage) {
-     * mainStage.setTitle("This is GeneApp");
-     * Label label = new Label("Hello JavaFX!");
-     * Scene scene = new Scene(label, 400, 200);
-     * mainStage.setScene(scene);
-     * mainStage.show();
-     * }
-     */
+    @Override
+    public void start(Stage mainStage) {
+        mainStage.setTitle("This is GeneApp");
+        Label label = new Label("Hello JavaFX!");
+        Scene scene = new Scene(label, 400, 200);
+        mainStage.setScene(scene);
+        mainStage.show();
+    }
 
     public static void main(String[] args) {
 
-        // launch();
+        launch();
         Dashboard dashboard = new Dashboard();
         ArrayList<Male> allMales = new ArrayList<Male>();
         ArrayList<Female> allFemales = new ArrayList<Female>();
@@ -144,7 +142,7 @@ public class App {// extends Application {
                     Eyes newEyes = new Eyes();
                     Hair newHair = new Hair();
 
-                    Dashboard.hairAndEyes(choice, input, newEyes, newHair);
+                    // Dashboard.hairAndEyes(choice, input, newEyes, newHair);
 
                     if (selection.equals("XY")) {
                         Person.setAndPrintPerson(newMale, newEyes, newHair);

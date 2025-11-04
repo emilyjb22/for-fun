@@ -1,8 +1,11 @@
 /Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/App.java
+/Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/Dashboard.java
+/Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/RandomUtils.java
 /Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/ScratchPad.java
+/Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/fx/MainView.java
 /Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/people/Female.java
 /Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/people/Male.java
 /Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/people/Person.java
-/Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/traits/Baby.java
 /Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/traits/Eyes.java
 /Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/traits/Hair.java
+/Users/emily/Documents/GitHub/for-fun/paper-people/src/main/java/emily/traits/Trait.java

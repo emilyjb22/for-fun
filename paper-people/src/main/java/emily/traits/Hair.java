@@ -85,8 +85,8 @@ public class Hair extends Trait {
 
     // default constructor
     public Hair() {
-        hairColor = "none";
-        hairColorGenotype = 0;
+        hairColor = "brown";
+        hairColorGenotype = 333;
     }
 
     // getters

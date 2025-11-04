@@ -29,37 +29,43 @@ class Dashboard {
 
     // generic method to handle hair and eyes for Adam and Eve
     // maybe handle hair and eyes in other places too?
-    public static void hairAndEyes(String choice, Scanner input, Eyes eyes, Hair hair) {
+    public static void hairAndEyes(String choice, Scanner input, Eyes eyes, Hair hair, Male dad, Female mom) {
         // option 1 select manually
         if (choice.equals("1")) {
             eyes.setEyeColor(eyes.selectPhenotype(Eyes.getSelectionMenu(), input, Eyes.getEyeColors()));
+            eyes.setEyeColorGenotype(eyes.generateGenotype(Eyes.getEyeColorMap(), eyes.getEyeColor()));
             hair.setHairColor(hair.selectPhenotype(Hair.getSelectionMenu(), input, Hair.getHairColors()));
             hair.setHairColorGenotype(hair.generateGenotype(Hair.getHairColorMap(), hair.getHairColor()));
 
             // option 2 randomize
         } else if (choice.equals("2")) {
-            // eyes.eyes.setEyeColor(eyes.randomizePhenotype(Eyes.getEyeColors()));
-            // hair.randomizeHair();
-            // hair.setHairColorGenotype(hair.makeHairColorGenotype());
-            // hair.setHairColor(hair.randomizeHairColor());
-            // resume work here ^
+            int geno = Eyes.randomGenotype(dad.eyes.getEyeColorGenotype(), mom.eyes.getEyeColorGenotype());
+            eyes.setEyeColorGenotype(geno);
+            eyes.setEyeColor(Eyes.phenotypeFromGenotype(Eyes.getEyeColorMap(), geno));
 
+            geno = Hair.randomGenotype(dad.hair.getHairColorGenotype(), mom.hair.getHairColorGenotype());
+            hair.setHairColorGenotype(geno);
+            hair.setHairColor(Hair.phenotypeFromGenotype(Hair.getHairColorMap(), geno));
         }
-        eyes.setEyeColorGenotype(eyes.generateGenotype(Eyes.getEyeColorMap(), eyes.getEyeColor()));
+
     }
 
     // make Adam
     public static Male createAdam(String choice, Scanner input, Eyes eyes, Hair hair) {
-        Dashboard.hairAndEyes(choice, input, eyes, hair);
-        Male adam = new Male("Adam", "Paper", "XY", eyes, hair, new Male(), new Female());
+        Male adamDad = new Male();
+        Female adamMom = new Female();
+        Dashboard.hairAndEyes(choice, input, eyes, hair, adamDad, adamMom);
+        Male adam = new Male("Adam", "Paper", "XY", eyes, hair, adamDad, adamMom);
         System.out.println(adam.toString());
         return adam;
     }
 
     // make Eve
     public static Female createEve(String choice, Scanner input, Eyes eyes, Hair hair) {
-        Dashboard.hairAndEyes(choice, input, eyes, hair);
-        Female eve = new Female("Eve", "Paper", "XX", eyes, hair, new Male(), new Female());
+        Male eveDad = new Male();
+        Female eveMom = new Female();
+        Dashboard.hairAndEyes(choice, input, eyes, hair, eveDad, eveMom);
+        Female eve = new Female("Eve", "Paper", "XX", eyes, hair, eveDad, eveMom);
         System.out.println(eve.toString());
         return eve;
     }

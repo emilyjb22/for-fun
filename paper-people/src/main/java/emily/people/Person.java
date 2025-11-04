@@ -1,17 +1,10 @@
 package emily.people;
 
 import java.util.Scanner;
-import java.util.Set;
 
 import emily.traits.Eyes;
 import emily.traits.Hair;
 import emily.RandomUtils;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.List;
 
 public abstract class Person {
 
@@ -42,8 +35,6 @@ public abstract class Person {
         sex = null;
         eyes = new Eyes();
         hair = new Hair();
-        dad = null;
-        mom = null;
     }
 
     // setters
@@ -53,6 +44,23 @@ public abstract class Person {
 
     public void setHair(Hair hair) {
         this.hair = hair;
+    }
+
+    // getters
+    public Eyes getEyes() {
+        return eyes;
+    }
+
+    public Hair getHair() {
+        return hair;
+    }
+
+    public Female getMom() {
+        return mom;
+    }
+
+    public Male getDad() {
+        return dad;
     }
 
     // method to get user input for last name or randomize

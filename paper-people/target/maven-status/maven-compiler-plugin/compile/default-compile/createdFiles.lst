@@ -1,9 +1,11 @@
 emily/people/Male.class
+emily/traits/Trait.class
 emily/ScratchPad.class
 emily/people/Female.class
+emily/fx/MainView.class
 emily/traits/Hair.class
 emily/traits/Eyes.class
-emily/traits/Baby.class
 emily/Dashboard.class
 emily/people/Person.class
+emily/RandomUtils.class
 emily/App.class

@@ -103,16 +103,20 @@ public abstract class Trait {
     }
 
     /*
-     * ---------- methods to recombine traits (reproduction / randomization)
-     * ----------
+     * ------ methods to recombine traits (reproduction / randomization) ------
      */
 
-    static int randomGenotype(int dadGeno, int momGeno) {
+    public static int randomGenotype(int dadGeno, int momGeno) {
         int[] dadGene = getGeneValues(dadGeno, countGenes(dadGeno));
         int[] momGene = getGeneValues(momGeno, countGenes(momGeno));
         int genotype = makeGenotype(momGene, dadGene, parentCrossMap);
         return genotype;
     }
+
+    public static String phenotypeFromGenotype(Map<Integer, String> map, int genotype) {
+        return map.get(genotype);
+    }
+    // fix this ^^^
 
     // count number of genes per trait, return the number
     private static int countGenes(int parentGeno) {
@@ -121,7 +125,7 @@ public abstract class Trait {
             parentGeno = parentGeno / 10;
             i++;
         }
-        System.out.println(i);
+        // System.out.println(i);
         return i;
     }
 
@@ -142,7 +146,7 @@ public abstract class Trait {
             }
         }
         for (int k = 0; k < geneValues.length; k++) {
-            System.out.println(geneValues[k]);
+            // System.out.println(geneValues[k]);
         }
         return geneValues;
     }
