@@ -1,151 +1,78 @@
 package emily.people;
 
-import java.util.Scanner;
-
 import emily.traits.Eyes;
 import emily.traits.Hair;
-import emily.RandomUtils;
 
 public abstract class Person {
+    protected String firstName;
+    protected String lastName;
+    protected String sex;
+    protected Eyes eyes;
+    protected Hair hair;
+    protected Male dad;
+    protected Female mom;
 
-    // variables and array for names
-    public String firstName;
-    public String lastName;
-    // initiate array of last names for randomization; to be replaced with external
-    // list eventually
-    String[] lastNames = { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez",
-            "Martinez",
-            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin" };
-
-    // variables/objects for sex, eyes, hair
-    public static String sex;
-    public static String[] sexes = { "XX", "XY" };
-    public Eyes eyes;
-    public Hair hair;
-    Male dad;
-    Female mom;
-
-    // String skinColor;
-    // String freckles;
-
-    // default constructor
-    Person() {
-        firstName = null;
-        lastName = null;
-        sex = null;
-        eyes = new Eyes();
-        hair = new Hair();
+    public Person() {
+        this.eyes = new Eyes();
+        this.hair = new Hair();
     }
 
-    // setters
-    public void setEyes(Eyes eyes) {
-        this.eyes = eyes;
+    // getters and setters
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setHair(Hair hair) {
-        this.hair = hair;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
-    // getters
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String name) {
+        this.lastName = name;
+    }
+
     public Eyes getEyes() {
         return eyes;
+    }
+
+    public void setEyes(Eyes eyes) {
+        this.eyes = eyes;
     }
 
     public Hair getHair() {
         return hair;
     }
 
-    public Female getMom() {
-        return mom;
+    public void setHair(Hair hair) {
+        this.hair = hair;
     }
 
     public Male getDad() {
         return dad;
     }
 
-    // method to get user input for last name or randomize
-    public String getLastName(Scanner input) {
-        System.out.println("Give your person a last name, or enter \"R\" to randomize: ");
-        String name = input.nextLine();
-        if (name.equalsIgnoreCase("R")) {
-            lastName = RandomUtils.random(lastNames);
-        } else {
-            lastName = name;
-        }
-        return lastName;
+    public void setDad(Male dad) {
+        this.dad = dad;
     }
 
-    public static void setAndPrintPerson(Person person, Eyes eyes, Hair hair) {
-        person.setEyes(eyes);
-        person.setHair(hair);
-        System.out.println("Great! " + person.firstName + " has " + eyes.getEyeColor() + " eyes and a genotype of "
-                + eyes.getEyeColorGenotype() + ".\n"
-                + "They have " + hair.getHairColor() + " hair and a genotype of " + hair.getHairColorGenotype() + ".");
+    public Female getMom() {
+        return mom;
     }
 
-    /*
-     * Utility methods
-     * 
-     * 
-     * 
-     * 
-     * 
-     * // method to move array values into a hash map
-     * 
-     * public void arrayToHashMap(String[] array, HashMap<String, String> hashMap,
-     * String trait){
-     * int i = 0;
-     * for (String genotype : array)
-     * hashMap.put(array[i++], trait);
-     * }
-     * 
-     * 
-     * // methods to get keys from values
-     * //
-     * https://stackoverflow.com/questions/1383797/java-hashmap-how-to-get-key-from-
-     * value
-     * // single key to single value
-     * public static <K, V> K getKeyByValue(HashMap<K, V> hashMap, V value) {
-     * for (Map.Entry<K, V> entry : hashMap.entrySet()) {
-     * if (Objects.equals(value, entry.getValue())) {
-     * return entry.getKey();
-     * }
-     * }
-     * return null;
-     * }
-     * 
-     * // multiple keys with same value
-     * public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
-     * Set<T> keys = new HashSet<>();
-     * for (Map.Entry<T, E> entry : map.entrySet()) {
-     * if (Objects.equals(value, entry.getValue())) {
-     * keys.add(entry.getKey());
-     * }
-     * }
-     * return keys;
-     * }
-     */
+    public void setMom(Female mom) {
+        this.mom = mom;
+    }
 
     @Override
     public String toString() {
-        String s;
-
-        s = "{ ";
-        s += "name: " + firstName + " " + lastName;
-        s += ", ";
-        s += "eye color: " + eyes.getEyeColor();
-        s += ", ";
-        s += "eye color genotype: " + eyes.getEyeColorGenotype();
-        s += ", ";
-        s += "hair color: " + this.hair.getHairColor();
-        s += ", ";
-        s += "hair color genotype: " + this.hair.getHairColorGenotype();
-        s += ", ";
-        s += "Dad: " + (dad != null ? dad.firstName + " " + dad.lastName : "Unknown");
-        s += ", ";
-        s += "Mom: " + (mom != null ? mom.firstName + " " + mom.lastName : "Unknown");
-        s += " }";
-        return s;
+        return "{ name: " + firstName + " " + lastName +
+                ", eyes: " + eyes.getEyeColor() +
+                ", hair: " + hair.getHairColor() +
+                ", Dad: " + (dad != null ? dad.getFirstName() : "Unknown") +
+                ", Mom: " + (mom != null ? mom.getFirstName() : "Unknown") +
+                " }";
     }
-
 }

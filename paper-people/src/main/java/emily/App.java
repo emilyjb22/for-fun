@@ -31,6 +31,7 @@ public class App extends Application {
     public static void main(String[] args) {
 
         launch();
+
         Dashboard dashboard = new Dashboard();
         ArrayList<Male> allMales = new ArrayList<Male>();
         ArrayList<Female> allFemales = new ArrayList<Female>();
@@ -45,33 +46,16 @@ public class App extends Application {
         // obtain "Adam" (aka starter male person)
         System.out.println("To get started, we need at least one male person and one female person.");
         input.nextLine();
-        System.out.println("Let's start with Adam.");
-        input.nextLine();
 
-        System.out.println("""
-                This is Adam Paper. He needs DNA.
-                Do you want to choose his hair and eye color manually, or do you want to randomize it?"
-                --------------------------------------------------------
-                Please enter "1" or "2" to proceed
-                    1. Choose Hair and Eye Color manually
-                    2. Randomize Hair and Eye Color
-                --------------------------------------------------------
-                """);
-        choice = input.nextLine();
-        Eyes adamEyes = new Eyes();
-        Hair adamHair = new Hair();
-        Male adam = Dashboard.createAdam(choice, input, adamEyes, adamHair);
+        Person adam = new Male();
+        adam = adam.createStarterPerson("First, let's start with Adam.", "This is Adam Paper. He needs DNA.", input,
+                adam, "Adam");
         allMales.add(adam);
-        System.out.println("Great! " + adam.firstName + " " + adam.lastName + " has been added to the population.\n"
-                + "He has " + adamEyes.getEyeColor() + " eyes and a genotype of " + adamEyes.getEyeColorGenotype()
-                + ".\n"
-                + "He has " + adamHair.getHairColor() + " hair and a genotype of " + adamHair.getHairColorGenotype()
-                + ".");
-        input.nextLine();
 
         // obtain "Eve" (aka female starter person)
         System.out.println("Next, let's make Eve.");
         input.nextLine();
+
         System.out.println("""
                 This is Eve Paper. She also needs DNA.
                 Do you want to choose her hair and eye color manually, or do you want to randomize it?"

@@ -6,7 +6,7 @@ import emily.people.Male;
 import emily.traits.Eyes;
 import emily.traits.Hair;
 
-class Dashboard {
+public class Dashboard {
 
     String title = """
             --------------------------------------------------------
@@ -27,7 +27,18 @@ class Dashboard {
             --------------------------------------------------------
             """;
 
-    // generic method to handle hair and eyes for Adam and Eve
+    public static String traitSelectMenu = """
+            Do you want to choose their hair and eye color manually, or do you want to randomize them?"
+            --------------------------------------------------------
+            Please enter "1" or "2" to proceed
+                1. Choose Hair and Eye Color manually
+                2. Randomize Hair and Eye Color
+            --------------------------------------------------------
+            """;
+
+    // This is Adam Paper. He needs DNA.
+
+    // generic method to handle hair and eyes
     // maybe handle hair and eyes in other places too?
     public static void hairAndEyes(String choice, Scanner input, Eyes eyes, Hair hair, Male dad, Female mom) {
         // option 1 select manually
@@ -48,26 +59,6 @@ class Dashboard {
             hair.setHairColor(Hair.phenotypeFromGenotype(Hair.getHairColorMap(), geno));
         }
 
-    }
-
-    // make Adam
-    public static Male createAdam(String choice, Scanner input, Eyes eyes, Hair hair) {
-        Male adamDad = new Male();
-        Female adamMom = new Female();
-        Dashboard.hairAndEyes(choice, input, eyes, hair, adamDad, adamMom);
-        Male adam = new Male("Adam", "Paper", "XY", eyes, hair, adamDad, adamMom);
-        System.out.println(adam.toString());
-        return adam;
-    }
-
-    // make Eve
-    public static Female createEve(String choice, Scanner input, Eyes eyes, Hair hair) {
-        Male eveDad = new Male();
-        Female eveMom = new Female();
-        Dashboard.hairAndEyes(choice, input, eyes, hair, eveDad, eveMom);
-        Female eve = new Female("Eve", "Paper", "XX", eyes, hair, eveDad, eveMom);
-        System.out.println(eve.toString());
-        return eve;
     }
 
 }
