@@ -3,6 +3,7 @@ emily/traits/Trait.class
 emily/ScratchPad.class
 emily/people/Female.class
 emily/fx/MainView.class
+emily/people/PersonFactory.class
 emily/traits/Hair.class
 emily/traits/Eyes.class
 emily/Dashboard.class

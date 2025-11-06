@@ -5,6 +5,7 @@ import java.util.Scanner;
 import emily.people.Female;
 import emily.people.Male;
 import emily.people.Person;
+import emily.people.PersonFactory;
 import emily.traits.Eyes;
 import emily.traits.Hair;
 
@@ -43,43 +44,26 @@ public class App extends Application {
         input.nextLine();
         String choice = "";
 
-        // obtain "Adam" (aka starter male person)
+        // obtain "Adam" and "Eve" (to start population)
         System.out.println("To get started, we need at least one male person and one female person.");
         input.nextLine();
 
-        Person adam = new Male();
-        adam = adam.createStarterPerson("First, let's start with Adam.", "This is Adam Paper. He needs DNA.", input,
-                adam, "Adam");
+        Male adam = PersonFactory.createAdam(
+                "First, let's start with Adam.",
+                "This is Adam Paper. He needs DNA.",
+                input);
         allMales.add(adam);
 
-        // obtain "Eve" (aka female starter person)
-        System.out.println("Next, let's make Eve.");
-        input.nextLine();
-
-        System.out.println("""
-                This is Eve Paper. She also needs DNA.
-                Do you want to choose her hair and eye color manually, or do you want to randomize it?"
-                --------------------------------------------------------
-                Please enter "1" or "2" to proceed
-                    1. Choose Hair and Eye Color manually
-                    2. Randomize Hair and Eye Color
-                --------------------------------------------------------
-                """);
-        choice = input.nextLine();
-        Eyes eveEyes = new Eyes();
-        Hair eveHair = new Hair();
-        Female eve = Dashboard.createEve(choice, input, eveEyes, eveHair);
+        Female eve = PersonFactory.createEve(
+                "Next, let's create Eve.",
+                "This is Eve Paper. She also needs DNA.",
+                input);
         allFemales.add(eve);
-        System.out.println("Great! " + eve.firstName + " " + eve.lastName + " has been added to the population.\n"
-                + "She has " + eveEyes.getEyeColor() + " eyes and a genotype of " + eveEyes.getEyeColorGenotype()
-                + ".\n"
-                + "She has " + eveHair.getHairColor() + " hair and a genotype of " + eveHair.getHairColorGenotype()
-                + ".");
-        input.nextLine();
 
         System.out.println("Press enter to continue...");
+        input.nextLine();
 
-        // get user input, until user exits program
+        // main menu loop
         while (!choice.equals("4")) {
 
             System.out.println(new Dashboard().menu);
@@ -90,38 +74,45 @@ public class App extends Application {
             // switch between menu options to select relevant code*/
             switch (choice) {
                 case "1" -> {
-                    Male newMale = new Male();
-                    Female newFemale = new Female();
 
                     System.out.println(
                             "Is your person male (XY) or female (XX)? Type your answer or type \"R\" to randomize. Type \"B\" to go back to main menu.");
                     String selection = input.nextLine();
 
-                    if (selection.equalsIgnoreCase("R")) {
-                        selection = RandomUtils.random(Person.sexes);
+                    boolean isMale;
+                    String firstName;
+
+                    if (selection.equalsIgnoreCase("XY")) {
+                        isMale = true;
+                    } else if (selection.equalsIgnoreCase("XX")) {
+                        isMale = false;
+                    } else if (selection.equalsIgnoreCase("R")) {
+                        isMale = Math.random() < 0.5;
+                    } else if (selection.equalsIgnoreCase("B")) {
+                        break;
+                    } else {
+                        System.out.println("Invalid entry. Please try again.");
+                        break;
                     }
 
-                    selection = selection.toUpperCase();
-
-                    switch (selection) {
-                        case "XY":
-                            System.out.println("Your person's name is " + newMale.getMaleName(input) + " "
-                                    + newMale.getLastName(input) + ".");
-                            break;
-                        case "XX":
-                            System.out.println("Your person's name is " + newFemale.getFemaleName(input) + " "
-                                    + newFemale.getLastName(input) + ".");
-                            break;
-                        default:
-                            System.out.println("Invalid entry. Please try again.");
-                            break;
+                    if (isMale) {
+                        firstName = PersonFactory.createMan(
+                                "Great! Let's create a male person.",
+                                input).toString();
+                        System.out.println(firstName);
+                    } else {
+                        firstName = PersonFactory.createWoman(
+                                "Great! Let's create a female person.",
+                                input).getFirstName();
                     }
+
+                    System.out.println("Your person's name is " + firstName);
 
                     System.out.println("""
                             Do you want to randomize their traits, or select their traits manually?
 
                             Type \"1\" to select manually or \"2\" to randomize
-                                    """);
+                            """);
                     choice = input.nextLine();
                     Eyes newEyes = new Eyes();
                     Hair newHair = new Hair();
@@ -129,9 +120,9 @@ public class App extends Application {
                     // Dashboard.hairAndEyes(choice, input, newEyes, newHair);
 
                     if (selection.equals("XY")) {
-                        Person.setAndPrintPerson(newMale, newEyes, newHair);
+                        // Person.setAndPrintPerson(newMale, newEyes, newHair);
                     } else if (selection.equals("XX")) {
-                        Person.setAndPrintPerson(newFemale, newEyes, newHair);
+                        // Person.setAndPrintPerson(newFemale, newEyes, newHair);
                     }
 
                     System.out.println();
@@ -139,18 +130,17 @@ public class App extends Application {
                     String save = input.nextLine();
 
                     if (save.equalsIgnoreCase("Y")) {
-                        if (selection.equalsIgnoreCase("XY") && newMale != null) {
-                            allMales.add(newMale);
-                            System.out.println("Person saved to your population.");
-                        } else if (selection.equalsIgnoreCase("XX") && newFemale != null) {
-                            allFemales.add(newFemale);
-                            System.out.println("Person saved to your population.");
-                        } else {
-                            System.out.println("Person not saved.");
-                        }
+                        // if (selection.equalsIgnoreCase("XY") && newMale != null) {
+                        // allMales.add(newMale);
+                        System.out.println("Person saved to your population.");
+                        // } else if (selection.equalsIgnoreCase("XX") && newFemale != null) {
+                        // allFemales.add(newFemale);
+                        System.out.println("Person saved to your population.");
                     } else {
                         System.out.println("Person not saved.");
                     }
+                    // } else {
+                    System.out.println("Person not saved.");
                 }
 
                 case "2" -> {

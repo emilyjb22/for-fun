@@ -36,10 +36,7 @@ public class Dashboard {
             --------------------------------------------------------
             """;
 
-    // This is Adam Paper. He needs DNA.
-
     // generic method to handle hair and eyes
-    // maybe handle hair and eyes in other places too?
     public static void hairAndEyes(String choice, Scanner input, Eyes eyes, Hair hair, Male dad, Female mom) {
         // option 1 select manually
         if (choice.equals("1")) {
@@ -50,11 +47,11 @@ public class Dashboard {
 
             // option 2 randomize
         } else if (choice.equals("2")) {
-            int geno = Eyes.randomGenotype(dad.eyes.getEyeColorGenotype(), mom.eyes.getEyeColorGenotype());
+            int geno = Eyes.randomGenotype(dad.getEyes().getEyeColorGenotype(), mom.getEyes().getEyeColorGenotype());
             eyes.setEyeColorGenotype(geno);
             eyes.setEyeColor(Eyes.phenotypeFromGenotype(Eyes.getEyeColorMap(), geno));
 
-            geno = Hair.randomGenotype(dad.hair.getHairColorGenotype(), mom.hair.getHairColorGenotype());
+            geno = Hair.randomGenotype(dad.getHair().getHairColorGenotype(), mom.getHair().getHairColorGenotype());
             hair.setHairColorGenotype(geno);
             hair.setHairColor(Hair.phenotypeFromGenotype(Hair.getHairColorMap(), geno));
         }

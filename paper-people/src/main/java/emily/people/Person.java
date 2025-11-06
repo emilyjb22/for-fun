@@ -1,12 +1,19 @@
 package emily.people;
 
+import java.util.Scanner;
+
 import emily.traits.Eyes;
 import emily.traits.Hair;
+import emily.RandomUtils;
 
 public abstract class Person {
     protected String firstName;
     protected String lastName;
+    String[] lastNames = { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez",
+            "Martinez",
+            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin" };
     protected String sex;
+    protected String[] sexes = { "XY", "XX" };
     protected Eyes eyes;
     protected Hair hair;
     protected Male dad;
@@ -15,6 +22,17 @@ public abstract class Person {
     public Person() {
         this.eyes = new Eyes();
         this.hair = new Hair();
+    }
+
+    public String makeLastName(Scanner input) {
+        System.out.println("Give your person a last name, or enter \"R\" to randomize: ");
+        String name = input.nextLine();
+        if (name.equalsIgnoreCase("R")) {
+            lastName = RandomUtils.random(lastNames);
+        } else {
+            lastName = name;
+        }
+        return lastName;
     }
 
     // getters and setters
