@@ -34,6 +34,30 @@ public class PersonFactory {
         return person;
     }
 
+    public static Person createBaby(
+            Scanner input,
+            Male dad,
+            Female mom,
+            boolean isMale) {
+
+        Person person = isMale ? new Male() : new Female();
+        person.setDad(dad);
+        person.setMom(mom);
+        person.setFirstName(isMale
+                ? person.makeFirstName(input, dad.getMaleNames(),
+                        "Give him a first name, or enter \"R\" to randomize: ", "his")
+                : person.makeFirstName(input, mom.getFemaleNames(),
+                        "Give her a first name, or enter \"R\" to randomize: ", "her"));
+        person.setLastName(dad.getLastName());
+
+        Eyes eyes = new Eyes();
+        Hair hair = new Hair();
+
+        setAndPrintPerson(person, eyes, hair);
+        return person;
+    }
+
+    // for creating a person "from scratch"
     public static Person createStarterPerson(
             Scanner input,
             Male dad,

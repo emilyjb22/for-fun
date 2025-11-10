@@ -124,7 +124,14 @@ public class App {
                     input.nextLine();
 
                     boolean isMale = Math.random() < 0.5;
-                    Person baby = PersonFactory.createStarterPerson(input, dad, mom, isMale);
+                    if (isMale) {
+                        System.out.println("Congratulations, it's a boy! ");
+                    } else {
+                        System.out.println("Congratulations, it's a girl! ");
+                    }
+                    
+                    Person baby = PersonFactory.createBaby(input, dad, mom, isMale);
+                    int babyEyesGeno = 
 
                     /*
                      * Baby baby = new Baby();
