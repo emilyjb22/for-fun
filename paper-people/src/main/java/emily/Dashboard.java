@@ -37,7 +37,9 @@ public class Dashboard {
             """;
 
     // generic method to handle hair and eyes
-    public static void hairAndEyes(String choice, Scanner input, Eyes eyes, Hair hair, Male dad, Female mom) {
+    public static void hairAndEyes(Scanner input, Eyes eyes, Hair hair, Male dad, Female mom) {
+        System.out.println(traitSelectMenu);
+        String choice = input.nextLine();
         // option 1 select manually
         if (choice.equals("1")) {
             eyes.setEyeColor(eyes.selectPhenotype(Eyes.getSelectionMenu(), input, Eyes.getEyeColors()));

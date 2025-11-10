@@ -1,14 +1,12 @@
 package emily.people;
 
-import java.util.Scanner;
-
 import emily.traits.Eyes;
 import emily.traits.Hair;
-import emily.RandomUtils;
 
 public class Female extends Person {
 
-    public String[] femaleNames = { "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan", "Jessica",
+    private String[] femaleNames = { "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan",
+            "Jessica",
             "Sarah", "Karen",
             "Nancy", "Margaret", "Lisa", "Betty", "Dorothy", "Sandra", "Ashley", "Kimberly", "Donna", "Emily" };
 
@@ -30,15 +28,23 @@ public class Female extends Person {
         this.mom = mom;
     }
 
-    public String getFemaleName(Scanner input) {
-        System.out.println("Your person is a woman. Give her a first name, or enter \"R\" to randomize: ");
-        String name = input.nextLine();
-        if (name.equalsIgnoreCase("R")) {
-            firstName = RandomUtils.random(femaleNames);
-        } else {
-            firstName = name;
-        }
-        System.out.println("Her first name is " + firstName + ".");
-        return firstName;
+    public String[] getFemaleNames() {
+        return femaleNames;
     }
+
+    /*
+     * public String getFemaleName(Scanner input) {
+     * System.out.
+     * println("Your person is a woman. Give her a first name, or enter \"R\" to randomize: "
+     * );
+     * String name = input.nextLine();
+     * if (name.equalsIgnoreCase("R")) {
+     * firstName = RandomUtils.random(femaleNames);
+     * } else {
+     * firstName = name;
+     * }
+     * System.out.println("Her first name is " + firstName + ".");
+     * return firstName;
+     * }
+     */
 }

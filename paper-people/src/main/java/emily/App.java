@@ -6,32 +6,14 @@ import emily.people.Female;
 import emily.people.Male;
 import emily.people.Person;
 import emily.people.PersonFactory;
-import emily.traits.Eyes;
-import emily.traits.Hair;
-
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import emily.fx.MainView;
+import emily.traits.Trait;
 
 /**
  * Hello world!
  */
-public class App extends Application {
-
-    @Override
-    public void start(Stage mainStage) {
-        mainStage.setTitle("This is GeneApp");
-        Label label = new Label("Hello JavaFX!");
-        Scene scene = new Scene(label, 400, 200);
-        mainStage.setScene(scene);
-        mainStage.show();
-    }
+public class App {
 
     public static void main(String[] args) {
-
-        launch();
 
         Dashboard dashboard = new Dashboard();
         ArrayList<Male> allMales = new ArrayList<Male>();
@@ -81,6 +63,8 @@ public class App extends Application {
 
                     boolean isMale;
                     String firstName;
+                    Male dad = new Male();
+                    Female mom = new Female();
 
                     if (selection.equalsIgnoreCase("XY")) {
                         isMale = true;
@@ -96,28 +80,15 @@ public class App extends Application {
                     }
 
                     if (isMale) {
-                        firstName = PersonFactory.createMan(
-                                "Great! Let's create a male person.",
-                                input).toString();
+                        System.out.println("Great! Let's create a man.");
+                        firstName = PersonFactory.createMan(input, dad, mom).toString();
                         System.out.println(firstName);
                     } else {
-                        firstName = PersonFactory.createWoman(
-                                "Great! Let's create a female person.",
-                                input).getFirstName();
+                        System.out.println("Great! Let's create a woman.");
+                        firstName = PersonFactory.createWoman(input, dad, mom).getFirstName();
                     }
 
                     System.out.println("Your person's name is " + firstName);
-
-                    System.out.println("""
-                            Do you want to randomize their traits, or select their traits manually?
-
-                            Type \"1\" to select manually or \"2\" to randomize
-                            """);
-                    choice = input.nextLine();
-                    Eyes newEyes = new Eyes();
-                    Hair newHair = new Hair();
-
-                    // Dashboard.hairAndEyes(choice, input, newEyes, newHair);
 
                     if (selection.equals("XY")) {
                         // Person.setAndPrintPerson(newMale, newEyes, newHair);
@@ -144,43 +115,22 @@ public class App extends Application {
                 }
 
                 case "2" -> {
+                    System.out.println("Are you ready to have a baby?");
+
+                    Male dad = (Male) Trait.selectParent("dad", allMales, input);
+                    Female mom = (Female) Trait.selectParent("mom", allFemales, input);
+
+                    System.out.println("Gestating baby...");
+                    input.nextLine();
+
+                    boolean isMale = Math.random() < 0.5;
+                    Person baby = PersonFactory.createStarterPerson(input, dad, mom, isMale);
+
                     /*
-                     * System.out.
-                     * println("Are you ready to have a baby? Select a dad from the following list:"
-                     * );
-                     * int count = allMales.size();
-                     * for (int i = 0; i < count; i++) {
-                     * System.out.println((i + 1) + ". " + allMales.get(i).toString());
-                     * }
-                     * int dadIndex = input.nextInt() - 1;
-                     * Male dad = allMales.get(dadIndex);
-                     * System.out.println("Great! You selected " + dad.firstName + " " +
-                     * dad.lastName + " as the dad.");
-                     * System.out.println("--------------------------------------------------------"
-                     * );
-                     * 
-                     * input.nextLine();
-                     * System.out.println("Now select a mom from the following list:");
-                     * count = allFemales.size();
-                     * for (int i = 0; i < count; i++) {
-                     * System.out.println((i + 1) + ". " + allFemales.get(i).toString());
-                     * }
-                     * int momIndex = input.nextInt() - 1;
-                     * Female mom = allFemales.get(momIndex);
-                     * System.out.println("Great! You selected " + mom.firstName + " " +
-                     * mom.lastName + " as the mom.");
-                     * System.out.println("--------------------------------------------------------"
-                     * );
-                     * 
-                     * input.nextLine();
-                     * System.out.println("Gestating baby...");
-                     * input.nextLine();
-                     * 
                      * Baby baby = new Baby();
                      * Eyes babyEyes = new Eyes();
                      * Hair babyHair = new Hair();
                      * // babyHair.getHairColorMap();
-                     * 
                      * int babyEyeColorGenotype =
                      * baby.getBabyEyeColorGenotype(dad.eyes.getEyeColorGenotype(),
                      * mom.eyes.getEyeColorGenotype());
@@ -196,7 +146,6 @@ public class App extends Application {
                      * babyEyes.setEyeColor(babyEyeColor);
                      * babyHair.setHairColorGenotype(babyHairColorGenotype);
                      * babyHair.setHairColor(babyHairColor);
-                     * 
                      * // baby name not passing correctly
                      * String sexOfBaby = Person.randomize(Person.sexes, Person.sex);
                      * if (sexOfBaby.equals("XY")) {

@@ -16,15 +16,9 @@ public class PersonFactory {
         System.out.println(messageA);
         input.nextLine();
         System.out.println(messageB);
-        System.out.println(Dashboard.traitSelectMenu);
 
-        String choice = input.nextLine();
         Male dad = new Male();
         Female mom = new Female();
-        Eyes eyes = new Eyes();
-        Hair hair = new Hair();
-
-        Dashboard.hairAndEyes(choice, input, eyes, hair, dad, mom);
 
         Person person = isMale ? new Male() : new Female();
         person.setDad(dad);
@@ -32,31 +26,33 @@ public class PersonFactory {
         person.setFirstName(firstName);
         person.setLastName("Paper");
 
+        Eyes eyes = new Eyes();
+        Hair hair = new Hair();
+        Dashboard.hairAndEyes(input, eyes, hair, dad, mom);
+
         setAndPrintPerson(person, eyes, hair);
         return person;
     }
 
     public static Person createStarterPerson(
-            String message,
             Scanner input,
+            Male dad,
+            Female mom,
             boolean isMale) {
-
-        System.out.println(message);
-        System.out.println(Dashboard.traitSelectMenu);
-
-        String choice = input.nextLine();
-        Male dad = new Male();
-        Female mom = new Female();
-        Eyes eyes = new Eyes();
-        Hair hair = new Hair();
-
-        Dashboard.hairAndEyes(choice, input, eyes, hair, dad, mom);
 
         Person person = isMale ? new Male() : new Female();
         person.setDad(dad);
         person.setMom(mom);
-        person.setFirstName(isMale ? dad.getMaleName(input) : mom.getFemaleName(input));
+        person.setFirstName(isMale
+                ? person.makeFirstName(input, dad.getMaleNames(),
+                        "Your person is a man. Give him a first name, or enter \"R\" to randomize: ", "his")
+                : person.makeFirstName(input, mom.getFemaleNames(),
+                        "Your person is a woman. Give her a first name, or enter \"R\" to randomize: ", "her"));
         person.setLastName(person.makeLastName(input));
+
+        Eyes eyes = new Eyes();
+        Hair hair = new Hair();
+        Dashboard.hairAndEyes(input, eyes, hair, dad, mom);
 
         setAndPrintPerson(person, eyes, hair);
         return person;
@@ -70,12 +66,12 @@ public class PersonFactory {
         return (Female) createStarterPerson(messageA, messageB, input, "Eve", false);
     }
 
-    public static Male createMan(String message, Scanner input) {
-        return (Male) createStarterPerson(message, input, true);
+    public static Male createMan(Scanner input, Male dad, Female mom) {
+        return (Male) createStarterPerson(input, dad, mom, true);
     }
 
-    public static Female createWoman(String message, Scanner input) {
-        return (Female) createStarterPerson(message, input, false);
+    public static Female createWoman(Scanner input, Male dad, Female mom) {
+        return (Female) createStarterPerson(input, dad, mom, false);
     }
 
     private static void setAndPrintPerson(Person person, Eyes eyes, Hair hair) {

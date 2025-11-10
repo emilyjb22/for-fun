@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 import emily.RandomUtils;
+import emily.people.Male;
+import emily.people.Person;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,16 +59,6 @@ public abstract class Trait {
         return phenotype;
     }
 
-    // match phenotype with corresponding genotype (1 key to 1 value)
-    // not sure if needed
-    /*
-     * public int matchGenotype(Map<Integer,String> map, String phenotype, int
-     * genotype){
-     * genotype = getKeyByValue(map, phenotype);
-     * return genotype;
-     * }
-     */
-
     // have phenotype, need a random genotype
     public int generateGenotype(Map<Integer, String> map, String phenotype) {
         ArrayList<Integer> possibleGenotypes = getKeyByValue(map, phenotype);
@@ -105,6 +97,21 @@ public abstract class Trait {
     /*
      * ------ methods to recombine traits (reproduction / randomization) ------
      */
+
+    public static Person selectParent(String type, ArrayList<? extends Person> parentList, Scanner input) {
+        System.out.println("Select a " + type + " from the following list:");
+        int count = parentList.size();
+        for (int i = 0; i < count; i++) {
+            System.out.println((i + 1) + ". " + parentList.get(i).toString());
+        }
+        int parentIndex = input.nextInt() - 1;
+        Person parent = parentList.get(parentIndex);
+        System.out.println(
+                "Great! You selected " + parent.getFirstName() + " " + parent.getLastName() + " as the " + type + " .");
+        System.out.println("--------------------------------------------------------");
+        input.nextLine();
+        return parent;
+    }
 
     public static int randomGenotype(int dadGeno, int momGeno) {
         int[] dadGene = getGeneValues(dadGeno, countGenes(dadGeno));

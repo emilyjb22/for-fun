@@ -24,8 +24,21 @@ public abstract class Person {
         this.hair = new Hair();
     }
 
+    public String makeFirstName(Scanner input, String[] names, String message, String pronoun) {
+        System.out.println(message);
+        String name = input.nextLine();
+        String firstName;
+        if (name.equalsIgnoreCase("R")) {
+            firstName = RandomUtils.random(names);
+        } else {
+            firstName = name;
+        }
+        System.out.println(pronoun + " first name is " + firstName + ".");
+        return firstName;
+    }
+
     public String makeLastName(Scanner input) {
-        System.out.println("Give your person a last name, or enter \"R\" to randomize: ");
+        System.out.println("Give them a last name, or enter \"R\" to randomize: ");
         String name = input.nextLine();
         if (name.equalsIgnoreCase("R")) {
             lastName = RandomUtils.random(lastNames);
