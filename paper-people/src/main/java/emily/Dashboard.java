@@ -1,8 +1,11 @@
 package emily;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import emily.people.Female;
 import emily.people.Male;
+import emily.people.Person;
 import emily.traits.Eyes;
 import emily.traits.Hair;
 
@@ -58,6 +61,38 @@ public class Dashboard {
             hair.setHairColor(Hair.phenotypeFromGenotype(Hair.getHairColorMap(), geno));
         }
 
+    }
+
+    // User selects phenotype from printed list
+    public String selectPhenotype(String selectionMenu, Scanner input, List<String> phenoList) {
+        System.out.println(selectionMenu);
+        for (String pheno : phenoList) {
+            System.out.println("- " + pheno);
+        }
+        phenotype = input.nextLine();
+        return phenotype;
+    }
+
+    // Randomized phenotype from list (user selects "R")
+    public String randomizePhenotype(List<String> phenoList) {
+        phenotype = RandomUtils.random(phenoList);
+        return phenotype;
+    }
+
+    // choose a parent from population list
+    public static Person selectParent(String type, ArrayList<? extends Person> parentList, Scanner input) {
+        System.out.println("Select a " + type + " from the following list:");
+        int count = parentList.size();
+        for (int i = 0; i < count; i++) {
+            System.out.println((i + 1) + ". " + parentList.get(i).toString());
+        }
+        int parentIndex = input.nextInt() - 1;
+        Person parent = parentList.get(parentIndex);
+        System.out.println(
+                "Great! You selected " + parent.getFirstName() + " " + parent.getLastName() + " as the " + type + " .");
+        System.out.println("--------------------------------------------------------");
+        input.nextLine();
+        return parent;
     }
 
 }
