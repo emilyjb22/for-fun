@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import emily.traits.Eyes;
 import emily.traits.Hair;
+import emily.traits.Trait;
 import emily.RandomUtils;
 
 public abstract class Person {
@@ -63,6 +64,10 @@ public abstract class Person {
 
     public void setLastName(String name) {
         this.lastName = name;
+    }
+
+    public Trait getTrait() {
+        return trait;
     }
 
     public Eyes getEyes() {

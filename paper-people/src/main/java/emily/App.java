@@ -116,9 +116,8 @@ public class App {
 
                 case "2" -> {
                     System.out.println("Are you ready to have a baby?");
-
-                    Male dad = (Male) Trait.selectParent("dad", allMales, input);
-                    Female mom = (Female) Trait.selectParent("mom", allFemales, input);
+                    Male dad = (Male) Dashboard.selectParent("dad", allMales, input);
+                    Female mom = (Female) Dashboard.selectParent("mom", allFemales, input);
 
                     System.out.println("Gestating baby...");
                     input.nextLine();

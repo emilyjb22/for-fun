@@ -1,6 +1,11 @@
 package emily.genetics;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 import emily.RandomUtils;
 
 public class GeneticsEngine {
@@ -16,6 +21,13 @@ public class GeneticsEngine {
 
     public static String phenotypeFromGenotype(Map<Integer, String> map, int genotype) {
         return map.get(genotype);
+    }
+
+    // have phenotype, need a random genotype
+    public static int generateGenotype(Map<Integer, String> map, String phenotype) {
+        ArrayList<Integer> possibleGenotypes = getKeyByValue(map, phenotype);
+        int genotype = RandomUtils.random(possibleGenotypes);
+        return genotype;
     }
 
     // count number of genes per trait, return the number
@@ -63,6 +75,28 @@ public class GeneticsEngine {
         }
         System.out.println(babyGenotype);
         return babyGenotype;
+    }
+
+    // Helper method to get key by value from HashMap
+    public static ArrayList<Integer> getKeyByValue(Map<Integer, String> map, String value) {
+        ArrayList<Integer> possibleGenotypes = new ArrayList<>();
+        for (Integer key : map.keySet()) {
+            if (map.get(key).equalsIgnoreCase(value)) {
+                possibleGenotypes.add(key);
+            }
+        }
+        return possibleGenotypes;
+    }
+
+    // multiple keys with same value
+    public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
+        Set<T> keys = new HashSet<>();
+        for (Map.Entry<T, E> entry : map.entrySet()) {
+            if (Objects.equals(value, entry.getValue())) {
+                keys.add(entry.getKey());
+            }
+        }
+        return keys;
     }
 
 }

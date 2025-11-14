@@ -8,6 +8,7 @@ import emily.people.Male;
 import emily.people.Person;
 import emily.traits.Eyes;
 import emily.traits.Hair;
+import emily.traits.Trait;
 
 public class Dashboard {
 
@@ -40,36 +41,46 @@ public class Dashboard {
             """;
 
     // generic method to handle hair and eyes
-    public static void hairAndEyes(Scanner input, Eyes eyes, Hair hair, Male dad, Female mom) {
-        System.out.println(traitSelectMenu);
-        String choice = input.nextLine();
-        // option 1 select manually
-        if (choice.equals("1")) {
-            eyes.setEyeColor(eyes.selectPhenotype(Eyes.getSelectionMenu(), input, Eyes.getEyeColors()));
-            eyes.setEyeColorGenotype(eyes.generateGenotype(Eyes.getEyeColorMap(), eyes.getEyeColor()));
-            hair.setHairColor(hair.selectPhenotype(Hair.getSelectionMenu(), input, Hair.getHairColors()));
-            hair.setHairColorGenotype(hair.generateGenotype(Hair.getHairColorMap(), hair.getHairColor()));
-
-            // option 2 randomize
-        } else if (choice.equals("2")) {
-            int geno = Eyes.randomGenotype(dad.getEyes().getEyeColorGenotype(), mom.getEyes().getEyeColorGenotype());
-            eyes.setEyeColorGenotype(geno);
-            eyes.setEyeColor(Eyes.phenotypeFromGenotype(Eyes.getEyeColorMap(), geno));
-
-            geno = Hair.randomGenotype(dad.getHair().getHairColorGenotype(), mom.getHair().getHairColorGenotype());
-            hair.setHairColorGenotype(geno);
-            hair.setHairColor(Hair.phenotypeFromGenotype(Hair.getHairColorMap(), geno));
-        }
-
-    }
+    // make generic
+    /*
+     * public static void hairAndEyes(Scanner input, Eyes eyes, Hair hair, Male dad,
+     * Female mom) {
+     * System.out.println(traitSelectMenu);
+     * String choice = input.nextLine();
+     * // option 1 select manually
+     * if (choice.equals("1")) {
+     * eyes.setEyeColor(eyes.selectPhenotype(Eyes.getSelectionMenu(), input,
+     * Eyes.getEyeColors()));
+     * eyes.setEyeColorGenotype(eyes.generateGenotype(Eyes.getEyeColorMap(),
+     * eyes.getEyeColor()));
+     * hair.setHairColor(hair.selectPhenotype(Hair.getSelectionMenu(), input,
+     * Hair.getHairColors()));
+     * hair.setHairColorGenotype(hair.generateGenotype(Hair.getHairColorMap(),
+     * hair.getHairColor()));
+     * 
+     * // option 2 randomize
+     * } else if (choice.equals("2")) {
+     * int geno = Eyes.randomGenotype(dad.getEyes().getEyeColorGenotype(),
+     * mom.getEyes().getEyeColorGenotype());
+     * eyes.setEyeColorGenotype(geno);
+     * eyes.setEyeColor(Eyes.phenotypeFromGenotype(Eyes.getEyeColorMap(), geno));
+     * 
+     * geno = Hair.randomGenotype(dad.getHair().getHairColorGenotype(),
+     * mom.getHair().getHairColorGenotype());
+     * hair.setHairColorGenotype(geno);
+     * hair.setHairColor(Hair.phenotypeFromGenotype(Hair.getHairColorMap(), geno));
+     * }
+     * 
+     * }
+     */
 
     // User selects phenotype from printed list
-    public String selectPhenotype(String selectionMenu, Scanner input, List<String> phenoList) {
+    public static String selectPhenotype(String selectionMenu, Scanner input, List<String> phenoList) {
         System.out.println(selectionMenu);
         for (String pheno : phenoList) {
             System.out.println("- " + pheno);
         }
-        phenotype = input.nextLine();
+        String phenotype = input.nextLine();
         return phenotype;
     }
 

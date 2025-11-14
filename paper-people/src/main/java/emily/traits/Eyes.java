@@ -74,34 +74,46 @@ public class Eyes extends Trait {
         this.eyeColorGenotype = eyeColorGenotype;
     }
 
-    // getters
-    public String getEyeColor() {
-        return eyeColor;
-    }
-
-    public int getEyeColorGenotype() {
-        return eyeColorGenotype;
-    }
-
     public static Map<Integer, String> getEyeColorMap() {
         return EYE_COLOR_MAP;
     }
 
-    public static List<String> getEyeColors() {
+    @Override
+    public List<String> getPhenotypes() {
         return EYE_COLORS;
     }
 
-    public static String getSelectionMenu() {
+    @Override
+    public String getSelectionMenu() {
         return selectionMenu;
     }
 
-    // setters
-    public void setEyeColor(String eyeColor) {
-        this.eyeColor = eyeColor;
-    }
-
-    public void setEyeColorGenotype(int eyeColorGenotype) {
-        this.eyeColorGenotype = eyeColorGenotype;
+    @Override
+    public Map<Integer, String> getMap() {
+        return EYE_COLOR_MAP;
     }
 
 }
+
+/*
+ * // getters
+ * public String getEyeColor() {
+ * return eyeColor;
+ * }
+ * 
+ * public int getEyeColorGenotype() {
+ * return eyeColorGenotype;
+ * }
+ * 
+ * 
+ * // setters
+ * public void setEyeColor(String eyeColor) {
+ * this.eyeColor = eyeColor;
+ * }
+ * 
+ * public void setEyeColorGenotype(int eyeColorGenotype) {
+ * this.eyeColorGenotype = eyeColorGenotype;
+ * }
+ * 
+ * }
+ */

@@ -106,8 +106,19 @@ public class Hair extends Trait {
         return HAIR_COLORS;
     }
 
-    public static String getSelectionMenu() {
+    @Override
+    public String getSelectionMenu() {
         return selectionMenu;
+    }
+
+    @Override
+    public List<String> getPhenotypes() {
+        return HAIR_COLORS;
+    }
+
+    @Override
+    public Map<Integer, String> getMap() {
+        return HAIR_COLOR_MAP;
     }
 
     // setters
