@@ -3,12 +3,9 @@ package emily;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import emily.people.Female;
-import emily.people.Male;
+
 import emily.people.Person;
-import emily.traits.Eyes;
-import emily.traits.Hair;
-import emily.traits.Trait;
+import emily.util.RandomizeUtils;
 
 public class Dashboard {
 
@@ -31,48 +28,28 @@ public class Dashboard {
             --------------------------------------------------------
             """;
 
-    public static String traitSelectMenu = """
-            Do you want to choose their hair and eye color manually, or do you want to randomize them?"
-            --------------------------------------------------------
-            Please enter "1" or "2" to proceed
-                1. Choose Hair and Eye Color manually
-                2. Randomize Hair and Eye Color
-            --------------------------------------------------------
-            """;
+    public static String traitSelectMenu(String pronoun, String traitType) {
+        return """
 
-    // generic method to handle hair and eyes
-    // make generic
-    /*
-     * public static void hairAndEyes(Scanner input, Eyes eyes, Hair hair, Male dad,
-     * Female mom) {
-     * System.out.println(traitSelectMenu);
-     * String choice = input.nextLine();
-     * // option 1 select manually
-     * if (choice.equals("1")) {
-     * eyes.setEyeColor(eyes.selectPhenotype(Eyes.getSelectionMenu(), input,
-     * Eyes.getEyeColors()));
-     * eyes.setEyeColorGenotype(eyes.generateGenotype(Eyes.getEyeColorMap(),
-     * eyes.getEyeColor()));
-     * hair.setHairColor(hair.selectPhenotype(Hair.getSelectionMenu(), input,
-     * Hair.getHairColors()));
-     * hair.setHairColorGenotype(hair.generateGenotype(Hair.getHairColorMap(),
-     * hair.getHairColor()));
-     * 
-     * // option 2 randomize
-     * } else if (choice.equals("2")) {
-     * int geno = Eyes.randomGenotype(dad.getEyes().getEyeColorGenotype(),
-     * mom.getEyes().getEyeColorGenotype());
-     * eyes.setEyeColorGenotype(geno);
-     * eyes.setEyeColor(Eyes.phenotypeFromGenotype(Eyes.getEyeColorMap(), geno));
-     * 
-     * geno = Hair.randomGenotype(dad.getHair().getHairColorGenotype(),
-     * mom.getHair().getHairColorGenotype());
-     * hair.setHairColorGenotype(geno);
-     * hair.setHairColor(Hair.phenotypeFromGenotype(Hair.getHairColorMap(), geno));
-     * }
-     * 
-     * }
-     */
+                --------------------------------------------------------
+                How do you want to determine %s %s?
+
+                --------------------------------------------------------
+
+                    1. Choose %s %s manually
+                    2. Randomize %s %s
+
+                --------------------------------------------------------
+                Please enter "1" or "2" to proceed
+
+                """.formatted(
+                pronoun,
+                traitType,
+                pronoun,
+                traitType,
+                pronoun,
+                traitType);
+    }
 
     // User selects phenotype from printed list
     public static String selectPhenotype(String selectionMenu, Scanner input, List<String> phenoList) {
@@ -86,7 +63,7 @@ public class Dashboard {
 
     // Randomized phenotype from list (user selects "R")
     public String randomizePhenotype(List<String> phenoList) {
-        phenotype = RandomUtils.random(phenoList);
+        String phenotype = RandomizeUtils.random(phenoList);
         return phenotype;
     }
 

@@ -52,8 +52,6 @@ public class Eyes extends Trait {
     }
 
     // attributes needed outside the class
-    private String eyeColor;
-    private int eyeColorGenotype;
     private static String selectionMenu = """
             Next, we're going to select their eye color.
 
@@ -66,12 +64,11 @@ public class Eyes extends Trait {
 
     // default constructor
     public Eyes() {
-        this("brown", 33);
+        this("amber", 33);
     }
 
-    Eyes(String eyeColor, int eyeColorGenotype) {
-        this.eyeColor = eyeColor;
-        this.eyeColorGenotype = eyeColorGenotype;
+    Eyes(String phenotype, int genotype) {
+        super(genotype, phenotype);
     }
 
     public static Map<Integer, String> getEyeColorMap() {
@@ -94,26 +91,3 @@ public class Eyes extends Trait {
     }
 
 }
-
-/*
- * // getters
- * public String getEyeColor() {
- * return eyeColor;
- * }
- * 
- * public int getEyeColorGenotype() {
- * return eyeColorGenotype;
- * }
- * 
- * 
- * // setters
- * public void setEyeColor(String eyeColor) {
- * this.eyeColor = eyeColor;
- * }
- * 
- * public void setEyeColorGenotype(int eyeColorGenotype) {
- * this.eyeColorGenotype = eyeColorGenotype;
- * }
- * 
- * }
- */

@@ -17,8 +17,14 @@ public abstract class Trait {
         this.phenotype = "";
     }
 
-    public static Trait createTrait(Scanner input, Trait trait, int dadGeno, int momGeno) {
-        System.out.println("traitSelectMenu");
+    protected Trait(int genotype, String phenotype) {
+        this.genotype = genotype;
+        this.phenotype = phenotype;
+    }
+
+    public static Trait createTrait(String pronoun, String traitType, Scanner input, Trait trait, int dadGeno,
+            int momGeno) {
+        System.out.println(Dashboard.traitSelectMenu(pronoun, traitType));
         String choice = input.nextLine();
 
         // option 1 select manually
@@ -28,10 +34,15 @@ public abstract class Trait {
 
             // option 2 randomize
         } else if (choice.equals("2")) {
-            int geno = GeneticsEngine.randomGenotype(dadGeno, momGeno);
-            trait.setGenotype(geno);
-            trait.setPhenotype(GeneticsEngine.phenotypeFromGenotype(trait.getMap(), geno));
+            trait = recombinate(trait, dadGeno, momGeno);
         }
+        return trait;
+    }
+
+    public static Trait recombinate(Trait trait, int dadGeno, int momGeno) {
+        int geno = GeneticsEngine.randomGenotype(dadGeno, momGeno);
+        trait.setGenotype(geno);
+        trait.setPhenotype(GeneticsEngine.phenotypeFromGenotype(trait.getMap(), geno));
         return trait;
     }
 
@@ -40,7 +51,7 @@ public abstract class Trait {
         return genotype;
     }
 
-    public void setGenotype(int genotype) {
+    private void setGenotype(int genotype) {
         this.genotype = genotype;
     }
 
@@ -48,7 +59,7 @@ public abstract class Trait {
         return phenotype;
     }
 
-    public void setPhenotype(String phenotype) {
+    private void setPhenotype(String phenotype) {
         this.phenotype = phenotype;
     }
 

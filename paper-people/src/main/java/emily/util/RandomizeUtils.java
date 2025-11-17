@@ -1,14 +1,14 @@
-package emily;
+package emily.util;
 
 import java.util.List;
 import java.util.Random;
 
-public final class RandomUtils {
+public final class RandomizeUtils {
 
     private static final Random rand = new Random();
 
     // Private constructor to prevent instantiation
-    private RandomUtils() {
+    private RandomizeUtils() {
     }
 
     // ---------- Random element from an array ----------

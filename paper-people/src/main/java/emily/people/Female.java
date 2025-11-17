@@ -13,7 +13,7 @@ public class Female extends Person {
     public Female() {
         firstName = "JANE";
         lastName = "DOE";
-        sex = "XX";
+        isMale = false;
         eyes = super.eyes;
         hair = super.hair;
     }
@@ -21,7 +21,7 @@ public class Female extends Person {
     public Female(String firstName, String lastName, String sex, Eyes eyes, Hair hair, Male dad, Female mom) {
         this.firstName = firstName;
         this.lastName = lastName;
-        sex = "XX";
+        isMale = false;
         this.eyes = eyes;
         this.hair = hair;
         this.dad = dad;
@@ -31,20 +31,4 @@ public class Female extends Person {
     public String[] getFemaleNames() {
         return femaleNames;
     }
-
-    /*
-     * public String getFemaleName(Scanner input) {
-     * System.out.
-     * println("Your person is a woman. Give her a first name, or enter \"R\" to randomize: "
-     * );
-     * String name = input.nextLine();
-     * if (name.equalsIgnoreCase("R")) {
-     * firstName = RandomUtils.random(femaleNames);
-     * } else {
-     * firstName = name;
-     * }
-     * System.out.println("Her first name is " + firstName + ".");
-     * return firstName;
-     * }
-     */
 }

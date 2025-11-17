@@ -12,7 +12,7 @@ public class Male extends Person {
     public Male() {
         firstName = "JOHN";
         lastName = "DOE";
-        sex = "XY";
+        isMale = true;
         eyes = super.eyes;
         hair = super.hair;
     }
@@ -20,7 +20,7 @@ public class Male extends Person {
     public Male(String firstName, String lastName, String sex, Eyes eyes, Hair hair, Male dad, Female mom) {
         this.firstName = firstName;
         this.lastName = lastName;
-        sex = "XY";
+        isMale = true;
         this.eyes = eyes;
         this.hair = hair;
         this.dad = dad;
@@ -30,21 +30,5 @@ public class Male extends Person {
     public String[] getMaleNames() {
         return maleNames;
     }
-
-    /*
-     * public static String getMaleName(Scanner input) {
-     * System.out.
-     * println("Your person is a man. Give him a first name, or enter \"R\" to randomize: "
-     * );
-     * String name = input.nextLine();
-     * String firstName;
-     * if (name.equalsIgnoreCase("R")) {
-     * firstName = RandomUtils.random(maleNames);
-     * } else {
-     * firstName = name;
-     * }
-     * System.out.println("His first name is " + firstName + ".");
-     * return firstName;
-     */
 
 }
