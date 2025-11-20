@@ -22,16 +22,24 @@ import java.util.List;
  * - Example: genotype 34
  * - '3' → Aa (heterozygous for gene A, brown influence)
  * - '4' → BB (homozygous dominant for gene B, no green influence)
+ * - Combined genotype '34' = AaBB
+ * - note: green is treated as recessive in this simplified model, to better fit
+ * common eye color distributions.
  *
  * Phenotype mapping:
  * - The combination of digits maps to a specific eye color:
  * 34 → AaBB → brown eyes
  * - Mappings are stored in a HashMap for easy lookup.
  *
- * Methods:
- * - selectEyeColor(Scanner input) → allows user to choose eye color
- * - randomizeEyeColor() → picks a random eye color
- * - generateEyeColorGenotype() → generates genotype for current eye color
+ * To Extend:
+ * - gene A to be brown vs blue (primary pigment)
+ * - gene B to be darker vs lighter blue (minor pigment)
+ * - add gene C for green vs blue (green dominant over blue, recessive to brown)
+ * - add "booster" and "knockout" genes to enhance/suppress pigment expression
+ * 
+ * References:
+ * https://www.nature.com/articles/jhg2010126
+ * 
  */
 
 public class Eyes extends Trait {
@@ -51,7 +59,6 @@ public class Eyes extends Trait {
         EYE_COLOR_MAP = Collections.unmodifiableMap(eyeColorMap);
     }
 
-    // attributes needed outside the class
     private static String selectionMenu = """
             Next, we're going to select their eye color.
 
@@ -69,10 +76,6 @@ public class Eyes extends Trait {
 
     Eyes(String phenotype, int genotype) {
         super(genotype, phenotype);
-    }
-
-    public static Map<Integer, String> getEyeColorMap() {
-        return EYE_COLOR_MAP;
     }
 
     @Override

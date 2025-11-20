@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import emily.util.RandomizeUtils;
+import emily.utils.Randomize;
 
 public class GeneticsEngine {
 
@@ -26,7 +26,7 @@ public class GeneticsEngine {
     // have phenotype, need a random genotype
     public static int generateGenotype(Map<Integer, String> map, String phenotype) {
         ArrayList<Integer> possibleGenotypes = getKeyByValue(map, phenotype);
-        int genotype = RandomizeUtils.random(possibleGenotypes);
+        int genotype = Randomize.random(possibleGenotypes);
         return genotype;
     }
 
@@ -69,7 +69,7 @@ public class GeneticsEngine {
         for (int i = 0; i < momGene.length; i++) {
             int geneCross = momGene[i] * dadGene[i];
             String[] crossResults = map.get(geneCross);
-            String gene = RandomizeUtils.random(crossResults);
+            String gene = Randomize.random(crossResults);
             babyGeno = babyGeno + gene;
             babyGenotype = Integer.parseInt(babyGeno);
         }

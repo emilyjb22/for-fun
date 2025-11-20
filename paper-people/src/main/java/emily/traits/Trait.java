@@ -73,6 +73,7 @@ public abstract class Trait {
     }
 
     public Map<Integer, String> getMap() {
+        System.out.println("not working");
         return null;
     }
 

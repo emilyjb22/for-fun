@@ -1,26 +1,31 @@
-package emily.util;
+package emily.utils;
 
 import java.util.Scanner;
 
-public class AncillaryUtils {
+public class Ancillary {
 
     // Private constructor to prevent instantiation
-    private AncillaryUtils() {
+    private Ancillary() {
     }
 
-    public static void pause(Scanner input) {
+    public static void pause(Scanner input, String prompt) {
         // Check if there's a leftover newline from previous input
         if (input.hasNextLine()) {
             String leftover = input.nextLine();
             if (!leftover.isEmpty()) {
-                // The leftover wasn't just a newline — it was actual input!
-                // Keep it; we don't want to discard the user's text.
             }
         }
 
         // Now prompt the user properly
-        System.out.println("Press Enter to continue...");
+        System.out.println(prompt);
         input.nextLine(); // always waits for real Enter
+    }
+
+    public static String formatName(String name) {
+        if (name.isEmpty())
+            return name;
+        name = name.trim();
+        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 
 }

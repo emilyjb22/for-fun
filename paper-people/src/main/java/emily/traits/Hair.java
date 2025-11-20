@@ -84,15 +84,6 @@ public class Hair extends Trait {
         super(genotype, phenotype);
     }
 
-    // getters
-    public static Map<Integer, String> getHairColorMap() {
-        return HAIR_COLOR_MAP;
-    }
-
-    public static List<String> getHairColors() {
-        return HAIR_COLORS;
-    }
-
     @Override
     public String getSelectionMenu() {
         return selectionMenu;

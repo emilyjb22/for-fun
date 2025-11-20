@@ -4,19 +4,17 @@ import java.util.Scanner;
 import emily.traits.Eyes;
 import emily.traits.Hair;
 import emily.traits.Trait;
+import emily.utils.Ancillary;
 
 public class PersonFactory {
 
     public static Person createStarterPerson(
-            String messageA,
-            String messageB,
             Scanner input,
             String firstName,
             String lastName,
             boolean isMale) {
-        System.out.println(messageA);
-        // input.nextLine();
-        System.out.println(messageB);
+
+        Ancillary.pause(input, "Creating person...");
 
         Male dad = new Male();
         Female mom = new Female();
@@ -66,11 +64,11 @@ public class PersonFactory {
         return person;
     }
 
-    public static Male createMan(String messageA, String messageB, Scanner input) {
-        return (Male) createStarterPerson(messageA, messageB, input, "Adam", "Paper", true);
+    public static Male createMan(Scanner input) {
+        return (Male) createStarterPerson(input, "Adam", "Paper", true);
     }
 
-    public static Female createWoman(String messageA, String messageB, Scanner input) {
-        return (Female) createStarterPerson(messageA, messageB, input, "Eve", "Paper", false);
+    public static Female createWoman(Scanner input) {
+        return (Female) createStarterPerson(input, "Eve", "Paper", false);
     }
 }
