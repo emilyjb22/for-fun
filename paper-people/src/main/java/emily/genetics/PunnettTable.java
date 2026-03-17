@@ -23,39 +23,3 @@ public final class PunnettTable {
     private PunnettTable() {
     } // prevent instantiation
 }
-
-/*
- * // possible babies
- * String[] bothHomozygousDominant = { "4" }; // AA x AA
- * String[] homozygousDominantByHeterozygous = { "4", "3" }; // AA x Aa
- * String[] homozygousDominantByHomozygousRecessive = { "3" }; // AA x aa
- * String[] bothHeterozygous = { "4", "3", "3", "2" }; // Aa x Aa
- * String[] heterozygousByHomozygousRecessive = { "3", "2" }; // Aa x aa
- * String[] bothHomozygousRecessive = { "2" }; // aa x aa
- * int[] parentCrosses = { 16, 12, 8, 9, 6, 4 };
- * 
- * // map of parent crosses (product of their individual alleles) to posstible
- * baby
- * // combinations (saved as String arrays)
- * private static HashMap<Integer, String[]> parentCrossMap = new
- * HashMap<Integer, String[]>();
- * {
- * int i = 0;
- * parentCrossMap.put(Integer.valueOf(parentCrosses[i]),
- * bothHomozygousDominant);
- * i++;
- * parentCrossMap.put(Integer.valueOf(parentCrosses[i]),
- * homozygousDominantByHeterozygous);
- * i++;
- * parentCrossMap.put(Integer.valueOf(parentCrosses[i]),
- * homozygousDominantByHomozygousRecessive);
- * i++;
- * parentCrossMap.put(Integer.valueOf(parentCrosses[i]), bothHeterozygous);
- * i++;
- * parentCrossMap.put(Integer.valueOf(parentCrosses[i]),
- * heterozygousByHomozygousRecessive);
- * i++;
- * parentCrossMap.put(Integer.valueOf(parentCrosses[i]),
- * bothHomozygousRecessive);
- * }
- */

@@ -37,7 +37,6 @@ public class GeneticsEngine {
             parentGeno = parentGeno / 10;
             i++;
         }
-        // System.out.println(i);
         return i;
     }
 
@@ -52,13 +51,10 @@ public class GeneticsEngine {
                 geneValues[j] = gene;
                 parentGeno = (int) (parentGeno - (gene * (Math.pow(10, (d - 1)))));
                 num = num - 1;
-            } else { // parentGeno / 10 = 0
+            } else {
                 int gene = parentGeno % 10;
                 geneValues[j] = gene;
             }
-        }
-        for (int k = 0; k < geneValues.length; k++) {
-            // System.out.println(geneValues[k]);
         }
         return geneValues;
     }
