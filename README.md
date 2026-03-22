@@ -10,6 +10,6 @@ Eventually, users will be able to randomize large numbers of individuals and sta
 
 Currently, individuals have hair color and eye color. I intend on adding skin color, hair texture, face shape, and other genetic attributes, as well as a GUI.
 
-Genetic information is loosely based on real-life inheritance patterns. Traints are polygenic, alleles are varying degrees of codominant.
+Genetic information is loosely based on real-life inheritance patterns. Traits are polygenic, alleles are varying degrees of codominant.
 
 Project currently exists in two forms: 1) Java (furthest in development) and 2) Python (early in development).
