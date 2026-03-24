@@ -1,8 +1,8 @@
 # trait and genetics stuff
 
-from abc import ABC
+#from abc import ABC
 from random import choice
-from trait_data import HAIR_COLOR
+#from trait_data import HAIR_COLOR
 
 
 punnett_table = {
@@ -41,10 +41,13 @@ def match_phenotype(genotype: int, trait_dict: dict[int,list]) -> str:
 def randomize_phenotype(trait_dict: dict[int,list]) -> int:
     return choice(list(trait_dict.keys()))
 
-class Trait(ABC):
+class Trait:
     def __init__(self,genotype,phenotype):
         self.genotype = genotype
         self.phenotype = phenotype
+
+    def __str__(self):
+        return f"{self.phenotype} ({self.genotype})"
 
     # getter equivalents
     def get_genotype(self):

@@ -3,15 +3,15 @@
 SEX = ("male","female")
 
 EYE_COLOR = {
-        "black": 44,
-        "dark brown": 43,
-        "hazel": 42,
-        "brown": 34,
-        "amber": 33,
-        "green": 32,
-        "dark blue": 24,
-        "blue": 23,
-        "gray": 22
+        "black": (44,),
+        "dark brown": (43,),
+        "hazel": (42,),
+        "brown": (34,),
+        "amber": (33,),
+        "green": (32,),
+        "dark blue": (24,),
+        "blue": (23,),
+        "gray": (22,)
     }
 
 HAIR_COLOR = {
