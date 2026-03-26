@@ -9,6 +9,7 @@ src/my_project/cli/__init__.py
 src/my_project/cli/create_person_menu.py
 src/my_project/cli/main_menu.py
 src/my_project/people/__init__.py
+src/my_project/people/name_data.py
 src/my_project/people/person.py
 src/my_project/traits/__init__.py
 src/my_project/traits/trait_data.py

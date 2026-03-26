@@ -5,20 +5,32 @@
 # save person
 
 from random import choice
+from people.person import random_fname, random_lname
 
-menu1 = """
+def create_person():
+    print( """
         Let's create your person.
-          
+            
         Biologically speaking, is your person male or female? Please enter "M" for male, "F" for female, or "R" to randomize
-        """
+        """)
+    sex, pronoun = get_sex()
+    print(f"Great! Your person is {sex}")
 
-print(f"Great! Your person is {sex}")
+    print(f"""
+            Please enter your new person's name, or type "r" to randomize
+            """)
+    first_name = get_first_name(sex)
+    print(f"Your person's name is {first_name}")
 
-print("""
-    Please give your person a name, or type "r" to randomize
-    """)
+    print(f"""
+            Please enter your new person's last name, or type "r" to randomize
+            """)
+    last_name = get_last_name()
 
-print(f"Your person's name is {first_name} {last_name}")
+    print(f"Great! Your person's name is {first_name} {last_name}.")
+
+
+
 
 def get_sex():
     entry = input("Biological sex: ").lower()
@@ -29,17 +41,30 @@ def get_sex():
             sex = "male"
         case "r":
             sex = choice(("male","female"))
-    pronoun = "her" if sex == "female" else pronoun = "his"
+    if sex == "female":
+        pronoun = "her"
+    else: pronoun = "his"
     return sex, pronoun
 
-def get_name():
-    first_name = input("First name: ").lower()
-        # if first_name == "r":
-            # randomize_value() #make function
-    last_name = input("Last name: ").lower()
-        # if last_name == "r":
-            # randomize_value() #make function
-    return first_name, last_name
+# randomize or enter first name
+# def get_name(message, sex):
+#     first_name = input("First name: ").lower()
+#     if first_name == "r":
+#         first_name = random_fname(sex)
+#     return(first_name[0].upper() + first_name[1:])
+
+def get_first_name(sex):
+    name = input("First name: ").lower()
+    if name == "r":
+        name = random_fname(sex)
+    return name[0].upper() + name[1:]
+
+def get_last_name():
+    name = input("Last name: ").lower()
+    if name == "r":
+        name = random_lname()
+    return name[0].upper() + name[1:]
+
 
 def get_traits(first_name, pronoun):
     print(f"Next, we're going to give {first_name} {pronoun} traits. Would you like to randomize their traits, or select their traits manually?")

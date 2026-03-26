@@ -1,7 +1,8 @@
 from random import choice
-from traits.trait_functions import randomize_phenotype, randomize_value, Trait
-from traits.trait_data import HAIR_COLOR, EYE_COLOR
-from people.person import Person, default_parent
+from cli.create_person_menu import create_person
+# from traits.trait_functions import randomize_phenotype, randomize_value, Trait
+# from traits.trait_data import HAIR_COLOR, EYE_COLOR
+# from people.person import Person, default_parent
 
 def run_main_menu():
     selection = 0
@@ -28,7 +29,6 @@ def run_main_menu():
             case 1:
                 create_person()
                 
-
             case 2:
                 print("Have a baby")
             case 3:

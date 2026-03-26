@@ -1,6 +1,6 @@
 from traits.trait_functions import Trait
-import os
-from random import choice
+from people.name_data import MALE_NAMES, FEMALE_NAMES, SURNAMES, WEIGHTS
+from random import choice, choices
 
 
 class Person:
@@ -20,3 +20,14 @@ def default_parent(first_name,sex):
     Default_Hair = Trait("brown",333)
     Default_Eyes = Trait("amber",33)
     return Person(first_name,"Paper",sex,Default_Hair,Default_Eyes,"none","none")
+
+def random_fname(sex):
+    if sex == "male":
+        name = choice(MALE_NAMES)
+    else:
+        name = choice(FEMALE_NAMES)
+    return name
+
+def random_lname():
+    name = choices(SURNAMES, weights=WEIGHTS, k=1)
+    return name[0]
